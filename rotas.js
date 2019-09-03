@@ -27,6 +27,7 @@ const handlebars = require('express-handlebars');
 //    res.send(req.params);
 //});
 
+//ROTAS DE LOGIN
 app.get("/", function(req,res){
     res.render(__dirname +'/public/login');
 });
@@ -34,7 +35,7 @@ app.get("/", function(req,res){
 app.get("/home", function(req,res){
     res.render(__dirname +'/public/home');
 });
-
+//ROTAS DE CADASTRO
 app.get("/cadastrarusuario", function(req,res){
     res.render(__dirname +'/public/cadastrarusuario');
 });
@@ -50,7 +51,7 @@ app.get("/cadastrarfornecedor", function(req,res){
 app.get("/cadastrarbancos", function(req,res){
     res.render(__dirname +'/public/cadastrarbancos');
 });
-
+//ROTAS DE CONSULTAS
 app.get("/consultarcontas", function(req,res){ 
     res.render(__dirname +'/public/consultarcontas');
 });
@@ -62,7 +63,7 @@ app.get("/consultarfornecedor", function(req,res){
 app.get("/consultarbancos", function(req,res){ 
     res.render(__dirname +'/public/consultarbancos');
 });
-
+//-------------------------------------
 sequelize.authenticate().then(function(){
     console.log("Banco de dados rodando.");
 }
