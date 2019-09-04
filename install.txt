@@ -1,8 +1,8 @@
-Guia de instruções para meus amigos super inteligentes!!!
+Guia de instruÃ§Ãµes para meus amigos super inteligentes!!!
 
-Primeiramente, vocês vão baixar os arquivos do github(todos)
-E vão criar uma pasta, de preferência, na área de trabalho dos senhores.
-Então, vocês vão deixar a pasta como está organizada na pastinha + arquivos
+Primeiramente, vocÃªs vÃ£o baixar os arquivos do github(todos)
+E vÃ£o criar uma pasta, de preferÃªncia, na Ã¡rea de trabalho dos senhores.
+EntÃ£o, vocÃªs vÃ£o deixar a pasta como estÃ¡ organizada na pastinha + arquivos
 exemplo:
 -Pasta1(module_nodes)
 -Pasta2(views)
@@ -11,54 +11,54 @@ rotas.js
 criandotabelas.js
 
 PS: Deixar o nome das pastas exatamente igual.
-PS2: Se por acaso, durante a instalação abaixo não funcionar por já existir ou algo assim,
-tentem instalar depois de excluir a pasta module_nodes. (Ela é gerada quando se installa
+PS2: Se por acaso, durante a instalaÃ§Ã£o abaixo nÃ£o funcionar por jÃ¡ existir ou algo assim,
+tentem instalar depois de excluir a pasta module_nodes. (Ela Ã© gerada quando se installa
 os frameworks)
 ---------------------
 CMD
 
-As demais coisas feitas aqui, são no CMD, então, abram o cmd e façam o caminho até a pasta
-que vocês deixaram os arquivos do git
+As demais coisas feitas aqui, sÃ£o no CMD, entÃ£o, abram o cmd e faÃ§am o caminho atÃ© a pasta
+que vocÃªs deixaram os arquivos do git
 exemplo:
 cd documents
 cd tg
 ------------
 INICIANDO SERVIDOR
 
-APÓS INSTALAR TUDO ABAIXO, PARA TESTAR O SERVIDOR USE NO DIRETÓRIO CORRETO DO CMD
+APÃ“S INSTALAR TUDO ABAIXO, PARA TESTAR O SERVIDOR USE NO DIRETÃ“RIO CORRETO DO CMD
 
 nodemon rotas.js
 
 deve retornar: Servidor Rodando.
 Banco de dados funcionando.
 
-Após isso, para iniciar, digite no chrome
+ApÃ³s isso, para iniciar, digite no chrome
 localhost:8081
 ---------
 "EDITORES DE TEXTO"
 
-Não necessariamente, mas vocês vão precisar de um bom editor de texto tanto pro html
+NÃ£o necessariamente, mas vocÃªs vÃ£o precisar de um bom editor de texto tanto pro html
 como pro back-end
 Eu uso o SUBLIME TEXT(https://www.sublimetext.com/3) para o html
-e o Visual Studio Code para o de mais. Também pode ser usado o ATOM (https://atom.io/)
-Mas aí eu nunca usei.
+e o Visual Studio Code para o de mais. TambÃ©m pode ser usado o ATOM (https://atom.io/)
+Mas aÃ­ eu nunca usei.
 --------------------------
 Node.Js
 
-Só baixar.
+SÃ³ baixar.
 Link: https://nodejs.org/en/
-Versão LTS da esquerda
+VersÃ£o LTS da esquerda
 ----------------------
 
 Node.JS Express
 (Framework que faz as rotas do servidor!)
 
-ATENÇÃO, DEIXAR O CMD NO DIRETÓRIO QUE ESTÁ AS PASTAS(como eu falei na parte do CMD)
+ATENÃ‡ÃƒO, DEIXAR O CMD NO DIRETÃ“RIO QUE ESTÃ AS PASTAS(como eu falei na parte do CMD)
 
 apenas digitar e dar enter:
 npm install express --save
 
-Com isso, se vocês quiserem iniciar o servidor para testar é só usar
+Com isso, se vocÃªs quiserem iniciar o servidor para testar Ã© sÃ³ usar
 
 node rotas.js
 
@@ -68,9 +68,9 @@ e digitar no chrome localhost:8081
 
 Nodemon
 (Framework que faz com que o servidor fique ligado e reinicie sozinho assim que uma
-alteração seja feita no código)
+alteraÃ§Ã£o seja feita no cÃ³digo)
 
-digitar no cmd no diretório correto:
+digitar no cmd no diretÃ³rio correto:
 
 npm install nodemon -g
 
@@ -86,9 +86,9 @@ No installador selecionar
 
 Server only
 
-Dar next até aparecer Config Type: Development Computer
+Dar next atÃ© aparecer Config Type: Development Computer
 (certifique-se que esteja nesse mesmo ou em Development Machine)
-(muda o nome conforme a versão do installador)
+(muda o nome conforme a versÃ£o do installador)
 
 Coloque para iniciar com o windows
 
@@ -96,14 +96,14 @@ senha: 123456
 
 depois
 
-Clicar com botão direito em meu computador>propriedades
-Configurações avançadas do sistema>variáveis do ambiente
+Clicar com botÃ£o direito em meu computador>propriedades
+ConfiguraÃ§Ãµes avanÃ§adas do sistema>variÃ¡veis do ambiente
 E clique em novo
 
-Você vai pegar e copiar a pasta onde está os arquivos do TG
+VocÃª vai pegar e copiar a pasta onde estÃ¡ os arquivos do TG
 e clicar em novo e colar.
 
-Depois, você vai no cmd(pode ser em qualquer diretório)
+Depois, vocÃª vai no cmd(pode ser em qualquer diretÃ³rio)
 
 digite:
 
@@ -115,12 +115,12 @@ e digite de novo:
 
 CREATE DATABASE CAP
 
-dê um SHOW DATABASES para confirmar se foi criada.
+dÃª um SHOW DATABASES para confirmar se foi criada.
 -----------------------
 Sequelize
 (framework do banco de dados)
 
-Só digitar no CMD no diretório correto:
+SÃ³ digitar no CMD no diretÃ³rio correto:
 
 npm install --save sequelize
 
@@ -131,13 +131,19 @@ npm install --save mysql2
 HANDLEBARS
 (framework para template do html)
 
-Só digitar no CMD no diretório correto:
+SÃ³ digitar no CMD no diretÃ³rio correto:
 
 npm install --save express-handlebars
 -------------------------
+Body-parser
+(Framework para trabalhar com exibiÃ§Ã£o dos dados dos formulÃ¡rios)
+
+SÃ³ digitar no CMD no diretÃ³rio correto:
+
+npm install --save body-parser
 
 
-CASO NÃO DÊ CERTO A INSTALLAÇÃO DE ALGO, FALE COMIGO
-SE DEU, VOLTE PARA O COMEÇO E TENTE INICIAR O SERVIDOR NO TÓPICO
+CASO NÃƒO DÃŠ CERTO A INSTALLAÃ‡ÃƒO DE ALGO, FALE COMIGO
+SE DEU, VOLTE PARA O COMEÃ‡O E TENTE INICIAR O SERVIDOR NO TÃ“PICO
 ''INICIANDO O SERVIDOR''
 bjs
