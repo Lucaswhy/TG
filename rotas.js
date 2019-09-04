@@ -17,18 +17,64 @@ const handlebars = require('express-handlebars');
     app.engine('handlebars', handlebars({defaultLayout: 'main'}));
     app.set('view engine','handlebars');
 
+const bodyParser = require('body-parser');
+//Body Parser configuração
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+
+//rotas para os handlebars
+
+//app.get("/", function(req,res){   //Com HTML
+//    res.sendFile(__dirname +'/public/login'); //defino a página inicial do código
+//});
+
+// app.get("/parametros/:nome/:cargo", function(req, res){ //parâmetros a ser enviado, exemplo
+//    res.send(req.params);
+//});
+
+//ROTAS DE LOGIN
 app.get("/", function(req,res){
-    res.sendFile(__dirname +'/public/login.html'); //defino a página inicial do código
+    res.render(__dirname +'/public/login');
 });
 
-app.get("/teste", function(req,res){
-    res.render(__dirname +'/views/layouts/login');
+app.post("/home", function(req,res){
+    res.render(__dirname +'/public/home');
 });
 
-app.get("/parametros/:nome/:cargo", function(req, res){ //parametros
-    res.send(req.params);
+//app.post("/teste", function(req,res){
+//    res.send("OK");
+//});
+
+//ROTAS DE CADASTRO
+app.get("/cadastrarusuario", function(req,res){
+    res.render(__dirname +'/public/cadastrarusuario');
 });
 
+app.get("/cadastrarcontas", function(req,res){
+    res.render(__dirname +'/public/cadastrarcontas');
+});
+
+app.get("/cadastrarfornecedor", function(req,res){
+    res.render(__dirname +'/public/cadastrarfornecedor');
+});
+
+app.get("/cadastrarbancos", function(req,res){
+    res.render(__dirname +'/public/cadastrarbancos');
+});
+//ROTAS DE CONSULTAS
+app.get("/consultarcontas", function(req,res){ 
+    res.render(__dirname +'/public/consultarcontas');
+});
+
+app.get("/consultarfornecedor", function(req,res){ 
+    res.render(__dirname +'/public/consultarfornecedor');
+});
+
+app.get("/consultarbancos", function(req,res){ 
+    res.render(__dirname +'/public/consultarbancos');
+});
+//-------------------------------------
 sequelize.authenticate().then(function(){
     console.log("Banco de dados rodando.");
 }
