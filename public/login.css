@@ -1,0 +1,62 @@
+a{
+text-decoration:none;
+}
+
+body{
+margin:0px;
+padding: 0px;
+}
+
+h1,h2,h3{
+	font-family: arial;
+}
+
+#maior{
+	height: 30px;
+	border-radius: 0.5em;
+}
+
+#divprincipal{
+background-color: white;
+text-align: center;
+border-radius: 0.5em;
+color: black;
+
+left:50%;
+top:50%;
+
+margin-left:-200px;
+margin-top:-150px; 
+width: 400px;
+min-height: 300px;
+
+position:absolute;
+}
+
+#menu {
+margin:10px;
+background: black;
+
+ border-radius: 1em;
+ border-color:black;
+ border-style: solid;
+
+
+font-variant: small-caps;
+font-family: arial;
+}
+
+#topside{
+font-family: arial;
+
+font-size:25px;
+text-align: right;
+color:white;
+
+max-width: none;
+padding:0px;
+margin:0px;
+
+position:static;
+background:black;
+}

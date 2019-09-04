@@ -1,0 +1,123 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='cadastrarbancos.css'>
+
+	<p>
+	<table id="menu">
+
+	<th>Menu</th>
+	
+	<tr>
+		<td><a href="home.html" > HOME </a></td>
+	</tr>
+	<tr>
+		<td id="menutd"> <a href="contas.html"> Contas </a>
+		<p>
+		<a href="cadastrarcontas.html"> Cadastrar Contas </a>
+		<p>
+		<a href="consultarcontas.html"> Consultar Contas </a></td>
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a href="fornecedor.html"> Fornecedor </a>
+		<p>
+		<a href="cadastrarfornecedor.html"> Cadastrar Fornecedor </a>
+		<p>
+		<a href="consultarfornecedor.html"> Consultar Fornecedor </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a href="fornecedor.html"> Bancos </a>
+		<p>
+		<a href="cadastrarbancos.html"> Cadastrar Bancos </a>
+		<p>
+		<a href="consultarbancos.html"> Consultar Bancos </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a href="relatorio.html"> Relatórios </a>
+		<p>
+		<a href="relatorio.html"> Gerar relatório </a>	
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a href="Portfolio.html"> Gerar ordem de pagamento </a></td>
+	</tr>
+
+	</table>
+
+
+	<div id="divprincipal">
+	<h1>Cadastrar Bancos</h1>
+
+    
+	<form>
+
+		<br>
+
+		<div>
+
+		<label for="name">Cod.Banco:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Número da Conta:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Digito:</label>
+        <input type="number" id="maior" />
+        
+        <p></p>
+        
+        <label for="name">Código da Agência:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Nome da Agência:</label>
+        <input type="text" id="maior" />
+
+        <p></p>
+
+        <label for="name">Gerente da Agência:</label>
+        <input type="text" id="mtumaior" />
+        
+        <p></p>
+
+        <label for="name">Logradouro:</label>
+        <input type="text" id="mtumaior" />
+
+        <p></p>
+
+        <label for="name">Banco:</label>
+        <input type="text" id="maior" />
+
+        <label for="name">Número da Agência:</label>
+        <input type="number" id="maior" />
+        
+        <p></p>
+
+
+		</div>
+</form>
+
+	
+        <h2>Tipo:</h2>
+
+        <label for="name">CNAB 200:</label>
+        <input type="radio" name="cnab" />
+
+        <label for="name">CNAB 400:</label>
+        <input type="radio" name="cnab" />
+
+		<div id="button">
+        	<button id="maior" type="button" onclick="contato()">Cadastrar!</button>
+    	</div>
+
+		<br>
+
+
+</div>
+
+    <script>
+
+	    function contato(){
+		    alert("Banco Cadastrado!");
+	    }
+
+    </script>

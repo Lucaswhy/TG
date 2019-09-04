@@ -1,6 +1,6 @@
 const db = require("./db");
 
-const Post = db.sequelize.define("usuario", {
+const Posts = db.sequelize.define("usuario", {
     Cracha: {
         type: db.Sequelize.MEDIUMINT
     },
@@ -34,5 +34,7 @@ const Post = db.sequelize.define("usuario", {
     }
 });
 
-    Post.sync({force:true});
+    Posts.sync({force:true});
+
+    module.export = Posts;
 
