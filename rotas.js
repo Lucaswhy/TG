@@ -1,16 +1,9 @@
 const path = require('path');
+const Usuarios = require('./models/Usuarios');
 const express = require("express"); //Chama o framework que faz o req/res
 const app  = express();
 
 app.use(express.static(path.join(__dirname, '/public'))); //defino que a pasta usada é a pública
-
-//Configurando o banco com sequelize
-const Sequelize = require("sequelize"); //Chama o framework que faz a conexão com o banco de dados
-const sequelize = new Sequelize("CAP", "root", "123456",{
-host:"localhost",
-dialect:"mysql"
-} ); //Se conecta a database do banco CAP pelo usuário/senha, e seleciona o host local e sua
-//linguagem do banco de dadoss.
 
 const handlebars = require('express-handlebars');
    // Configurando
@@ -22,7 +15,6 @@ const bodyParser = require('body-parser');
 //Body Parser configuração
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 
 //rotas para os handlebars
 
@@ -41,8 +33,26 @@ app.get("/", function(req,res){
 });
 
 app.post("/home", function(req,res){
-    res.render(__dirname +'/public/home');
+    Usuarios.create({
+        Cracha: req.body.Cracha,
+        Nome: req.body.Nome,
+        CPF: req.body.CPF,
+        Cargo: req.body.Cargo,
+        DataNascimento: req.body.DataNascimento,
+        DataAdmissao: req.body.DataAdmissao,
+        Email: req.body.Email, 
+        Senha: req.body.Senha
+    }).then(function(){
+    res.redirect('/usuariocadastrado');
+    }).catch(function(erro){
+        res.send("Usuário não cadastrado. Erro:" + erro);
+    });
 });
+
+app.get("/usuariocadastrado", function(req,res){
+    res.render(__dirname +'/public/usuariocadastrado');
+});
+
 
 //ROTAS DE CADASTRO
 app.get("/cadastrarusuario", function(req,res){
@@ -73,12 +83,6 @@ app.get("/consultarbancos", function(req,res){
     res.render(__dirname +'/public/consultarbancos');
 });
 //-------------------------------------
-sequelize.authenticate().then(function(){
-    console.log("Banco de dados rodando.");
-}
-).catch(function(erro){
-    console.log("Falha no banco de dados, erro: " + erro);   
-}); //verifica conexão com o banco
 
 app.listen(8081, function(){ //funcao de callback
     console.log("Servidor rodando.");

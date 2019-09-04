@@ -1,22 +1,22 @@
 CREATE TABLE usuario(
     Cracha MEDIUMINT NOT NULL AUTO_INCREMENT,
-    Nome VARCHAR(50),
-    CPF VARCHAR(20),
-    Cargo VARCHAR(20),
+    Nome VARCHAR2(50),
+    CPF VARCHAR2(20),
+    Cargo VARCHAR2(20),
     DataNascimento date,
     DataAdmissao date,
-    Email VARCHAR(100),
-    Senha VARCHAR(50),
+    Email VARCHAR2(100),
+    Senha VARCHAR2(50),
     PRIMARY KEY (Cracha)
 );
 
 CREATE TABLE usuario_endereco(
     Cracha MEDIUMINT NOT NULL AUTO_INCREMENT,
-    Logradouro VARCHAR(50),
+    Logradouro VARCHAR2(50),
     Numero INT,
-    Bairro VARCHAR(20),
-    Cidade VARCHAR(20),
-    Estado VARCHAR(20),
+    Bairro VARCHAR2(20),
+    Cidade VARCHAR2(20),
+    Estado VARCHAR2(20),
     FOREIGN KEY(Cracha) REFERENCES usuario(Cracha)
 );
 
