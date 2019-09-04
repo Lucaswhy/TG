@@ -4,6 +4,7 @@ const app  = express();
 
 app.use(express.static(path.join(__dirname, '/public'))); //defino que a pasta usada é a pública
 
+//Configurando o banco com sequelize
 const Sequelize = require("sequelize"); //Chama o framework que faz a conexão com o banco de dados
 const sequelize = new Sequelize("CAP", "root", "123456",{
 host:"localhost",
@@ -35,16 +36,13 @@ app.use(bodyParser.json());
 
 //ROTAS DE LOGIN
 app.get("/", function(req,res){
+    req.body.nome;
     res.render(__dirname +'/public/login');
 });
 
 app.post("/home", function(req,res){
     res.render(__dirname +'/public/home');
 });
-
-//app.post("/teste", function(req,res){
-//    res.send("OK");
-//});
 
 //ROTAS DE CADASTRO
 app.get("/cadastrarusuario", function(req,res){
