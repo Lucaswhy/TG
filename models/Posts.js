@@ -31,7 +31,8 @@ const Post = db.sequelize.define("usuario", {
 
     Senha: {
         type: db.Sequelize.VARCHAR
-    },
-
-
+    }
 });
+
+    Post.sync({force:true});
+
