@@ -32,7 +32,13 @@ app.get("/", function(req,res){
     res.render(__dirname +'/public/login');
 });
 
-app.post("/home", function(req,res){
+app.get("/home", function(req,res){
+    Usuarios.findAll().then(function(usuarios){
+    res.render(__dirname + '/public/home', {Nome: "lulu"});
+    })
+});
+
+app.post("/validacadastro", function(req,res){
     Usuarios.create({
         Cracha: req.body.Cracha,
         Nome: req.body.Nome,
@@ -50,9 +56,23 @@ app.post("/home", function(req,res){
 });
 
 app.get("/usuariocadastrado", function(req,res){
-    res.render(__dirname +'/public/usuariocadastrado');
+    res.render(__dirname + '/public/usuariocadastrado')
 });
 
+app.get("/usuariodeletar/:Cracha", function(req,res){
+    Usuarios.destroy({where: {'Cracha' : req.params.Cracha}}).then(function(){
+        res.send("Postagem deletada com sucesso.");
+    }).catch(function(erro){
+        res.send("Usuário não deletado. Erro:" + erro);
+    })
+});
+
+app.get('/consultarusuario', function(req,res){
+ Usuarios.findAll({order: [['Cracha','ASC']]}).then(function(usuarios){
+    console.log(usuarios);
+    res.render(__dirname + '/public/consultarusuario', {usuarios: usuarios});
+})
+});
 
 //ROTAS DE CADASTRO
 app.get("/cadastrarusuario", function(req,res){
