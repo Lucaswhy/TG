@@ -1,0 +1,139 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='cadastrarcontas.css'>
+
+	<p>
+	<table id="menu">
+
+	<th>Menu</th>
+	
+	<tr>
+		<td><a href="home" > HOME </a></td>
+	</tr>
+	<tr>
+		<td id="menutd"> <a> Contas </a>
+		<p>
+		<a href="cadastrarcontas"> Cadastrar Contas </a>
+		<p>
+		<a href="consultarcontas.html"> Consultar Contas </a></td>
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a> Fornecedor </a>
+		<p>
+		<a href="cadastrarfornecedor"> Cadastrar Fornecedor </a>
+		<p>
+		<a href="consultarfornecedores.html"> Consultar Fornecedor </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a> Bancos </a>
+		<p>
+		<a href="cadastrarbancos"> Cadastrar Bancos </a>
+		<p>
+		<a href="consultarbancos.html"> Consultar Bancos </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a> Relatórios </a>
+		<p>
+		<a href="relatorio.html"> Gerar relatório </a>	
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a href="Portfolio.html"> Gerar ordem de pagamento </a></td>
+	</tr>
+
+	</table>
+	
+
+	<div id="divprincipal">
+	<h1>Cadastrar Contas</h1>
+
+    
+	<form>
+
+		<div>
+
+			<label for="name">Boleto:</label>
+        	<input type="radio" name="tipoconta" />
+
+       		<label for="name">DARF:</label>
+        	<input type="radio" name="tipoconta" />
+
+        	<label for="name">IPTU:</label>
+        	<input type="radio" name="tipoconta" />
+
+        	<label for="name">Água/Luz:</label>
+        	<input type="radio" name="tipoconta" />
+
+		</div>
+		
+		<br>
+		<br>
+
+		<div>
+
+		<label for="name">Cod.Conta:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Valor:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Fornecedor:</label>
+        <input type="text" id="maior" />
+        
+        <p></p>
+        
+        <label for="name">Juros:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Multa:</label>
+        <input type="number" id="maior" />
+
+        <label for="name">Desconto:</label>
+        <input type="number" id="maior" />
+        
+        <p></p>
+
+        <label for="name">Data de Emissão:</label>
+        <input type="date" id="maior" />
+
+        <label for="name">Data de Vencimento:</label>
+        <input type="date" id="maior" />
+
+        <label for="name">Observação:</label>
+        <textarea id="maior"></textarea>
+
+		</div>
+
+		<br>
+		<br>
+
+
+	</form>
+    	<div>
+
+        <label for="name" id="codbarra">Código de Barras:</label>
+        <input type="text" id="codbarra" />
+		
+		<p></p>
+
+        <label for="name">Descrição:</label>
+        <textarea id="maior"></textarea>
+
+    	</div>
+
+    	<br>
+
+	<div id="button">
+    			<button id="maior" type="button" onclick="contato()">Cadastrar!</button>
+    </div>
+
+</div>
+
+    <script>
+
+	    function contato(){
+		    alert("Conta Cadastrada!");
+	    }
+
+    </script>

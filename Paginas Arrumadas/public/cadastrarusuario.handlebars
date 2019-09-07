@@ -1,0 +1,134 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='cadastrarusuario.css'>
+    
+	<nav class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand text-light">Bem Vindo</a>
+			<ul class="navbar-nav ml-auto">
+				<a class="navbar-brand text-light"><script>var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth()+1; //January is 0!
+					var yyyy = today.getFullYear();
+
+					if(dd<10) {
+						dd = '0'+dd
+					} 
+
+					if(mm<10) {
+						mm = '0'+mm
+					} 
+
+					today = mm + '/' + dd + '/' + yyyy;
+					document.write(today);</script>
+				</a>
+			</ul>
+	</nav>
+	<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		<a class="navbar-brand"></a>
+	</nav>
+
+    <h2>Cadastrar Usuário</h2>
+
+
+    <form class="form-cadastro" method="POST" action="/home">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Crachá</label>
+                <input type="number" class="form-control" id="validationDefault01" placeholder="Crachá" >
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Nome</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome" >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">CPF</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="CPF" >
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEstado">Estado</label>
+                <select id="inputEstado" class="form-control">
+                    <option selected>Selecione o estado...</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Data de nascimento</label>
+                <input type="date" class="form-control" id="validationDefault01" >
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Data de admissão</label>
+                <input type="date" class="form-control" id="validationDefault02" >
+            </div>
+        </div>
+
+        <h3>Endereço</h3>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Logradouro</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Logradouro" >
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Número</label>
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Número" >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Bairro</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Bairro" >
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Cidade</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Cidade" >
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Estado</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Estado" >
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+                <label for="validationDefault03">E-mail</label>
+                <input type="text" class="form-control" id="validationDefault03" placeholder="nome@exemplo.com" >
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault04">Senha</label>
+                <input type="text" class="form-control" id="validationDefault04" placeholder="Senha" >
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
