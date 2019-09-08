@@ -147,3 +147,50 @@ CASO NÃO DÊ CERTO A INSTALLAÇÃO DE ALGO, FALE COMIGO
 SE DEU, VOLTE PARA O COMEÇO E TENTE INICIAR O SERVIDOR NO TÓPICO
 ''INICIANDO O SERVIDOR''
 bjs
+-------------------------------------------
+mongoDB
+(me desculpa o cara do back end que tá ensinando ta usando 2 banco de dados!!!1)
+
+https://www.mongodb.com/download-center/community
+mudar pra baixar em msi o 4.2.0
+
+Instalação:
+next
+next( termos de uso concordar)
+complete
+next
+install
+
+Aí vai fazer a mesma coisa que o myslq
+Arquivos de programas>mongodb>server>4.2>bin
+
+Copiar o caminho
+>meu computador/propriedades > configurações do sistema
+variáveis do ambiente
+variavel Path > editar
+novo > cola o caminho
+ok salvar ok
+
+Aí vocês vão ter que no Disco Local C: de vocês
+e criar uma pasta chamada Data
+e dentro dessa pasta chamada data, fazer outra pasta chamada db.
+
+Pra rodar isso abra 2 cmd
+Digite mongod
+minimiza ( vai dar uns failure no caminho aí)
+
+outro cmd
+mongo
+
+Agora o banco de dados do mongo tá aberto. é isso.
+Eu sinto muito por fazer vocês mudarem de banco, mas ao menos esse daí não fica ligado toda hora
+como o mySql e é bem leve. Aparentemente é mais prático.
+----------------------------------------------------
+mongoose 
+(framework do mongodb)
+
+só digitar no cmd no diretório correto:
+
+npm install --save mongoose
+------------------------------------
+

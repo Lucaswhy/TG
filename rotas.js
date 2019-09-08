@@ -1,20 +1,20 @@
 const path = require('path');
-const Usuarios = require('./models/Usuarios');
 const express = require("express"); //Chama o framework que faz o req/res
 const app  = express();
+//const mongoose = require("mongoose");
 
-app.use(express.static(path.join(__dirname, '/public'))); //defino que a pasta usada é a pública
+app.use(express.static(path.join(__dirname, 'public'))); //defino que a pasta usada é a pública
 
-const handlebars = require('express-handlebars');
-   // Configurando
+   // Configurando Handlebars
     // Template Engine
+const handlebars = require('express-handlebars');
     app.engine('handlebars', handlebars({defaultLayout: 'main'}));
     app.set('view engine','handlebars');
-
+    
+    //Configurando Body Parser 
 const bodyParser = require('body-parser');
-//Body Parser configuração
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
 
 //rotas para os handlebars
 
@@ -27,83 +27,32 @@ app.use(bodyParser.json());
 //});
 
 //ROTAS DE LOGIN
-app.get("/", function(req,res){
-    req.body.nome;
-    res.render(__dirname +'/public/login');
-});
 
-app.get("/home", function(req,res){
-    Usuarios.findAll().then(function(usuarios){
-    res.render(__dirname + '/public/home', {Nome: "lulu"});
-    })
-});
+    const login = require(__dirname + "/routes/login");
 
-app.post("/validacadastro", function(req,res){
-    Usuarios.create({
-        Cracha: req.body.Cracha,
-        Nome: req.body.Nome,
-        CPF: req.body.CPF,
-        Cargo: req.body.Cargo,
-        DataNascimento: req.body.DataNascimento,
-        DataAdmissao: req.body.DataAdmissao,
-        Email: req.body.Email, 
-        Senha: req.body.Senha
-    }).then(function(){
-    res.redirect('/usuariocadastrado');
-    }).catch(function(erro){
-        res.send("Usuário não cadastrado. Erro:" + erro);
-    });
-});
+    app.use('/', login);
 
-app.get("/usuariocadastrado", function(req,res){
-    res.render(__dirname + '/public/usuariocadastrado')
-});
+//ROTAS DE CONTAS
 
-app.get("/usuariodeletar/:Cracha", function(req,res){
-    Usuarios.destroy({where: {'Cracha' : req.params.Cracha}}).then(function(){
-        res.send("Postagem deletada com sucesso.");
-    }).catch(function(erro){
-        res.send("Usuário não deletado. Erro:" + erro);
-    })
-});
+    const contas = require(__dirname + "/routes/contas");
 
-app.get('/consultarusuario', function(req,res){
- Usuarios.findAll({order: [['Cracha','ASC']]}).then(function(usuarios){
-    console.log(usuarios);
-    res.render(__dirname + '/public/consultarusuario', {usuarios: usuarios});
-})
-});
+    app.use('/', contas);
 
-//ROTAS DE CADASTRO
-app.get("/cadastrarusuario", function(req,res){
-    res.render(__dirname +'/public/cadastrarusuario');
-});
+// ROTAS DE FORNECEDOR  
 
-app.get("/cadastrarcontas", function(req,res){
-    res.render(__dirname +'/public/cadastrarcontas');
-});
+    const fornecedor = require(__dirname + "/routes/fornecedor");
 
-app.get("/cadastrarfornecedor", function(req,res){
-    res.render(__dirname +'/public/cadastrarfornecedor');
-});
+    app.use('/', fornecedor);
 
-app.get("/cadastrarbancos", function(req,res){
-    res.render(__dirname +'/public/cadastrarbancos');
-});
-//ROTAS DE CONSULTAS
-app.get("/consultarcontas", function(req,res){ 
-    res.render(__dirname +'/public/consultarcontas');
-});
+//ROTAS DE BANCOS
 
-app.get("/consultarfornecedor", function(req,res){ 
-    res.render(__dirname +'/public/consultarfornecedor');
-});
+    const bancos = require(__dirname + "/routes/bancos");
 
-app.get("/consultarbancos", function(req,res){ 
-    res.render(__dirname +'/public/consultarbancos');
-});
+    app.use('/', bancos);
+
 //-------------------------------------
 
-app.listen(8081, function(){ //funcao de callback
+const PORT = 8081;
+app.listen(PORT, function(){ //funcao de callback
     console.log("Servidor rodando.");
 });
