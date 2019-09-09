@@ -1,10 +1,36 @@
-<h1>Lista de usuários: </h1>
-{{#each usuarios}}
-<h2>{{Cracha}}</h2>
-<p><h2>{{Nome}}</h2></p>
+    
+    <script type="text/javascript">
+        var valor = documment.getElementByName("busca").value;
+    </script>
 
-<a href ="/usuariodeletar/{{Cracha}}"><button>Deletar Usuário</button></a>
+	<div id="divprincipal">
+        <h1>Lista de usuários: </h1>
+        
+        <div id="divBusca">
+            <input type="text" id="txtBusca" name="busca"/>
+            <button id="btnBusca">Buscar</button>
+        </div>
+        
+        <div id="divTabela" class="maxWidth">
+            <table id="tableCons">
+                <thead>
+                    <tr>
+                        <br>
+                        <hr>
+                        {{#each usuario}}	
+						<div class="card">
+							<div class="card-body">
+                            <h4>{{Cracha}}</h4>
+                            {{Nome}}
+                            <a href ="/usuariodeletar/{{Cracha}}"><button>Deletar Usuário</button></a>
+							</div>
+						</div>
+						{{else}}
 
-<hr>    
-{{/each}}
-
+                        {{/each}}
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+	</div>

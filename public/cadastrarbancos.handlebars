@@ -1,123 +1,75 @@
     <link rel='stylesheet' type='text/css' media='screen' href='cadastrarbancos.css'>
 
-	<p>
-	<table id="menu">
+	<h2>Cadastrar Banco</h2>
 
-	<th>Menu</th>
-	
-	<tr>
-		<td><a href="home.html" > HOME </a></td>
-	</tr>
-	<tr>
-		<td id="menutd"> <a href="contas.html"> Contas </a>
-		<p>
-		<a href="cadastrarcontas.html"> Cadastrar Contas </a>
-		<p>
-		<a href="consultarcontas.html"> Consultar Contas </a></td>
-	</tr>	
+    <form class="form-cadastro" method="POST" action="/validacadastro">
 
-	<tr>
-		<td id="menutd"> <a href="fornecedor.html"> Fornecedor </a>
-		<p>
-		<a href="cadastrarfornecedor.html"> Cadastrar Fornecedor </a>
-		<p>
-		<a href="consultarfornecedor.html"> Consultar Fornecedor </a></td>
-	</tr>
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault01">Código do Banco</label>
+                <input type="number" class="form-control" id="validationDefault01" placeholder="Cod. Banco">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Número da Conta</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Num. Conta">
+            </div>
+			<div class="col-md-2 mb-3">
+                <label for="validationDefault02">Digito</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Digito">
+            </div>
+        </div>
 
-	<tr>
-		<td id="menutd"> <a href="fornecedor.html"> Bancos </a>
-		<p>
-		<a href="cadastrarbancos.html"> Cadastrar Bancos </a>
-		<p>
-		<a href="consultarbancos.html"> Consultar Bancos </a></td>
-	</tr>
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Código da Agência</label>
+                <input type="text" class="form-control cpf" id="validationDefault02" placeholder="Cod. Agência">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Nome da Agência</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome da Agência">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+                <label for="validationDefault01">Gerente da Agência</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Gerente da Agência">
+            </div>
+        </div>
 
-	<tr>
-		<td id="menutd"> <a href="relatorio.html"> Relatórios </a>
-		<p>
-		<a href="relatorio.html"> Gerar relatório </a>	
-	</tr>	
+		<div class="form-row">
+            <div class="col-md-5 mb-3">
+                <label for="validationDefault01">Logradouro</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Logradouro">
+            </div>
+        </div>
 
-	<tr>
-		<td id="menutd"> <a href="Portfolio.html"> Gerar ordem de pagamento </a></td>
-	</tr>
-
-	</table>
-
-
-	<div id="divprincipal">
-	<h1>Cadastrar Bancos</h1>
-
-    
-	<form>
+		<div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault01">Banco</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Banco">
+            </div>
+			<div class="col-md-3 mb-3">
+                <label for="validationDefault01">Número da Agência</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Número da Agência">
+            </div>
+        </div>
 
 		<br>
-
-		<div>
-
-		<label for="name">Cod.Banco:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Número da Conta:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Digito:</label>
-        <input type="number" id="maior" />
-        
-        <p></p>
-        
-        <label for="name">Código da Agência:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Nome da Agência:</label>
-        <input type="text" id="maior" />
-
-        <p></p>
-
-        <label for="name">Gerente da Agência:</label>
-        <input type="text" id="mtumaior" />
-        
-        <p></p>
-
-        <label for="name">Logradouro:</label>
-        <input type="text" id="mtumaior" />
-
-        <p></p>
-
-        <label for="name">Banco:</label>
-        <input type="text" id="maior" />
-
-        <label for="name">Número da Agência:</label>
-        <input type="number" id="maior" />
-        
-        <p></p>
-
-
-		</div>
-</form>
-
-	
-        <h2>Tipo:</h2>
-
-        <label for="name">CNAB 200:</label>
-        <input type="radio" name="cnab" />
-
-        <label for="name">CNAB 400:</label>
-        <input type="radio" name="cnab" />
-
-		<div id="button">
-        	<button id="maior" type="button" onclick="contato()">Cadastrar!</button>
-    	</div>
-
+        <h3>Tipo</h3>
 		<br>
 
+        <div class="form-row">
+            <div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB240" name="tipoarq" class="custom-control-input" required>
+  				<label class="custom-control-label" for="radioCNAB240">CNAB 240</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB400" name="tipoarq" class="custom-control-input">
+  				<label class="custom-control-label" for="radioCNAB400">CNAB 400</label>
+			</div>
+        </div>
+		<br>
 
-</div>
-
-    <script>
-
-	    function contato(){
-		    alert("Banco Cadastrado!");
-	    }
-
-    </script>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>

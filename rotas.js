@@ -1,30 +1,49 @@
 const path = require('path');
 const express = require("express"); //Chama o framework que faz o req/res
 const app  = express();
-//const mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const handlebars = require('express-handlebars');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
 
-app.use(express.static(path.join(__dirname, 'public'))); //defino que a pasta usada é a pública
+app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta usada é a pública
+
+
+    //Configurando Mongoose
+    mongoose.Promise = global.Promise; 
+    mongoose.connect('mongodb://localhost/CAP', {useNewUrlParser: true}).then(() => {
+    console.log("Banco de dados rodando.");
+    }).catch((erro) => {
+        console.log("Falha no banco de dados. Erro: " + erro);
+    })
+
 
    // Configurando Handlebars
     // Template Engine
-const handlebars = require('express-handlebars');
     app.engine('handlebars', handlebars({defaultLayout: 'main'}));
     app.set('view engine','handlebars');
     
     //Configurando Body Parser 
-const bodyParser = require('body-parser');
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
 
-//rotas para os handlebars
+    //Configurando o sessions
+    app.use(session({
+        secret: "cpa2019",
+        resave: true,
+        saveUninitialized: true
+    }));
 
-//app.get("/", function(req,res){   //Com HTML
-//    res.sendFile(__dirname +'/public/login'); //defino a página inicial do código
-//});
+    //Configurando o flash
+    app.use(flash());
 
-// app.get("/parametros/:nome/:cargo", function(req, res){ //parâmetros a ser enviado, exemplo
-//    res.send(req.params);
-//});
+//Middleware
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.erro_msg = req.flash("error_msg");
+    next();
+});
 
 //ROTAS DE LOGIN
 

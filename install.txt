@@ -193,4 +193,9 @@ só digitar no cmd no diretório correto:
 
 npm install --save mongoose
 ------------------------------------
+Middlewares
+(Módulos para o express para criação de middleware)
 
+npm install --save express-session
+
+npm install --save connect-flash

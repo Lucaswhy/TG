@@ -2,34 +2,34 @@
   		<a class="navbar-brand text-light">Bem-Vindo</a>
   		<div class="collapse navbar-collapse" id="navbarNavDropdown">
     		<ul class="navbar-nav">
-      			<li class="nav-item active">
-        			<a class="nav-link" href="home">Home</a>
+      			<li class="nav-item">
+        			<a class="nav-link" id="home" href="home">Home</a>
       			</li>
       			<li class="nav-item dropdown">
-        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        			<a class="nav-link dropdown-toggle" href="#" id="contas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           				Contas
         			</a>
-        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="cadastrarcontas">Cadastrar Contas</a>
-          				<a class="dropdown-item" href="consultarcontas">Consultar Contas</a>
+        			<div class="dropdown-menu" aria-labelledby="contas">
+          				<a class="dropdown-item" id="cadcontas" href="cadastrarcontas">Cadastrar Contas</a>
+          				<a class="dropdown-item" id="conscontas" href="consultarcontas">Consultar Contas</a>
         			</div>
       			</li>
       			<li class="nav-item dropdown">
-        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        			<a class="nav-link dropdown-toggle" href="#" id="fornecedores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           				Fornecedores
         			</a>
         			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="cadastrarcontas">Cadastrar Fornecedores</a>
-          				<a class="dropdown-item" href="consultarcontas">Consultar Fornecedores</a>
+          				<a class="dropdown-item" id="cadfornecedores" href="cadastrarfornecedor">Cadastrar Fornecedores</a>
+          				<a class="dropdown-item" id="consfornecedores" href="consultarfornecedor">Consultar Fornecedores</a>
         			</div>
       			</li>
       			<li class="nav-item dropdown">
-        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        			<a class="nav-link dropdown-toggle" href="#" id="bancos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           				Bancos
         			</a>
         			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" href="#">Cadastrar Contas</a>
-          				<a class="dropdown-item" href="#">Consultar Contas</a>
+          				<a class="dropdown-item" id="cadbancos" href="cadastrarbancos">Cadastrar Bancos</a>
+          				<a class="dropdown-item" id="consbancos" href="consultarbancos">Consultar Bancos</a>
         			</div>
       			</li>
     		</ul>
@@ -37,20 +37,20 @@
 				<a class="navbar-brand text-light">
 					<script>
 						var today = new Date();
-					var dd = today.getDate();
-					var mm = today.getMonth()+1;
-					var yyyy = today.getFullYear();
+						var dd = today.getDate();
+						var mm = today.getMonth()+1;
+						var yyyy = today.getFullYear();
 
-					if(dd<10) {
-						dd = '0'+dd
-					} 
+						if(dd<10) {
+							dd = '0'+dd
+						} 
 
-					if(mm<10) {
-						mm = '0'+mm
-					} 
+						if(mm<10) {
+							mm = '0'+mm
+						} 
 
-					today = dd + '/' + mm + '/' + yyyy;
-					document.write(today);
+						today = dd + '/' + mm + '/' + yyyy;
+						document.write(today);
 					</script>
 				</a>
 			</ul>

@@ -1,62 +1,22 @@
-body{
-margin:0px;
-padding: 0px;
-}
+.form-cadastro {
+	width: 100%;
+	max-width: 1200px;
+	padding: 15px;
+	margin: auto;
+	margin-top: 10px;
+  }
 
-h1,h2,h3{
-	font-family: arial;
-}
+  h2{
+	width: 100%;
+	max-width: 1200px;
+	padding: 10px;
+	margin: auto;
+	margin-top: 30px;
+  }
 
-#maior{
-	height: 30px;
-}
-
-#maiorleft{
-	text-align: left;
-	height: 30px;
-}
-
-#divprincipal{
-background-color: white;
-text-align: center;
-border-radius: 0.5em;
-color: black;
-
-left:50%;
-top:50%;
-
-margin-left:-350px;
-margin-top:-250px; 
-width: 700px;
-min-height: 500px;
-
-position:absolute;
-}
-
-#menu {
-margin:10px;
-background: black;
-
- border-radius: 1em;
- border-color:black;
- border-style: solid;
-
-
-font-variant: small-caps;
-font-family: arial;
-}
-
-#topside{
-font-family: arial;
-
-font-size:25px;
-text-align: right;
-color:white;
-
-max-width: none;
-padding:0px;
-margin:0px;
-
-position:static;
-background:black;
-}
+  h3{
+	width: 100%;
+	max-width: 1200px;
+	padding: 10px;
+	margin: auto;
+  }

@@ -1,139 +1,98 @@
     <link rel='stylesheet' type='text/css' media='screen' href='cadastrarcontas.css'>
-
-	<p>
-	<table id="menu">
-
-	<th>Menu</th>
-	
-	<tr>
-		<td><a href="home" > HOME </a></td>
-	</tr>
-	<tr>
-		<td id="menutd"> <a href="contas.html"> Contas </a>
-		<p>
-		<a href="cadastrarcontas.html"> Cadastrar Contas </a>
-		<p>
-		<a href="consultarcontas.html"> Consultar Contas </a></td>
-	</tr>	
-
-	<tr>
-		<td id="menutd"> <a href="fornecedor.html"> Fornecedor </a>
-		<p>
-		<a href="cadastrarfornecedor.html"> Cadastrar Fornecedor </a>
-		<p>
-		<a href="consultarfornecedor.html"> Consultar Fornecedor </a></td>
-	</tr>
-
-	<tr>
-		<td id="menutd"> <a href="fornecedor.html"> Bancos </a>
-		<p>
-		<a href="cadastrarbancos.html"> Cadastrar Bancos </a>
-		<p>
-		<a href="consultarbancos.html"> Consultar Bancos </a></td>
-	</tr>
-
-	<tr>
-		<td id="menutd"> <a href="relatorio.html"> Relatórios </a>
-		<p>
-		<a href="relatorio.html"> Gerar relatório </a>	
-	</tr>	
-
-	<tr>
-		<td id="menutd"> <a href="Portfolio.html"> Gerar ordem de pagamento </a></td>
-	</tr>
-
-	</table>
-	
-
-	<div id="divprincipal">
-	<h1>Cadastrar Contas</h1>
-
     
-	<form>
+	<h2>Cadastrar Contas</h2>
 
-		<div>
+	<form class="form-cadastro" method="POST" action="/cadastrarcontas">
+        <div class="form-row">
+            <div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioBoleto" name="tipoconta" class="custom-control-input" required>
+  				<label class="custom-control-label" for="radioBoleto">Boleto</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioDARF" name="tipoconta" class="custom-control-input">
+  				<label class="custom-control-label" for="radioDARF">DARF</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioIPTU" name="tipoconta" class="custom-control-input">
+  				<label class="custom-control-label" for="radioIPTU">IPTU</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioAgua/luz" name="tipoconta" class="custom-control-input">
+  				<label class="custom-control-label" for="radioAgua/luz">Água/Lux</label>
+			</div>
+        </div>
+		<br>
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Código da Conta</label>
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" required>
+            </div>
+            <div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Valor da Conta</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="valconta">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required>
+      			</div>
+    		</div>
+			<div class="col-md-4 mb-3">
+                <label for="validationDefault02">Fornecedor</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Fornecedor" required>
+            </div>
+  		</div>
+        
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Juros</label>
+                <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required>
+            </div>
+            <div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Multa</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required>
+      			</div>
+    		</div>
+			<div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Desconto</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required>
+      			</div>
+    		</div>
+        </div>
 
-			<label for="name">Boleto:</label>
-        	<input type="radio" name="tipoconta" />
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault01">Data de Emissão</label>
+                <input type="date" class="form-control" id="validationDefault01" required>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Data de Vencimento</label>
+                <input type="date" class="form-control" id="validationDefault02" required>
+            </div>
+			<div class="col-md-5 mb-3">
+                <label for="validationDefault02">Código de Barras</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Cod. Barras" required>
+            </div>
+        </div>
 
-       		<label for="name">DARF:</label>
-        	<input type="radio" name="tipoconta" />
-
-        	<label for="name">IPTU:</label>
-        	<input type="radio" name="tipoconta" />
-
-        	<label for="name">Água/Luz:</label>
-        	<input type="radio" name="tipoconta" />
-
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Observação</label>
+                <textarea class="form-control" id="validationTextarea" placeholder="Observação" required></textarea >
+            </div>
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Descrição</label>
+                <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" required></textarea>
+        	</div>
 		</div>
-		
-		<br>
-		<br>
 
-		<div>
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
 
-		<label for="name">Cod.Conta:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Valor:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Fornecedor:</label>
-        <input type="text" id="maior" />
-        
-        <p></p>
-        
-        <label for="name">Juros:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Multa:</label>
-        <input type="number" id="maior" />
-
-        <label for="name">Desconto:</label>
-        <input type="number" id="maior" />
-        
-        <p></p>
-
-        <label for="name">Data de Emissão:</label>
-        <input type="date" id="maior" />
-
-        <label for="name">Data de Vencimento:</label>
-        <input type="date" id="maior" />
-
-        <label for="name">Observação:</label>
-        <textarea id="maior"></textarea>
-
-		</div>
-
-		<br>
-		<br>
-
-
-	</form>
-    	<div>
-
-        <label for="name" id="codbarra">Código de Barras:</label>
-        <input type="text" id="codbarra" />
-		
-		<p></p>
-
-        <label for="name">Descrição:</label>
-        <textarea id="maior"></textarea>
-
-    	</div>
-
-    	<br>
-
-	<div id="button">
-    			<button id="maior" type="button" onclick="contato()">Cadastrar!</button>
-    </div>
-
-</div>
-
-    <script>
-
-	    function contato(){
-		    alert("Conta Cadastrada!");
-	    }
-
-    </script>
+    </form>

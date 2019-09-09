@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Usuarios = require('../models/Usuarios');
+
+const mongoose = require("mongoose");
+require("../models/Usuario");
+const Usuario = mongoose.model('usuario');
 
 router.get("/", function(req,res){
     req.body.nome;
@@ -8,13 +11,24 @@ router.get("/", function(req,res){
 });
 
 router.post("/home", function(req,res){
-    Usuarios.findAll().then(function(usuarios){
-    res.render('../public/home', {Nome: "lulu"});
+   Usuario.find().then(function(usuario){
+    res.render('../public/home', {Nome: "Viniciuss"});
     })
 });
 
 router.post("/validacadastro", function(req,res){
-    Usuarios.create({
+
+   // var erros = [];
+
+    // if(req.body.Nome || typeof req.body.Nome == undefined || req.body.Nome == null){
+    //    erros.push({text: "N  ome inválido."});
+   // }
+
+   //if(erros.lenght > 0){
+    //res.ren   der("cadastrarusuario",{{erros: erros}});
+   //}
+
+        const novoUsuario = {
         Cracha: req.body.Cracha,
         Nome: req.body.Nome,
         CPF: req.body.CPF,
@@ -23,11 +37,14 @@ router.post("/validacadastro", function(req,res){
         DataAdmissao: req.body.DataAdmissao,
         Email: req.body.Email, 
         Senha: req.body.Senha
-    }).then(function(){
+    }
+    
+    new Usuario(novoUsuario).save().then(function(){
     res.redirect('/usuariocadastrado');
     }).catch(function(erro){
-        res.send("Usuário não cadastrado. Erro:" + erro);
+        req.flash("error_msg", "Erro ao cadastrar usuário. Erro:" + erro);
     });
+
 });
 
 router.get("/usuariocadastrado", function(req,res){
@@ -35,18 +52,19 @@ router.get("/usuariocadastrado", function(req,res){
 });
 
 router.get("/usuariodeletar/:Cracha", function(req,res){
-    Usuarios.destroy({where: {'Cracha' : req.params.Cracha}}).then(function(){
-        res.send("Postagem deletada com sucesso.");
+    Usuario.deleteOne({where: {'Cracha' : req.params.Cracha}}).then(function(){
+        req.flash("success_msg","Postagem deletada com sucesso.");
     }).catch(function(erro){
-        res.send("Usuário não deletado. Erro:" + erro);
+        req.flash("error_msg","Usuário não deletado. Erro:" + erro);
     })
 });
 
 router.get('/consultarusuario', function(req,res){
- Usuarios.findAll({order: [['Cracha','ASC']]}).then(function(usuarios){
-    console.log(usuarios);
-    res.render('../public/consultarusuario', {usuarios: usuarios});
-})
+ Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
+    res.render('../public/consultarusuario', {usuario: usuario});
+    }).catch((erro) => {
+        req.flash("error_msg","Erro ao consultar os usuários. Erro:");
+    }); 
 });
 
 router.get("/cadastrarusuario", function(req,res){
