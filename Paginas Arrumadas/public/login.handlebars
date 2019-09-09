@@ -1,11 +1,19 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
+ <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contas a Pagar</title>
+   <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 	<nav class="navbar navbar-dark bg-dark">
 			<a class="navbar-brand text-light">Bem Vindo</a>
 			<ul class="navbar-nav ml-auto">
 				<a class="navbar-brand text-light"><script>var today = new Date();
 					var dd = today.getDate();
-					var mm = today.getMonth()+1; //January is 0!
+					var mm = today.getMonth()+1; 
 					var yyyy = today.getFullYear();
 
 					if(dd<10) {
@@ -16,15 +24,16 @@
 						mm = '0'+mm
 					} 
 
-					today = mm + '/' + dd + '/' + yyyy;
+					today = dd + '/' + mm + '/' + yyyy;
 					document.write(today);</script>
 				</a>
 			</ul>
 	</nav>
-	<nav class="navbar fixed-bottom navbar-dark bg-dark">
-		<a class="navbar-brand"></a>
-	</nav>
+	
 
+</head>
+
+	<body>
 	<form method="POST" action="/home" class="form-login">
       <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
 	  <div class="form-group">
@@ -37,3 +46,10 @@
 		<br>
       <a href="cadastrarusuario">Cadastrar novo usuário
     </form>
+
+	<nav class="navbar fixed-bottom navbar-dark bg-dark">
+		<a class="navbar-brand"></a>
+	</nav>
+
+</body>
+</html>
