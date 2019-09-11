@@ -51,12 +51,30 @@ const Usuario  = new Schema({
     },
 
     DataNascimento: {
-        type: Date,
-        required: true
+        type: Date
     },
 
     DataAdmissao: {
-        type: Date,
+        type: Date
+    },
+
+    Logradouro: {
+        type: String,
+        required: true
+    },
+
+    Numero: {
+        type: Number,
+        required: true
+    },
+
+    Bairro: {
+        type: String,
+        required: true
+    },
+
+    Cidade: {
+        type: String,
         required: true
     },
 
@@ -69,6 +87,8 @@ const Usuario  = new Schema({
         type: String,
         required: true
     }
+
+
 });
 
 mongoose.model("usuario", Usuario)

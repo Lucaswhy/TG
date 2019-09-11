@@ -8,7 +8,7 @@
         
         <div id="divBusca">
             <input type="text" id="txtBusca" name="busca"/>
-            <button id="btnBusca">Buscar</button>
+            <button id="btnBusca" class="btn btn-primary mt-4" >Buscar</button>
         </div>
         
         <div id="divTabela" class="maxWidth">
@@ -17,13 +17,20 @@
                     <tr>
                         <br>
                         <hr>
-                        {{#each usuario}}	
-						<div class="card">
-							<div class="card-body">
-                            <h4>{{Cracha}}</h4>
-                            {{Nome}}
-                            <a href ="/usuariodeletar/{{Cracha}}"><button>Deletar Usuário</button></a>
-							</div>
+                        {{#each usuario}}
+                        <div class="container mt-4">	
+						    <div class="card">
+							    <div class="card-body">
+                                <h4>Cracha:{{Cracha}}</h4>
+                                        <p>
+                                    Usuário: {{Nome}}
+                                        </p>
+                                    <a href ="/usuariodeletar/{{_id}}">
+                                    <button type="button" class="btn btn-warning mt-4">Deletar Usuário</button></a>
+                                    <a href ="/editarusuario/{{_id}}">
+                                    <button type="button" class="btn btn-primary mt-4">Editar</button></a>
+							    </div>
+                            </div>
 						</div>
 						{{else}}
 

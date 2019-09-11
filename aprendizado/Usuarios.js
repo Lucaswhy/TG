@@ -1,6 +1,6 @@
 const db = require("./db");
 
-const Usuarios = db.sequelize.define("usuarios", {
+const Usuario = db.sequelize.define("usuario", {
     Cracha: {
         type: db.Sequelize.MEDIUMINT
     },
@@ -36,5 +36,5 @@ const Usuarios = db.sequelize.define("usuarios", {
 
 //  Usuario.sync({force:true});
 
-    module.exports = Usuarios;
+    module.exports = Usuario;
 
