@@ -3,25 +3,7 @@
 	<h2>Cadastrar Contas</h2>
 
 	<form class="form-cadastro" method="POST" action="/cadastrarcontas">
-        <div class="form-row">
-            <div class="custom-control custom-radio custom-control-inline">
-  				<input type="radio" id="radioBoleto" name="tipoconta" class="custom-control-input" required>
-  				<label class="custom-control-label" for="radioBoleto">Boleto</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-  				<input type="radio" id="radioDARF" name="tipoconta" class="custom-control-input">
-  				<label class="custom-control-label" for="radioDARF">DARF</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-  				<input type="radio" id="radioIPTU" name="tipoconta" class="custom-control-input">
-  				<label class="custom-control-label" for="radioIPTU">IPTU</label>
-			</div>
-			<div class="custom-control custom-radio custom-control-inline">
-  				<input type="radio" id="radioAgua/luz" name="tipoconta" class="custom-control-input">
-  				<label class="custom-control-label" for="radioAgua/luz">Água/Luz</label>
-			</div>
-        </div>
-		<br>
+        <br>
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 <label for="validationDefault02">Código da Conta</label>
@@ -67,6 +49,18 @@
     		</div>
         </div>
 
+		<div class="form-row">
+			<div class="col-md-2.5 mb-3">
+				<label for="inputSituacao">Situação da conta:</label>
+				<select id="inputSituacao" class="form-control" name="Situacao" value="{{usuario.Situacao}}">
+					<option selected>Selecione a situação da conta.</option>
+					<option>Fechada.</option>
+					<option>Aberta.</option>
+					<option>Cancelada.</option>
+				</select>
+			</div>
+		</div>
+
         <div class="form-row">
 			<div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Emissão</label>
@@ -75,10 +69,6 @@
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Data de Vencimento</label>
                 <input type="text" class="form-control data" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento">
-            </div>
-			<div class="col-md-5 mb-3">
-                <label for="validationDefault02">Código de Barras</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Cod. Barras" required name="CodBarras">
             </div>
         </div>
 

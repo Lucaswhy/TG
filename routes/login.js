@@ -8,7 +8,6 @@ const Usuario = mongoose.model('usuario');
 //LOGIN E HOME
 
 router.get("/", function(req,res){
-    req.body.nome;
     res.render('../public/login', {layout: false});
 });
 
@@ -47,13 +46,21 @@ router.post("/validacadastro", function(req,res){
         Numero: req.body.Numero,
         Bairro: req.body.Bairro,
         Cidade: req.body.Cidade,
+        Estado: req.body.Estado,
         Email: req.body.Email, 
-        Senha: req.body.Senha
+        Senha: req.body.Senha,
+        LoginStatus: false,
+        cadConta: true,
+        conConta: true,
+        cadForn: true,
+        conForn: true,
+        emitirRelatorio: true
     }
     
     new Usuario(novoUsuario).save().then(function(){
     res.redirect('/usuariocadastrado');
     }).catch(function(erro){
+        console.log(erro);
         req.flash("error_msg", "Erro ao cadastrar usuário. Erro:" + erro);
     });
 
@@ -69,6 +76,7 @@ router.get('/consultarusuario', function(req,res){
  Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
     res.render('../public/consultarusuario', {usuario: usuario});
     }).catch((erro) => {
+        console.log(erro);
         req.flash("error_msg","Erro ao consultar os usuários. Erro:");
     }); 
 });
@@ -76,10 +84,11 @@ router.get('/consultarusuario', function(req,res){
 //DELETAR USUÁRIO
 
 router.get("/usuariodeletar/:id", function(req,res){
-    Usuario.findOneAndDelete({_id : req.params.id}).then((usuario) =>{
+    Usuario.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Usuário deletado. ");
         res.redirect('/consultarusuario');
          }).catch((erro) =>{
+        console.log(erro);
         req.flash("error_msg","Usuário não deletado. Erro:" + erro);
     })
 });
@@ -89,12 +98,10 @@ router.get("/usuariodeletar/:id", function(req,res){
 router.get("/editarusuario/:id", function(req,res){
     Usuario.findOne({_id: req.params.id}).then((usuario) =>{
 
-        //usuario.DataNascimento = moment().format("dd/MM/yyyy")
-        //moment(usuario.DataAdmissao).format("dd/MM/yyyy");
-
    res.render('../public/editarusuario', {usuario: usuario});
     }).catch((erro) =>{
-        req.flash("error_msg", "Usuário não encontrado. Erro: " + erro);
+        console.log(erro);
+        req.flash("error_msg", "Usuário não encontrado. Erro: ");
         res.redirect("/consultarusuario");
     });
 });
@@ -112,6 +119,7 @@ router.post("/validaedicao", function(req,res){
         usuario.Numero = req.body.Numero
         usuario.Bairro = req.body.Bairro
         usuario.Cidade = req.body.Cidade
+        usuario.Estado = req.body.Estado
         usuario.Email = req.body.Email
         usuario.Senha = req.body.Senha
     
@@ -119,9 +127,24 @@ router.post("/validaedicao", function(req,res){
             req.flash("success_msg","Usuário editado com sucesso!");
             res.redirect("/consultarusuario");
         }).catch((erro) =>{
-            req.flash("error_msg" + "Usuário não editado. Erro: ");
+            console.log(erro);
+            req.flash("error_msg" + "Usuário não editado.");
             res.redirect("/consultarusuario");
         })
+    })
+});
+
+//LIBERAR CADASTRO
+router.get("/liberarcadastro/:id", function(req,res){
+    Usuario.findOne({_id:req.params.id}).then((usuario) =>{
+        usuario.LoginStatus = true;
+        usuario.save();
+    }).then(() =>{
+        req.flash("success_msg","Cadastro Liberado com Sucesso! ");
+        res.redirect('/consultarusuario');
+         }).catch((erro) =>{
+        console.log(erro);
+        req.flash("error_msg","Usuário não liberado.");
     })
 });
 

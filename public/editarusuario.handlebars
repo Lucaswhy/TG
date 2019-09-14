@@ -8,14 +8,14 @@
         <form class="form-cadastro" method="POST" action="/validaedicao">
 
         <input type="hidden" name="_id" value="{{usuario._id}}">
-
+       
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault01">Crachá</label>
                 <input type="number" class="form-control" id="validationDefault01" placeholder="Crachá" name="Cracha" value="{{usuario.Cracha}}" >
             </div>
             <div class="col-md-6 mb-3">
-                <label for="validationDefault02">Nome</label>
+                <label for="validationDefault01">Nome</label>
                 <input type="text" class="form-control" id="validationDefault02" placeholder="Nome" name="Nome" value="{{usuario.Nome}}" >
             </div>
         </div>
@@ -23,22 +23,28 @@
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">CPF</label>
-                <input type="text" class="form-control cpf" id="validationDefault02" placeholder="CPF" name="CPF" value="{{usuario.CPF}}" >
+                <input type="text" class="form-control cpf" id="validationDefault03" placeholder="CPF" name="CPFn" value="{{usuario.CPF}}" >
             </div>
+
+            
+
+            <input type="hidden" name="CPF" value="">
+
             <div class="col-md-4 mb-3">
                 <label for="validationDefault02">Cargo</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Cargo" name="Cargo" value="{{usuario.Cargo}}" >
+                <input type="text" class="form-control" id="validationDefault04" placeholder="Cargo" name="Cargo" value="{{usuario.Cargo}}" >
             </div>
         </div>
         
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Nascimento</label>
-                <input type="date" class="form-control" id="validationDefault01" name="DataNascimento" value="{{usuario.DataNascimento}}">
+              <input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"  id="validationDefault05" name="DataNascimento" placeholder="{{#formatDate usuario.DataNascimento}}{{/formatDate}}" required>
+           
             </div>
             <div class="col-md-2 mb-3">
-                <label for="validationDefault01">Data de Admissão</label>
-                <input type="date" class="form-control" id="validationDefault01"  name="DataAdmissao" value="{{usuario.DataAdmissao}}" >
+                <label type="text" for="validationDefault01">Data de Admissão</label>
+                <input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="validationDefault06"  name="DataAdmissao" placeholder="{{#formatDate usuario.DataAdmissao}}{{/formatDate}}" required>          
             </div>
         </div>
 
@@ -47,27 +53,27 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Logradouro</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Logradouro" name="Logradouro" value="{{usuario.Logradouro}}" >
+                <input type="text" class="form-control" id="validationDefault07" placeholder="Logradouro" name="Logradouro" value="{{usuario.Logradouro}}" >
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Número</label>
-                <input type="number" class="form-control" id="validationDefault02" placeholder="Número" name="Numero" value="{{usuario.Numero}}" >
+                <input type="number" class="form-control" id="validationDefault08" placeholder="Número" name="Numero" value="{{usuario.Numero}}" >
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Bairro</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Bairro" name="Bairro" value="{{usuario.Bairro}}" >
+                <input type="text" class="form-control" id="validationDefault09" placeholder="Bairro" name="Bairro" value="{{usuario.Bairro}}" >
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationDefault02">Cidade</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Cidade" name="Cidade" value="{{usuario.Cidade}}" >
+                <input type="text" class="form-control" id="validationDefault10" placeholder="Cidade" name="Cidade" value="{{usuario.Cidade}}" >
             </div>
             <div class="form-group col-md-2.5">
                 <label for="inputEstado">Estado</label>
-                <select id="inputEstado" class="form-control" name="Estado">
-                    <option selected>Selecione o estado...</option>
+                <select id="inputEstado" class="form-control" name="Estado" >
+                    <option>{{usuario.Estado}}</option>
                     <option>AC</option>
                     <option>AL</option>
                     <option>AP</option>
@@ -102,18 +108,13 @@
         <div class="form-row">
             <div class="col-md-5 mb-3">
                 <label for="validationDefault03">E-mail</label>
-                <input type="email" class="form-control" id="validationDefault03" placeholder="nome@exemplo.com" name="Email" value="{{usuario.Email}}" >
+                <input type="email" class="form-control" id="validationDefault11" placeholder="nome@exemplo.com" name="Email" value="{{usuario.Email}}" >
             </div>
             <div class="col-md-3 mb-3">
                 <label for="validationDefault04">Senha</label>
-                <input type="text" class="form-control" id="validationDefault04" placeholder="Senha" name="Senha" value="{{usuario.Senha}}" >
+                <input type="text" class="form-control" id="validationDefault12" placeholder="Senha" name="Senha" value="{{usuario.Senha}}" >
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Editar</button>
+        <button class="btn btn-primary" type="submit" onclick="limpaCPF()"  >Editar</button>
     </form>
-
-    <script>
-                   
-
-    </script>

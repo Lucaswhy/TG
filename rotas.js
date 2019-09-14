@@ -6,13 +6,14 @@ const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const moment = require('moment-timezone');
 
 app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta usada é a pública
 
 
     //Configurando Mongoose
     mongoose.Promise = global.Promise; 
-    mongoose.connect('mongodb://localhost/CAP', {useNewUrlParser: true}).then(() => {
+    mongoose.connect('mongodb://localhost/CAP', {useNewUrlParser: true, useCreateIndex: true}).then(() => {
     console.log("Banco de dados rodando.");
     }).catch((erro) => {
         console.log("Falha no banco de dados. Erro: " + erro);
@@ -21,7 +22,17 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
 
    // Configurando Handlebars
     // Template Engine
-    app.engine('handlebars', handlebars({defaultLayout: 'main'}));
+    app.engine('handlebars', handlebars({
+        defaultLayout: 'main',
+        helpers: {  formatDate: (date) => {
+            return moment(date).add(3,"hours").format('DD/MM/YYYY');
+            },
+            formatDateBD: (date) =>{
+                return moment(date).add(3,"hours").format('MM/DD/YYYY'); 
+            }
+        }
+
+       }));
     app.set('view engine','handlebars');
     
     //Configurando Body Parser 

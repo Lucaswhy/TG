@@ -4,15 +4,31 @@
 	padding: 15px;
 	margin: auto;
 	margin-top: 10px;
-  }
+	}
+	
+	input{
+		background-color: #F4F4F4 !important; 
+	}
 
-  h2{
+	button{
+		background-color: white !important; 
+		color: black !important;
+		border-color: #4ABDAC !important;
+		border-spacing: 5px;
+	}
+
+	button:hover{
+		background-color: #4ABDAC !important;
+		color: white !important;
+	}
+
+  h2, h1, h3{
 	width: 100%;
 	max-width: 1200px;
 	padding: 10px;
 	margin: auto;
-	margin-top: 30px;
-  }
+	margin-top: 30px;	
+  } 
 
   #bancos{
 	color: white;

@@ -200,3 +200,9 @@ npm install --save express-session
 
 npm install --save connect-flash
 ----------------------------
+Moment
+(framework de datas)
+
+npm install moment --save
+
+npm install moment-timezone --save

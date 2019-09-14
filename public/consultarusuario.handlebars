@@ -1,7 +1,4 @@
     
-    <script type="text/javascript">
-        var valor = documment.getElementByName("busca").value;
-    </script>
 
 	<div id="divprincipal">
         <h1>Lista de usuários: </h1>
@@ -21,14 +18,17 @@
                         <div class="container mt-4">	
 						    <div class="card">
 							    <div class="card-body">
-                                <h4>Cracha:{{Cracha}}</h4>
+                                <h4>Cracha: {{Cracha}}</h4>
                                         <p>
                                     Usuário: {{Nome}}
                                         </p>
                                     <a href ="/usuariodeletar/{{_id}}">
-                                    <button type="button" class="btn btn-warning mt-4">Deletar Usuário</button></a>
+                                    <button type="button" class="btn btn-danger mt-4">Deletar Usuário</button></a>
                                     <a href ="/editarusuario/{{_id}}">
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
+
+                                    <a href ="/liberarcadastro/{{_id}}">
+                                    <button type="button" class="btn btn-warning mt-4">Liberar Cadastro</button></a>
 							    </div>
                             </div>
 						</div>

@@ -11,12 +11,12 @@
         {{>navbar}}
 
 </head>
-<body bgcolor="#808080" style="height:100%">
+<body style="height:100%; background-color: #E9E7DA   "> <!-- #EFEFEF #B7CEC7 #EAE3EA  -->
 
     <div class="mt-4" style="min-height: 100%;position: absolute; width:100%">
         {{>msg}}
         {{{body}}}
-        <nav class="navbar fixed-bottom navbar-dark bg-dark" id="navbar" style="position:absolute">
+        <nav class="navbar fixed-bottom navbar-darK" id="navbar" style="position:absolute; background-color: #4ABDAC">
 		    <ul class="navbar-nav ml-auto light"></ul>
 	    </nav>
     </div>
@@ -29,13 +29,13 @@
 
     <script type="text/javascript">
             $ (document).ready(function () {
-           //     $(".cpf") .mask("000.000.000-00")
-           //     $(".cnpj") .mask("00.000.000/0000-00")
+                $(".cpf") .mask("000.000.000-00")
+                $(".cnpj") .mask("00.000.000/0000-00")
                 $('.money').mask('000.000.000.000.000,00', {reverse: true});
                 $('.percent').mask('#0,00%', {reverse: true});
                 $('.cep').mask('00000-000', {reverse: true});
                 $( ".data" ).datepicker({
-                    dateFormat: 'dd-mm-yy',
+                    dateFormat: 'dd/mm/yy',
                     showButtonPanel:true
                 });
 
@@ -50,21 +50,37 @@
                     }
                 });
             });
-
-	
-            /*    function limpaCPF(){
+            	
+                function limpaCPF(){
                     var cp = new String;
                     var resultado = new String;
+                    
+                    cp = document.getElementsByName("CPFn")[0].value;
 
-                    cp = document.getElementsByName("CPFn");
+                    resultado = cp.replace(/[\-._]/g, "");
 
-                    resultado = cp.replace(".", "");
-                    resultado = cp.replace("-", "");
-                    resultado. cp.replace("/", "");
+                    document.getElementsByName("CPF")[0].value = resultado;
+                }  
 
-                    document.getElementsByName("CPF").value = resultado.
+            /*    function sobrescreveData(){
+
+                da = new Date;
+                dn = new Date;
+
+                if (document.getElementsByName("DataNascimento").value == null){
+            
+                dn = {{#formatDateBD usuario.DataNascimento}}{{/formatDateBD}};
+                document.getElementsByName("DataNascimento").value = dn;
+
                 }
-            */
+
+                if (document.getElementsByName("DataAdmissao").value == null){
+                    
+                da = {{#formatDateBD usuario.DataAdmissao}}{{/formatDateBD}};
+                    document.getElementsByName("DataAdmissao").value = da;
+                }
+            } */
+            
 
     </script>
 
