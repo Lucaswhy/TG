@@ -1,10 +1,18 @@
 	<link rel='stylesheet' type='text/css' media='screen' href='home.css'>
 
 
-	<div class="jumbotron">
-  <h1 class="display-4">Bem-Vindo {{Nome}}</h1>
+	<div class="jumbotron" style="background-color: #4ABDAC">
+  <h1 class="display-4">Bem-Vindo Admin!</h1>
   <p class="lead">Há contas a serem vencidas!</p>
   <hr class="my-4">
-  <p>Você tem pedido de contas para serem liberadas!</p>
+  {{#each usuario}}
+  {{#if LoginStatus}}
+  <p>Usuário para ser Liberado! Cracha: {{Cracha}} Nome: {{Nome}} 
+  <a href ="/liberarcadastro/{{_id}}">
+  <button type="button" class="btn btn-warning">Liberar Cadastro</button></a></p>
+  {{/if}}
+						{{else}}
+<p>Nenhum pedido de usuários para serem liberados.</p>
+            {{/each}}
   <a class="btn btn-primary btn-lg" href="/consultarusuario" role="button">Consultar Usuários</a>
 	</div>

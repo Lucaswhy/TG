@@ -128,7 +128,8 @@ const Usuario  = new Schema({
 
     Email: {
         type: String,   
-        required: true
+        required: true,
+        unique: true
     },
 
     Senha: {
@@ -137,69 +138,91 @@ const Usuario  = new Schema({
     },
 
     LoginStatus: {
-     type: Boolean   
+     type: Boolean,
+     default: false
     },
+
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+
     //Permissões de Cadastro
     cadConta: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     conConta: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     editConta: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     delConta: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     //Permissões de Fornecedor
     cadForn: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     conForn: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     editForn: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     delForn: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     //Permissões de Banco
     cadBanco: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     conBanco: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     editBanco: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     delBanco: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     //Permissão de funcionalidades
 
     gerarSimulacao: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     emitirRelatorio: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
 
     gerarRemessa: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 
 });

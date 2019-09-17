@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment-timezone');
+const passport = require("passport");
+require("./config/auth")(passport);
 
 app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta usada é a pública
 
@@ -45,6 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
         resave: true,
         saveUninitialized: true
     }));
+
+    //Configurando passport
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     //Configurando o flash
     app.use(flash());
