@@ -6,7 +6,7 @@
 	margin-top: 10px;
   }
 
-  h2{
+  h2, h1{
 	width: 100%;
 	max-width: 1200px;
 	padding: 10px;
@@ -20,3 +20,22 @@
 	padding: 10px;
 	margin: auto;
   }
+
+  .btn-primary{
+	background-color: #4ABDAC !important; 
+	color: white !important;
+	border-color: #4ABDAC !important;
+}
+
+.btn-primary:hover{
+	background-color: #EFEFEF !important;
+	color: black !important;
+}
+
+body{
+	background-color: #EFEFEF !important;
+}
+
+nav{
+	background-color: #4ABDAC !important;
+}
