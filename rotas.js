@@ -9,9 +9,8 @@ const flash = require('connect-flash');
 const moment = require('moment-timezone');
 const passport = require("passport");
 require("./config/auth")(passport);
-
+    
 app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta usada é a pública
-
 
     //Configurando Mongoose
     mongoose.Promise = global.Promise; 
@@ -37,30 +36,33 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
        }));
     app.set('view engine','handlebars');
     
-    //Configurando Body Parser 
-    app.use(bodyParser.urlencoded({extended: false}));
-    app.use(bodyParser.json());
-
     //Configurando o sessions
     app.use(session({
         secret: "cpa2019",
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
+        cookie: {maxAge : (2 * 60 * 60 * 1000)}
     }));
+
+    //Configurando Body Parser 
+    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(bodyParser.json());
 
     //Configurando passport
     app.use(passport.initialize());
     app.use(passport.session());
-
     //Configurando o flash
     app.use(flash());
 
-//Middleware
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash("success_msg");
-    res.locals.erro_msg = req.flash("error_msg");
-    next();
-});
+    //Middleware
+    app.use((req, res, next) => {
+        res.locals.success_msg = req.flash("success_msg");
+        res.locals.error_msg = req.flash("error_msg");
+        res.locals.error = req.flash("error");
+        res.locals.user = req.user || null;
+        next();
+    });
+
 
 //ROTAS DE LOGIN
 

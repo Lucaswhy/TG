@@ -7,36 +7,41 @@ const Usuario = mongoose.model("usuario");
 
 module.exports = function(passport){
 
-    passport.use(new localStrategy({usernameField: "Email"}, (email, senha, done) => {
+    passport.use(new localStrategy({usernameField: "Email", passwordField:"Senha"}, (email, senha, done) => {
 
         Usuario.findOne({Email: email}).then((usuario)=> {
-            if(usuario){
+            if(!usuario){
                 return done(null,false,{message: "Esta conta não existe."});
             }
-        });
-            if(usuario.LoginStatus == false ){
-                return done(null,false,{message: "Esta conta ainda não foi liberada pelo administrador."});
-            }
 
+            if(usuario.LoginStatus == false){
+                return done(null,false,{message: "Esta conta ainda não foi liberada pelo Administrador."});
+            }
 
             if(usuario.Senha == senha){
-                    return done(null,user);
+                return done(null,usuario);
+            
             }
             else{
-                return done(null, false,{message: "Senha incorreta."})
+            return done(null, false,{message: "Senha incorreta."})
             }   
-        
+    
+
+        });
 
     }));
 
-    passport.serializeUser((user,done)=>{
-        done(null,usuario.id);
+    passport.serializeUser((usuario,done)=>{
+        console.log('Serializando usuario: ');console.log(usuario.Nome);
+        done(null, usuario);
     });
 
-    passport.deserializeUser((id, done) =>{
-        User.findById(id,(err,usuario)=>{
-            done(err,user);
+    passport.deserializeUser((usuario, done) =>{
+        Usuario.find({usuario: usuario},(err, user)=>{
+        console.log('Deserializando usuario: ');console.log(usuario.Nome);
+        done(err,usuario);
         });
-    });
+    
+    })       
 
 }

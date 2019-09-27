@@ -7,6 +7,8 @@ const Usuario = mongoose.model('usuario');
 
 const passport = require("passport");
 
+const {isAdmin} = require("../helpers/isAdmin");
+
 //FUNCOES GLOBAIS
 function validaCPF(cpf){
 
@@ -85,13 +87,13 @@ router.get("/", function(req,res){
     res.render('../public/login', {layout: false});
 });
 
-/*router.post("/", function(req,res,next){
+router.post("/validalogin", function(req,res,next){
     passport.authenticate("local",{
-        successRedirect: "/home" ,
+        successRedirect: "/cadastrarcontas" ,
         failureRedirect: "/",
         failureFlash: true
     })(req,res,next)
-}); */
+}); 
 
 router.post("/home", function(req,res){
     Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
@@ -200,7 +202,7 @@ router.get("/usuariocadastrado", function(req,res){
 
 //CONSULTAR USUÁRIO
 
-router.get('/consultarusuario', function(req,res){
+router.get('/consultarusuario', isAdmin, function(req,res){
  Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
     res.render('../public/consultarusuario', {usuario: usuario});
     }).catch((erro) => {
@@ -211,7 +213,7 @@ router.get('/consultarusuario', function(req,res){
 
 //DELETAR USUÁRIO
 
-router.get("/usuariodeletar/:id", function(req,res){
+router.get("/usuariodeletar/:id", isAdmin, function(req,res){
     Usuario.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Usuário deletado. ");
         res.redirect('/consultarusuario');
@@ -223,7 +225,7 @@ router.get("/usuariodeletar/:id", function(req,res){
 
 //EDITAR USUÁRIO
 
-router.get("/editarusuario/:id", function(req,res){
+router.get("/editarusuario/:id", isAdmin, function(req,res){
     Usuario.findOne({_id: req.params.id}).then((usuario) =>{
 
    res.render('../public/editarusuario', {usuario: usuario});
@@ -234,7 +236,7 @@ router.get("/editarusuario/:id", function(req,res){
     });
 });
 
-router.post("/validaedicao", function(req,res){
+router.post("/validaedicao", isAdmin, function(req,res){
 
     var count = 0;
     var erros = [];
@@ -306,7 +308,7 @@ router.post("/validaedicao", function(req,res){
 });
 
 //LIBERAR CADASTRO
-router.get("/liberarcadastro/:id", function(req,res){
+router.get("/liberarcadastro/:id", isAdmin, function(req,res){
     Usuario.findOne({_id:req.params.id}).then((usuario) =>{
         usuario.LoginStatus = true;
         usuario.save();

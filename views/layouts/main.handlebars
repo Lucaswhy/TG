@@ -11,7 +11,7 @@
         {{>navbar}}
 
 </head>
-<body style="height:100%; background-color: #E9E7DA   "> <!-- #EFEFEF #B7CEC7 #EAE3EA  -->
+<body style="height:100%; background-color: #EFEFEF   "> <!-- #EFEFEF #B7CEC7 #EAE3EA  -->
 
     <div class="mt-4" style="min-height: 100%;position: absolute; width:100%">
         {{>msg}}
@@ -38,10 +38,8 @@
                     dateFormat: 'dd/mm/yy',
                     showButtonPanel:true
                 });
-
                 $('.phone').mask('(00) 0000-00009');
                 $('.phone').blur(function(event){
-
                     if ($(this).val().length == 15){
                         $(".phone").mask("(00) 00000-0009")
                     }
@@ -56,13 +54,10 @@
                     var resultado = new String;
                     
                     cp = document.getElementsByName("CPFn")[0].value;
-
                     resultado = cp.replace(/[\-._]/g, "");
-
                     document.getElementsByName("CPF")[0].value = resultado;
                 }  
             
-
     </script>
 
 </body>

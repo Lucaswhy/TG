@@ -210,4 +210,6 @@ npm install moment-timezone --save
 passportjs
 (framework de autenticação)
 
-npm install passport-local
+npm install --save passport 
+
+npm install --save passport-local
