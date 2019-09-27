@@ -6,6 +6,17 @@
 	margin-top: 190px;
   }
 
+  .btn-primary{
+	background-color: #4ABDAC !important; 
+	color: white !important;
+	border-color: #4ABDAC !important;
+}
+
+.btn-primary:hover{
+	background-color: #EFEFEF !important;
+	color: black !important;
+}
+
   .form-login .form-control {
 	position: relative;
 	box-sizing: border-box;
