@@ -1,0 +1,43 @@
+
+    <script type="text/javascript">
+        var valor = documment.getElementByName("busca").value;
+    </script>
+
+	<div id="divprincipal">
+        <h1>Lista de fornecedores: </h1>
+        
+        <div id="divBusca">
+            <input type="text" id="txtBusca" name="busca"/>
+            <button id="btnBusca" class="btn btn-primary mt-4" >Buscar</button>
+        </div>
+        
+        <div id="divTabela" class="maxWidth">
+            <table id="tableCons">
+                <thead>
+                    <tr>
+                        <br>
+                        <hr>
+                        {{#each fornecedor}}
+                        <div class="container mt-4">	
+						    <div class="card">
+							    <div class="card-body">
+                                <h4>Codigo do Fornecedor:{{codFornecedor}}</h4>
+                                        <p>
+                                    Razao Social: {{RazaoSocial}}
+                                        </p>
+                                    <a href ="/deletarfornecedor/{{_id}}">
+                                    <button type="button" class="btn btn-warning mt-4">Deletar Fornecedor</button></a>
+                                    <a href ="/editarfornecedor/{{_id}}">
+                                    <button type="button" class="btn btn-primary mt-4">Editar</button></a>
+							    </div>
+                            </div>
+						</div>
+						{{else}}
+
+                        {{/each}}
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        
+	</div>

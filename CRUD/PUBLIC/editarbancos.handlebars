@@ -1,0 +1,85 @@
+<h2>Editar Bancos</h2>
+
+            {{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+    {{else}}
+    {{/each}}
+
+        <form class="form-cadastro" method="POST" action="/bancoedicao">
+
+        <input type="hidden" name="_id" value="{{banco._id}}">
+
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault01">Código do Banco</label>
+                <input type="number" class="form-control" id="validationDefault01" placeholder="Cod. Banco" name="CodBanco" value="{{banco.codBanco}}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Número da Conta</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Num. Conta" name="NumConta" value="{{banco.numeroConta}}">
+            </div>
+			<div class="col-md-2 mb-3">
+                <label for="validationDefault02">Digito</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Digito" name="Digito" value="{{banco.Digito}}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Código da Agência</label>
+                <input type="text" class="form-control cpf" id="validationDefault02" placeholder="Cod. Agência" name="CodAgencia" value="{{banco.codAgencia}}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Nome da Agência</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome da Agência" name="Nome" value="{{banco.nomeAgencia}}">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+                <label for="validationDefault01">Gerente da Agência</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Gerente da Agência" name="Gerente" value="{{banco.gerenteAgencia}}">
+            </div>
+        </div>
+
+		<div class="form-row">
+            <div class="col-md-5 mb-3">
+                <label for="validationDefault01">Logradouro</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Logradouro" name="Logradouro" value="{{banco.Logradouro}}">
+            </div>
+        </div>
+
+		<div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault01">Banco</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Banco" name="Banco" value="{{banco.nBanco}}">
+            </div>
+			<div class="col-md-3 mb-3">
+                <label for="validationDefault01">Número da Agência</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Número da Agência" name="NumAgencia" value="{{banco.numeroAgencia}}">
+            </div>
+        </div>
+
+		<br>
+        <h3>Tipo</h3>
+		<br>
+
+        <div class="form-row">
+            <div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB240" name="tipoarq" class="custom-control-input" required>
+  				<label class="custom-control-label" for="radioCNAB240">CNAB 240</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB400" name="tipoarq" class="custom-control-input">
+  				<label class="custom-control-label" for="radioCNAB400">CNAB 400</label>
+			</div>
+        </div>
+		<br>
+
+        <button class="btn btn-primary" type="submit">Editar</button>
+    </form>
+
+    <script>
+                   
+
+    </script>

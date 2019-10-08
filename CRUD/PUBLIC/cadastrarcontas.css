@@ -1,0 +1,30 @@
+.form-cadastro {
+	width: 100%;
+	max-width: 1200px;
+	padding: 15px;
+	margin: auto;
+	margin-top: 10px;
+  }
+
+  h2{
+	width: 100%;
+	max-width: 1200px;
+	padding: 10px;
+	margin: auto;
+	margin-top: 30px;
+  }
+
+  #contas{
+		color: white;
+   }
+   
+   #cadcontas{
+		background-color:white;
+		color:black !important;
+	}
+
+  .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+  .navbar-nav > li > .dropdown-menu { background-color: #525864 !important; }
+
+  .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
