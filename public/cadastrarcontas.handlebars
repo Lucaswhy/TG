@@ -2,7 +2,7 @@
     
 	<h2>Cadastrar Contas</h2>
 
-	<form class="form-cadastro" method="POST" action="/cadastrarcontas">
+	<form class="form-cadastro" method="POST" action="/validacontas">
         <br>
         <div class="form-row">
             <div class="col-md-3 mb-3">
@@ -64,11 +64,11 @@
         <div class="form-row">
 			<div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Emissão</label>
-                <input type="text" class="form-control data" id="dataEmi" placeholder="Data de Emissão" required name="DataEmissao">
+                <input type="date" class="form-control" id="dataEmi" placeholder="Data de Emissão" required name="DataEmissao">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Data de Vencimento</label>
-                <input type="text" class="form-control data" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento">
+                <input type="date" class="form-control" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento">
             </div>
         </div>
 

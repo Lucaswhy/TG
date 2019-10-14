@@ -4,7 +4,6 @@
 
 	<form class="form-cadastro" method="POST" action="/cadastrarfornecedor">
 
-    <input type="hidden" name="CPF" value="resultado">
 
         <div class="form-row">
             <div class="col-md-2 mb-3">
@@ -20,9 +19,11 @@
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">CNPJ</label>
-                <input type="text" class="form-control cnpj" id="validationDefault02" placeholder="CNPJ" required name="CPFn">
+                <input type="text" class="form-control cnpj" id="validationDefault02" placeholder="CNPJ" required name="CNPJn">
             </div>
   		</div>
+
+            <input type="hidden" name="CNPJ" value="">
         
         <div class="form-row">
             <div class="col-md-5 mb-3">
@@ -62,7 +63,7 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault03">Cidade</label>
-                <input type="email" class="form-control" id="validationDefault03" placeholder="Cidade" name="Cidade">
+                <input type="text" class="form-control" id="validationDefault03" placeholder="Cidade" name="Cidade">
             </div>
             <div class="form-group col-md-2.5">
                 <label for="inputEstado">Estado</label>
@@ -99,5 +100,5 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit">Cadastrar</button>
+        <button class="btn btn-primary" type="submit" onclick="limpaCNPJ()">Cadastrar</button>
     </form>
