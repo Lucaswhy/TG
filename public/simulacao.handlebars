@@ -1,0 +1,75 @@
+   <link rel='stylesheet' type='text/css' media='screen' href='simulacao.css'>
+
+   <h2>Simulação de Contas</h2>
+
+        <div id="divTabela" class="maxWidth">
+            <table id="tableCons">
+                <thead>
+                    <tr>
+                        <br>
+                        <hr>
+                        <div class="container mt-4">	
+						    <div class="card">
+							    <div class="card-body">
+                                <div style="width: 100%; height: 400px; overflow-y: scroll;">
+                                {{#each conta}}
+                                   <input type="checkbox" id="Conta" name="Conta">
+
+                                    Codigo da Conta:{{codConta}}
+                                        
+                                    Valor: {{valConta}}
+                                        
+                                    Data de Vencimento: {{dataVencimento}}
+                                    
+                                    Multa: {{Multa}}
+
+                                    Juros:  {{Juros}}
+
+                                    Desconto: {{Desconto}}
+                                    <hr style="width: 90%">
+                                    {{else}}
+                                    
+                                    {{/each}}
+
+							    </div>
+                            </div>
+						</div>
+                        </tr>
+                </thead>
+            </table>
+
+        </div>
+    <form class="form-cadastro">
+         <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="TotaldeContas">Contas selecionadas: </label>
+                <input type="text" class="form-control" id="TotaldeContas" name="totalContas" value="" disabled>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault01">Contas faltando: </label>
+                <input type="text" class="form-control" id="validationDefault01" name="totalContasF" value="" disabled >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault04">Valor Restante: </label>
+                <input type="text" class="form-control" id="validationDefault04" name="valorRestante" value="" disabled >
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault03">Valor Faltante: </label>
+                <input type="text" class="form-control" id="validationDefault03" name="valorFaltante" value="" disabled >
+            </div>
+        <button type="button" class="btn btn-primary">Simular</button></a>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Valor Total: </label>
+                <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled >
+            </div>
+            
+</form>
+
+
+<script type="text/javascript">
+
+
+
+</script>
