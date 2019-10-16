@@ -1,66 +1,47 @@
 <h2>Editar Bancos</h2>
 
-            {{#each erros}}
+    {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
     {{else}}
     {{/each}}
 
-        <form class="form-cadastro" method="POST" action="/bancoedicao">
+    <form class="form-cadastro" method="POST" action="/bancoedicao">
 
         <input type="hidden" name="_id" value="{{banco._id}}">
 
         <div class="form-row">
             <div class="col-md-2 mb-3">
-                <label for="validationDefault01">Código do Banco</label>
-                <input type="number" class="form-control" id="validationDefault01" placeholder="Cod. Banco" name="CodBanco" value="{{banco.codBanco}}">
+                <label for="validationDefault02">Código do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Cod. Banco" name="Digito">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationDefault02">Número da Conta</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Num. Conta" name="NumConta" value="{{banco.numeroConta}}">
-            </div>
-			<div class="col-md-2 mb-3">
-                <label for="validationDefault02">Digito</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Digito" name="Digito" value="{{banco.Digito}}">
+                <label for="validationDefault02">Nome do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome do Banco" name="NumConta">
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-md-2 mb-3">
-                <label for="validationDefault02">Código da Agência</label>
-                <input type="text" class="form-control cpf" id="validationDefault02" placeholder="Cod. Agência" name="CodAgencia" value="{{banco.codAgencia}}">
+                <label for="validationDefault02">Número do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Num. Banco" name="Digito">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">CNPJ</label>
+                <input type="email" class="form-control cnpj" id="validationDefault02" placeholder="CNPJ" name="Nome">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Telefone</label>
+                <input type="text" class="form-control phone" id="validationDefault02" placeholder="Telefone" name="CodAgencia">
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationDefault02">Nome da Agência</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome da Agência" name="Nome" value="{{banco.nomeAgencia}}">
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="col-md-5 mb-3">
-                <label for="validationDefault01">Gerente da Agência</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Gerente da Agência" name="Gerente" value="{{banco.gerenteAgencia}}">
+                <label for="validationDefault02">E-mail</label>
+                <input type="email" class="form-control" id="validationDefault02" placeholder="E-mail" name="Nome">
             </div>
         </div>
 
-		<div class="form-row">
-            <div class="col-md-5 mb-3">
-                <label for="validationDefault01">Logradouro</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Logradouro" name="Logradouro" value="{{banco.Logradouro}}">
-            </div>
-        </div>
-
-		<div class="form-row">
-            <div class="col-md-3 mb-3">
-                <label for="validationDefault01">Banco</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Banco" name="Banco" value="{{banco.nBanco}}">
-            </div>
-			<div class="col-md-3 mb-3">
-                <label for="validationDefault01">Número da Agência</label>
-                <input type="text" class="form-control" id="validationDefault01" placeholder="Número da Agência" name="NumAgencia" value="{{banco.numeroAgencia}}">
-            </div>
-        </div>
-
-		<br>
         <h3>Tipo</h3>
 		<br>
 
@@ -78,8 +59,3 @@
 
         <button class="btn btn-primary" type="submit">Editar</button>
     </form>
-
-    <script>
-                   
-
-    </script>

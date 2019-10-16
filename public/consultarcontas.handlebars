@@ -1,14 +1,20 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='consultarcontas.css'>
 
-    <script type="text/javascript">
-        var valor = documment.getElementByName("busca").value;
-    </script>
+   {{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+    {{else}}
+    {{/each}}
 
-	<div id="divprincipal">
-        <h1>Lista de Contas: </h1>
-        
-        <div id="divBusca">
-            <input type="text" id="txtBusca" name="busca"/>
-            <button id="btnBusca" class="btn btn-primary mt-4" >Buscar</button>
+    <h2>Lista de contas: </h2>
+
+	<form id="divBusca" class="form-cadastro">
+        <div class="form-row">
+            <div class="col-md-3">
+                <input class="form-control" type="text" id="txtBusca" name="busca"/>
+            </div>
+            <div class="col-md-2 mb-2">
+                <button id="btnBusca" class="btn btn-primary" >Buscar</button>
+            </div>
         </div>
         
         <div id="divTabela" class="maxWidth">
@@ -21,7 +27,7 @@
                         <div class="container mt-4">	
 						    <div class="card">
 							    <div class="card-body">
-                                <h4>Codigo da Conta:{{codConta}}</h4>
+                                <h4>Código da Conta:{{codConta}}</h4>
                                         <p>
                                     Tipo da Conta: {{tipoConta}}
                                         </p>
@@ -39,5 +45,4 @@
                 </thead>
             </table>
         </div>
-        
-	</div>
+    </form>
