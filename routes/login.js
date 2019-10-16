@@ -14,45 +14,17 @@ function validaCPF(cpf){
 
     var i = 0; // index de iteracao
 
-    if(cpf == "00000000000"){
+    if (cpf == "00000000000000" || 
+        cpf == "11111111111111" || 
+        cpf == "22222222222222" || 
+        cpf == "33333333333333" || 
+        cpf == "44444444444444" || 
+        cpf == "55555555555555" || 
+        cpf == "66666666666666" || 
+        cpf == "77777777777777" || 
+        cpf == "88888888888888" || 
+        cpf == "99999999999999")
         return false;
-    }
-
-    if(cpf == "11111111111"){
-        return false;
-    }
-
-    if(cpf == "22222222222"){
-        return false;
-    }
-
-    if(cpf == "33333333333"){
-        return false;
-    }
-
-    if(cpf == "44444444444"){
-        return false;
-    }
-
-    if(cpf == "55555555555"){
-        return false;
-    }
-
-    if(cpf == "66666666666"){
-        return false;
-    }
-
-    if(cpf == "77777777777"){
-        return false;
-    }
-
-    if(cpf == "88888888888"){
-        return false;
-    }
-
-    if(cpf == "99999999999"){
-        return false;
-    }
 
     var somatoria = 0;
     var cpf = cpf.toString().split("");
@@ -76,9 +48,11 @@ function validaCPF(cpf){
 
     if (dv11 == dv21 && dv12 == dv22) {
     return true
-    } else {
+    } 
+    
+    else {
     return false
-        }
+    }
 }
 
 //LOGIN E HOME
@@ -319,6 +293,13 @@ router.get("/liberarcadastro/:id", isAdmin, function(req,res){
         console.log(erro);
         req.flash("error_msg","Usuário não liberado.");
     })
+});
+
+//LOGOUT
+router.get("/logout", (req,res) =>{
+    req.logout();
+    req.flash("success_msg","Deslogado com sucesso.");
+    res.redirect("/");
 });
 
 module.exports = router

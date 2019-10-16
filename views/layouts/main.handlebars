@@ -50,13 +50,24 @@
             });
             	
                 function limpaCPF(){
+                    
                     var cp = new String;
                     var resultado = new String;
                     
                     cp = document.getElementsByName("CPFn")[0].value;
                     resultado = cp.replace(/[\-._]/g, "");
                     document.getElementsByName("CPF")[0].value = resultado;
-                }  
+                }
+
+                function limpaCNPJ(){
+
+                    var cn = new String;
+                    var resultado = new String;
+
+                    cn = document.getElementsByName("CNPJn")[0].value;
+                    resultado = cn.replace(/[/\-._]/g, "");
+                    document.getElementsByName("CNPJ")[0].value = resultado;
+                }
             
     </script>
 
