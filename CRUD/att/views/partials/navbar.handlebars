@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4ABDAC"> <!-- #4ABDAC #B56357 #99B3DF -->
+  		<a class="navbar-brand text-light">Bem-Vindo</a>
+  		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    		<ul class="navbar-nav">
+      			<li class="nav-item">
+					  	<form method="POST" action="/home"></form>
+						  	<button style="border: none;background-color:#4ABDAC;">
+        					<a class="nav-link" href="#" id="home">Home</a> </button>
+						</form>
+				  </li>
+      			<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="contas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Contas</a>
+        			<div class="dropdown-menu" aria-labelledby="contas">
+          				<a class="dropdown-item" id="cadcontas" href="cadastrarcontas">Cadastrar Contas</a>
+          				<a class="dropdown-item" id="conscontas" href="consultarcontas">Consultar Contas</a>
+        			</div>
+      			</li>
+      			<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="fornecedores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Fornecedores
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          				<a class="dropdown-item" id="cadfornecedores" href="cadastrarfornecedor">Cadastrar Fornecedores</a>
+          				<a class="dropdown-item" id="consfornecedores" href="consultarfornecedor">Consultar Fornecedores</a>
+        			</div>
+      			</li>
+      			<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="bancos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Bancos
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          				<a class="dropdown-item" id="cadbancos" href="cadastrarbancos">Cadastrar Bancos</a>
+          				<a class="dropdown-item" id="consbancos" href="consultarbancos">Consultar Bancos</a>
+        			</div>
+      			</li>
+				<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="agencias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Agencias
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          				<a class="dropdown-item" id="cadagencias" href="cadastraragencias">Cadastrar Agencias</a>
+          				<a class="dropdown-item" id="consagencias" href="consultaragencia">Consultar Agencias</a>
+        			</div>
+      			</li>
+				<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="contabancaria" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Conta Bancaria
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          				<a class="dropdown-item" id="cadcontabancaria" href="cadastrarcontabancaria">Cadastrar Conta Bancaria</a>
+          				<a class="dropdown-item" id="conscontabancaria" href="consultarcontabancaria">Consultar Conta Bancaria</a>
+        			</div>
+      			</li>  
+				<li class="nav-item">
+        			<a class="nav-link" id="relatorios" href="#">Emitir Relatórios</a>
+      			</li>
+				<li class="nav-item">
+        			<a class="nav-link" id="home" href="#">Gerar Simulação de Contas</a>
+      			</li>
+				<li class="nav-item">
+        			<a class="nav-link" id="home" href="#">Gerar Arquivo Remessa</a>
+      			</li>
+    		</ul>
+			<ul class="navbar-nav ml-auto">
+				<a class="navbar-brand text-light">
+					<script language="javascript">
+						meses = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+						semana = new Array("Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado");
+						hoje = new Date();
+						dia = hoje.getDate();
+						dias = hoje.getDay();
+						mes = hoje.getMonth();
+						ano = hoje.getFullYear();
+						diaext = semana[dias] + ", " + dia + " de " + meses[mes]
+						+ " de " + ano;
+						document.write(diaext);
+  					</script>
+				</a>
+			</ul>
+  		</div>
+	</nav>

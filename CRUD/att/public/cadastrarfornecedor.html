@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+<link rel="stylesheet" type="text/css" href="cadastrarfornecedor.css" />
+
+	<title>Contas a Pagar</title> 
+
+<header>
+	<div id=topside>LOGO			DATA</div>
+</header>
+
+<body bgcolor="#F34300">
+<p>
+	<table id="menu">
+
+	<th>Menu</th>
+	
+	<tr>
+		<td><a href="home.html" > HOME </a></td>
+	</tr>
+	<tr>
+		<td id="menutd"> <a href="contas.html"> Contas </a>
+		<p>
+		<a href="cadastrarcontas.html"> Cadastrar Contas </a>
+		<p>
+		<a href="consultarcontas.html"> Consultar Contas </a></td>
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a href="fornecedor.html"> Fornecedor </a>
+		<p>
+		<a href="cadastrarfornecedor.html"> Cadastrar Fornecedor </a>
+		<p>
+		<a href="consultarfornecedor.html"> Consultar Fornecedor </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a href="fornecedor.html"> Bancos </a>
+		<p>
+		<a href="cadastrarbancos.html"> Cadastrar Bancos </a>
+		<p>
+		<a href="consultarbancos.html"> Consultar Bancos </a></td>
+	</tr>
+
+	<tr>
+		<td id="menutd"> <a href="relatorio.html"> Relatórios </a>
+		<p>
+		<a href="relatorio.html"> Gerar relatório </a>	
+	</tr>	
+
+	<tr>
+		<td id="menutd"> <a href="Portfolio.html"> Gerar ordem de pagamento </a></td>
+	</tr>
+
+	</table>
+
+<div id="divprincipal">
+
+		<h2>Cadastrar Fornecedor</h2>
+		<h3>Contato</h3>
+		<br>
+
+	<form>
+
+    	<div>
+        
+        	<label for="name">Nome:</label>
+        	<input type="text" id="maior" />
+
+        	<label for="name">CNPJ:</label>
+        	<input type="number" id="maior" />
+                
+                	<p></p>
+
+        	<label for="name">Email:</label>
+        	<input type="email" id="maior" />
+
+        	<label for="name">Telefone:</label>
+        	<input type="tel" id="maior" />
+
+    	</div>
+
+		<h3>Endereço</h3>
+
+		<br>
+
+    	<div>
+
+    	<label for="name">Endereço:</label>
+        <input type="text" id="maior" />
+
+        <label for="name">CEP:</label>
+        <input type="number" id="maior" />
+
+        <p></p>
+
+        <label for="name">Número</label>
+        <input type="Number" id="maior" />
+
+        <label for="name">Bairro:</label>
+        <input type="text" id="maior" />
+
+        <p></p>
+
+        <label for="name">Cidade:</label>
+        <input type="text" id="maior" />
+
+        <label for="name">Estado:</label>
+        <input id="inpestado" type="text"/>
+
+    	</div>
+
+	</form>
+
+     			<div id="button">
+        			<button id="maior" type="button" onclick="contato()">Cadastrar!</button>
+    			</div>
+
+</div>
+
+<script>
+
+	function contato(){
+		alert("Fornecedor Cadastrado!");
+	}
+
+</script>
+
+</body>	
+
+</html>

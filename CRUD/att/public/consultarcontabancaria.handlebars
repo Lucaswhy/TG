@@ -1,0 +1,57 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='consultarcontabancaria.css'>
+
+   {{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+    {{else}}
+    {{/each}}
+
+    <h2>Lista de Contas Bancárias: </h2>
+
+	<form id="divBusca" class="form-cadastro">
+        <div class="form-row">
+            <div class="col-md-3">
+                <input class="form-control" type="text" id="txtBusca" name="busca"/>
+            </div>
+            <div class="col-md-2 mb-2">
+                <button id="btnBusca" class="btn btn-primary" >Buscar</button>
+            </div>
+        </div>
+        
+        <div id="divTabela" class="maxWidth">
+            <table id="tableCons">
+                <thead>
+                    <tr>
+                        <br>
+                        <hr>
+                        {{#each contabancaria}}
+                        <div class="container mt-4">	
+						    <div class="card">
+							    <div class="card-body">
+                                <h4>Código da Conta:{{codContaBanc}}</h4>
+                                        <p>
+                                    Agência: {{numeroContaBanc}}
+                                        </p>
+                                        <p>
+                                    Titular: {{Titular}}
+                                        </p>
+                                        <p>
+                                    Saldo: {{Saldo}}
+                                        </p>
+                                        <p>
+                                    Situação: {{SituacaoContaBanc}}
+                                        </p>
+                                    <a href ="/deletarcontabancaria/{{_id}}">
+                                    <button type="button" class="btn btn-warning mt-4">Deletar Banco</button></a>
+                                    <a href ="/editarcontabancaria/{{_id}}">
+                                    <button type="button" class="btn btn-primary mt-4">Editar</button></a>
+							    </div>
+                            </div>
+						</div>
+						{{else}}
+
+                        {{/each}}
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </form>

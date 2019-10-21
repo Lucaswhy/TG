@@ -1,0 +1,88 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='cadastrarcontas.css'>
+    
+	<h2>Cadastrar Contas</h2>
+
+	<form class="form-cadastro" method="POST" action="/validacontas">
+        <br>
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Código da Conta</label>
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" required name="CodConta">
+            </div>
+            <div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Valor da Conta</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="valconta">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta">
+      			</div>
+    		</div>
+			<div class="col-md-4 mb-3">
+                <label for="validationDefault02">Fornecedor</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Fornecedor" required name="NomeFornecedor">
+            </div>
+  		</div>
+        
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Juros</label>
+                <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Juros">
+            </div>
+            <div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Multa</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa">
+      			</div>
+    		</div>
+			<div class="col-md-2 mb-3">
+      			<label for="validationDefaultUsername">Desconto</label>
+      			<div class="input-group">
+        			<div class="input-group-prepend">
+          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
+        			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Desconto">
+      			</div>
+    		</div>
+        </div>
+
+		<div class="form-row">
+			<div class="col-md-2.5 mb-3">
+				<label for="inputSituacao">Situação da conta:</label>
+				<select id="inputSituacao" class="form-control" name="Situacao" value="{{usuario.Situacao}}">
+					<option selected>Selecione a situação da conta.</option>
+					<option>Fechada.</option>
+					<option>Aberta.</option>
+					<option>Cancelada.</option>
+				</select>
+			</div>
+		</div>
+
+        <div class="form-row">
+			<div class="col-md-2 mb-3">
+                <label for="validationDefault01">Data de Emissão</label>
+                <input type="date" class="form-control" id="dataEmi" placeholder="Data de Emissão" required name="DataEmissao">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Data de Vencimento</label>
+                <input type="date" class="form-control" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Observação</label>
+                <textarea class="form-control" id="validationTextarea" placeholder="Observação" required name="Observacao"></textarea >
+            </div>
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Descrição</label>
+                <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" required name="Descricao"></textarea>
+        	</div>
+		</div>
+
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+
+    </form>

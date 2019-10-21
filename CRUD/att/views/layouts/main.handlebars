@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contas a Pagar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
+    
+        {{>navbar}}
+
+</head>
+<body style="height:100%; background-color: #EFEFEF   "> <!-- #EFEFEF #B7CEC7 #EAE3EA  -->
+
+    <div class="mt-4" style="min-height: 100%;position: absolute; width:100%">
+        {{>msg}}
+        {{{body}}}
+        <nav class="navbar fixed-bottom navbar-darK" id="navbar" style="position:absolute; background-color: #4ABDAC">
+		    <ul class="navbar-nav ml-auto light"></ul>
+	    </nav>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha256-yE5LLp5HSQ/z+hJeCqkz9hdjNkk1jaiGG0tDCraumnA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>    
+
+    <script type="text/javascript">
+            $ (document).ready(function () {
+                $(".cpf") .mask("000.000.000-00")
+                $(".cnpj") .mask("00.000.000/0000-00")
+                $('.money').mask('000.000.000.000.000,00', {reverse: true});
+                $('.percent').mask('#0,00%', {reverse: true});
+                $('.cep').mask('00000-000', {reverse: true});
+                $( ".data" ).datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    showButtonPanel:true
+                });
+                $('.phone').mask('(00) 0000-00009');
+                $('.phone').blur(function(event){
+                    if ($(this).val().length == 15){
+                        $(".phone").mask("(00) 00000-0009")
+                    }
+                    else{
+                        $(".phone").mask("(00) 0000-00009")
+                    }
+                });
+            });
+            	
+                function limpaCPF(){
+                    
+                    var cp = new String;
+                    var resultado = new String;
+                    
+                    cp = document.getElementsByName("CPFn")[0].value;
+                    resultado = cp.replace(/[\-._]/g, "");
+                    document.getElementsByName("CPF")[0].value = resultado;
+                }
+
+                function limpaCNPJ(){
+
+                    var cn = new String;
+                    var resultado = new String;
+
+                    cn = document.getElementsByName("CNPJn")[0].value;
+                    resultado = cn.replace(/[/\-._]/g, "");
+                    document.getElementsByName("CNPJ")[0].value = resultado;
+                }
+            
+    </script>
+
+</body>
+</html>
