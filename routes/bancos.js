@@ -21,7 +21,6 @@ router.post("/validabancos", function(req,res){
     gerenteAgencia: req.body.Gerente,
     Logradouro: req.body.Logradouro,
     nBanco: req.body.Banco,
-    numeroAgencia: req.body.NumAgencia,
     Tipo: req.body.tipoarq
 }
 

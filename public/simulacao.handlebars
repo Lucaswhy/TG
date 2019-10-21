@@ -18,8 +18,8 @@
                                     Codigo da Conta:{{codConta}}
                                         
                                     Valor: {{valConta}}
-                                        
-                                    Data de Vencimento: {{dataVencimento}}
+                                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
+                                    Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
                                     
                                     Multa: {{Multa}}
 
@@ -59,10 +59,10 @@
                 <label for="validationDefault03">Valor Faltante: </label>
                 <input type="text" class="form-control" id="validationDefault03" name="valorFaltante" value="" disabled >
             </div>
-        <button type="button" class="btn btn-primary">Simular</button></a>
+        <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas()">Simular</button></a>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Valor Total: </label>
-                <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled >
+                <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
             </div>
             
 </form>
@@ -70,6 +70,47 @@
 
 <script type="text/javascript">
 
+    function qtdeContas(){
 
+        var qtConta = document.getElementsByName('Conta');
+        var qtdeSel = 0;
+        var qtdeFal = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(qtConta[i].checked){
+                qtdeSel = qtdeSel + 1;
+            }
+
+            else{
+                qtdeFal = qtdeFal + 1;
+            }
+
+        }   
+            document.getElementsByName("totalContas")[0].value =  qtdeSel;
+            document.getElementsByName("totalContasF")[0].value =  qtdeFal;
+    }   
+
+    function valorTotal(){
+
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('valConta');
+        var vTotal = 0;
+        var val = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(Conta[i].checked){
+                var array = vConta[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
+                val = parseFloat(vConta[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }   
+            document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
 
 </script>

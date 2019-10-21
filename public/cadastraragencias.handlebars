@@ -7,11 +7,12 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Banco</label>
-                <select id="inputSituacao" class="form-control" name="banco" value="{{usuario.Situacao}}">
-					<option selected>Selecione a situação da conta.</option>
-					<option>Fechada.</option>
-					<option>Aberta.</option>
-					<option>Cancelada.</option>
+                <select id="inputSituacao" class="form-control" name="nomeBanco">
+					{{#each banco}}
+                    <option value="{{_id}}">{{nome}}</option>
+                    {{else}}
+                        <option value="" disabled>Nenhum banco registrado!</option>
+                    {{/each}}
 				</select>
             </div>
         </div>

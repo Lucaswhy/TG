@@ -101,7 +101,12 @@ router.post("/contaedicao", function(req,res){
 
 //Simulacao
 router.get("/simulacao", function(req,res){
-    res.render('../public/simulacao');
+    Conta.find().sort({codConta: 'asc'}).then((conta) =>{
+        res.render('../public/simulacao', {conta: conta});
+        }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar contas.");
+        }); 
 });
 
 module.exports = router

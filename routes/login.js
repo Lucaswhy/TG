@@ -8,6 +8,7 @@ const Usuario = mongoose.model('usuario');
 const passport = require("passport");
 
 const {isAdmin} = require("../helpers/isAdmin");
+const {home} = require("../helpers/home");
 
 //FUNCOES GLOBAIS
 function validaCPF(cpf){
@@ -69,9 +70,18 @@ router.post("/validalogin", function(req,res,next){
     })(req,res,next)
 }); 
 
-router.post("/home", function(req,res){
+router.get("/home", home, function(req,res){
     Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
         res.render('../public/home', {usuario: usuario});
+        }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao realizar login.");
+        }); 
+});
+
+router.get("/homeusuario", function(req,res){
+    Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
+        res.render('../public/homeusuario', {usuario: usuario});
         }).catch((erro) => {
             console.log(erro);
             req.flash("error_msg","Erro ao realizar login.");
