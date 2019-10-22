@@ -23,26 +23,26 @@
                     <tr>
                         <br>
                         <hr>
-                        {{#each banco}}
+                        {{#each contabancaria}}
                         <div class="container mt-4">	
 						    <div class="card">
 							    <div class="card-body">
-                                <h4>Código da Conta:{{codBanco}}</h4>
+                                <h4>Código da Conta:{{codContaBanc}}</h4>
                                         <p>
-                                    Agência: {{numeroConta}}
+                                    Agência: {{Agencia.numAgencia}} do Banco: {{Agencia.Banco.nomeBanco}}
                                         </p>
                                         <p>
-                                    Titular: {{numeroConta}}
+                                    Titular: {{Titular}}
                                         </p>
                                         <p>
-                                    Saldo: {{numeroConta}}
+                                    Saldo: {{Saldo}}
                                         </p>
                                         <p>
-                                    Situação: {{numeroConta}}
+                                    Situação: {{SituacaoContaBanc}}
                                         </p>
-                                    <a href ="/deletarbanco/{{_id}}">
+                                    <a href ="/deletarcontabancaria/{{_id}}">
                                     <button type="button" class="btn btn-warning mt-4">Deletar Banco</button></a>
-                                    <a href ="/editarbancos/{{_id}}">
+                                    <a href ="/editarcontabancaria/{{_id}}">
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
 							    </div>
                             </div>

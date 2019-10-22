@@ -88,6 +88,18 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
 
     app.use('/', bancos);
 
+//ROTAS DE AGENCIAS
+
+    const agencias = require(__dirname + "/routes/agencias");
+
+    app.use('/', agencias);
+
+//ROTAS DE CONTA BANCARIA
+
+    const contabancaria = require(__dirname + "/routes/contabancaria");
+
+    app.use('/', contabancaria);    
+
 //-------------------------------------
 
 const PORT = 8081;

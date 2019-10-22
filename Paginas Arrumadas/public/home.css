@@ -1,9 +1,0 @@
-#home{
-	color: white;
-}
-
-.navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
-
-  .navbar-nav > li > .dropdown-menu { background-color: #525864 !important; }
-
-  .navbar-nav > li > .dropdown-menu > a {color: aliceblue !important;}

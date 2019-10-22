@@ -9,51 +9,36 @@ const Bancos  = new Schema({
         unique: true
     },
     
-    numeroConta: {
+    nomeBanco: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
-    Digito: {
+    CNPJ: {
         type: String,
         required: true,
     },
 
-    codAgencia: {
-        type: Number,   
-        required: true
-    },
-
-    nomeAgencia: {
+    numeroBanco: {
         type: String,
         required: true
     },
 
-    gerenteAgencia: {
+    Email: {
         type: String,
         required: true
     },
 
-    Logradouro: {
+    Telefone: {
         type: String,
         required: true
     },
-
-    nBanco: {
-        type: String,
-        required: true
-    },
-
-    numeroAgencia: {
-        type: Number,
-        required: true
-    },
-
+    
     Tipo: {
         type: String,
         required: true
     },
-
 
 });
 

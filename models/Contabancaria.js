@@ -1,45 +1,51 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Bancos  = new Schema({
+const Contabancaria  = new Schema({
     
-    codBanco: {
+    codContaBanc: {
         type: Number,
         required: true,
         unique: true
     },
     
-    nomeBanco: {
-        type: String,
+    numeroContaBanc: {
+        type: Number,
         required: true,
         unique: true
     },
 
-    CNPJ: {
-        type: String,
+    Digito: {
+        type: Number,
         required: true,
     },
 
-    numeroBanco: {
+    Saldo: {
+        type: String,   
+        required: true
+    },
+
+    SituacaoContaBanc: {
         type: String,
         required: true
     },
 
-    Email: {
+    DataAbertura: {
         type: String,
         required: true
     },
 
-    Telefone: {
+    Titular: {
         type: String,
         required: true
     },
-    
-    Tipo: {
-        type: String,
+
+    Agencia: {
+        type: Schema.Types.ObjectId,
+        ref: "agencia",
         required: true
-    },
+    }
 
 });
 
-mongoose.model("banco", Bancos)
+mongoose.model("contabancaria", Contabancaria)

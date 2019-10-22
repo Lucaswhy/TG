@@ -23,23 +23,23 @@
                     <tr>
                         <br>
                         <hr>
-                        {{#each banco}}
+                        {{#each agencia}}
                         <div class="container mt-4">	
 						    <div class="card">
 							    <div class="card-body">
-                                <h4>Código da Agência:{{codBanco}}</h4>
+                                <h4>Código da Agência:{{codAgencia}}</h4>
                                         <p>
-                                    Banco: {{numeroConta}}
+                                    Banco: {{Banco.nomeBanco}}
                                         </p>
                                         <p>
-                                    Gerente da Agência: {{numeroConta}}
+                                    Gerente da Agência: {{gerAgencia}}
                                         </p>
                                         <p>
-                                    Telefone: {{numeroConta}}
+                                    Telefone: {{telAgencia}}
                                         </p>
-                                    <a href ="/deletarbanco/{{_id}}">
-                                    <button type="button" class="btn btn-warning mt-4">Deletar Banco</button></a>
-                                    <a href ="/editarbancos/{{_id}}">
+                                    <a href ="/deletaragencia/{{_id}}">
+                                    <button type="button" class="btn btn-warning mt-4">Deletar Agencia</button></a>
+                                    <a href ="/editaragencias/{{_id}}">
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
 							    </div>
                             </div>

@@ -9,7 +9,7 @@ module.exports = {
 
         if(req.isAuthenticated()){
         req.flash("error_msg","Apenas administradores tem permissão para entrar nesta página.");
-        res.redirect("/cadastrarcontas");
+        res.redirect("/homeusuario");
         }
     
         else{

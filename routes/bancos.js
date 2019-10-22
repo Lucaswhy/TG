@@ -14,13 +14,11 @@ router.post("/validabancos", function(req,res){
 
     const novoBanco = {
     codBanco: req.body.CodBanco,
-    numeroConta: req.body.NumConta,
-    Digito: req.body.Digito,
-    codAgencia: req.body.CodAgencia,
-    nomeAgencia: req.body.Nome,
-    gerenteAgencia: req.body.Gerente,
-    Logradouro: req.body.Logradouro,
-    nBanco: req.body.Banco,
+    nomeBanco: req.body.NomeBanco,
+    CNPJ: req.body.CNPJ,
+    numeroBanco: req.body.NumBanco,
+    Email: req.body.Email,
+    Telefone: req.body.Telefone,
     Tipo: req.body.tipoarq
 }
 
@@ -71,16 +69,13 @@ router.get("/editarbancos/:id", function(req,res){
 router.post("/bancoedicao", function(req,res){
     Banco.findOne({codBanco: req.body.CodBanco}).then((banco)=>{
         
-        banco.codBanco = req.body.CodBanco
-        banco.numeroConta = req.body.NumConta
-        banco.Digito = req.body.Digito
-        banco.codAgencia = req.body.CodAgencia
-        banco.nomeAgencia = req.body.Nome
-        banco.gerenteAgencia = req.body.Gerente
-        banco.Logradouro = req.body.Logradouro
-        banco.nBanco = req.body.Banco
-        banco.numeroAgencia = req.body.NumAgencia
-        banco.Tipo = req.body.tipoarq
+        banco.codBanco = req.body.CodBanco,
+        banco.nomeBanco = req.body.NomeBanco,
+        banco.CNPJ = req.body.CNPJ,
+        banco.numeroBanco =  req.body.NumBanco,
+        banco.Email =  req.body.Email,
+        banco.Telefone =  req.body.Telefone,
+        banco.Tipo =  req.body.tipoarq
     
         banco.save().then(() => {
             req.flash("success_msg","Banco editado com sucesso!");

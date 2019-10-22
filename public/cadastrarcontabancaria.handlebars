@@ -2,16 +2,17 @@
 
 	<h2>Cadastrar Conta Bancária</h2>
 
-    <form class="form-cadastro" method="POST" action="/validabancos">
+    <form class="form-cadastro" method="POST" action="/validacontabancaria">
 
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Agência</label>
-                <select id="inputSituacao" class="form-control" name="agencia" value="{{usuario.Situacao}}">
-					<option selected>Selecione a situação da conta.</option>
-					<option>Fechada.</option>
-					<option>Aberta.</option>
-					<option>Cancelada.</option>
+                <select id="inputSituacao" class="form-control" name="nomeAgencia">
+					{{#each agencia}}
+                    <option value="{{_id}}">{{numAgencia}}</option>
+                    {{else}}
+                        <option value="">Nenhuma agência registrada!</option>
+                    {{/each}}
 				</select>
             </div>
         </div>
@@ -19,15 +20,15 @@
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Código da Conta</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Cod. Conta" name="CodContaBanc">
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" name="CodContaBanc">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Número da Conta</label>
-                <input type="email" class="form-control" id="validationDefault02" placeholder="Num. Conta" name="NumContaBanc">
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Num. Conta" name="NumContaBanc">
             </div>
             <div class="col-md-1 mb-3">
                 <label for="validationDefault02">Dígito</label>
-                <input type="email" class="form-control" id="validationDefault02" placeholder="Dígito" name="Digito">
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Dígito" name="Digito">
             </div>
         </div>
 
@@ -58,7 +59,7 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationDefault02">Titular</label>
-                <input type="email" class="form-control" id="validationDefault02" placeholder="Titular" name="Titular">
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Titular" name="Titular">
             </div>
         </div>
 
