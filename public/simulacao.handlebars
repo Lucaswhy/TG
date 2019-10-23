@@ -59,7 +59,7 @@
                 <label for="validationDefault03">Valor Faltante: </label>
                 <input type="text" class="form-control" id="validationDefault03" name="valorFaltante" value="" disabled >
             </div>
-        <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas()">Simular</button></a>
+        <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas();valorRestFalt();">Simular</button></a>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Valor Total: </label>
                 <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
@@ -111,6 +111,41 @@
             }
         }   
             document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
+
+    function valorRestFalt(){
+
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('valConta');
+        var vSaldo = document.getElementsByName('Saldo');
+        var val = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(Conta[i].checked){
+                var array = vConta[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
+                val = parseFloat(vConta[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }
+
+        if(saldo > 0){
+            document.getElementsByName("valorRestante")[0].value = 'R$' + vSaldo.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+            document.getElementsByName("valorFaltante")[0].value = 'R$0,00'
+        }
+        else if(vRest < 0){
+            document.getElementsByName("valorRestante")[0].value = 'R$0,00';
+            vSaldo = vSaldo *(-1);
+            document.getElementsByName("valorFaltante")[0].value = 'R$' + vSaldo.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+        }
+        else{
+            document.getElementsByName("valorRestante")[0].value = 'R$0,00';
+            document.getElementsByName("valorFaltante")[0].value = 'R$0,00'
+        }
     }
 
 </script>
