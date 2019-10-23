@@ -115,36 +115,38 @@
 
     function valorRestFalt(){
 
-        var Conta = document.getElementsByName('Conta');
-        var vConta = document.getElementsByName('valConta');
-        var vSaldo = document.getElementsByName('Saldo');
+        var Contas = document.getElementsByName('Conta');
+        var vContas = document.getElementsByName('valConta');
+        var vSaldo = 1000;
+        var vTotal = 0;
         var val = 0;
-        
-        for (var i = 0; i < Conta.length; i++){
+                
+        for (var i = 0; i < Contas.length; i++){
             
-            if(Conta[i].checked){
-                var array = vConta[i].value.split(",");
+            if(Contas[i].checked){
+                var array = vContas[i].value.split(",");
                 var cent = parseFloat(array[1]);
                 var cent = cent/100;                
 
-                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
-                val = parseFloat(vConta[i].value);
+                vContas[i].value = vContas[i].value.replace(/[.]/g, "");
+                val = parseFloat(vContas[i].value);
                 vTotal = vTotal + val + cent;
             }
         }
 
-        if(saldo > 0){
-            document.getElementsByName("valorRestante")[0].value = 'R$' + vSaldo.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+        vRest = vSaldo - vTotal;
+
+        if(vRest > 0){
+            document.getElementsByName("valorRestante")[0].value = 'R$' + vRest.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
             document.getElementsByName("valorFaltante")[0].value = 'R$0,00'
         }
         else if(vRest < 0){
             document.getElementsByName("valorRestante")[0].value = 'R$0,00';
-            vSaldo = vSaldo *(-1);
-            document.getElementsByName("valorFaltante")[0].value = 'R$' + vSaldo.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+            document.getElementsByName("valorFaltante")[0].value = 'R$' + vRest.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
         }
         else{
             document.getElementsByName("valorRestante")[0].value = 'R$0,00';
-            document.getElementsByName("valorFaltante")[0].value = 'R$0,00'
+            document.getElementsByName("valorFaltante")[0].value = 'R$0,00';
         }
     }
 
