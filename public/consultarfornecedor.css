@@ -11,8 +11,7 @@
 	max-width: 1200px;
 	padding: 10px;
 	margin: auto;
-    margin-top: 10px;
-    margin-left: 120px;
+    margin-bottom: 20px;
   }
 
   .btn-primary{
@@ -25,3 +24,18 @@
 	background-color: #EFEFEF !important;
 	color: black !important;
 }
+
+#fornecedores{
+	color: white;
+}
+
+#consfornecedores{
+	background-color:white;
+	color:black !important;
+}
+
+.navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+.navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+.navbar-nav > li > .dropdown-menu > a {color: aliceblue}
