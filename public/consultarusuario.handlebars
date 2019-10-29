@@ -1,4 +1,3 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='consultarusuario.css'>
 
     {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
@@ -14,7 +13,7 @@
                 <input class="form-control" type="text" id="txtBusca" name="busca"/>
             </div>
             <div class="col-md-2 mb-2">
-                <button id="btnBusca" class="btn btn-primary" >Buscar</button>
+             <button id="btnBusca" type="button" class="btn btn-primary" onclick="search()" >Buscar</button>
             </div>
         </div>
         
@@ -49,3 +48,16 @@
             </table>
         </div>    
     </form>
+
+    <script type="text/javascript">
+        function search(){
+
+         var bc = new String;
+
+         bc = document.getElementsByName("busca")[0].value;
+         if(bc != ""){           
+              window.location.href="http://localhost:8081/consultarusuario/"+bc;
+         }
+    }
+
+    </script>

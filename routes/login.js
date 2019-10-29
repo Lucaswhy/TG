@@ -194,6 +194,17 @@ router.get('/consultarusuario', isAdmin, function(req,res){
         req.flash("error_msg","Erro ao consultar os usuários. Erro:");
     }); 
 });
+//http://localhost:8081/consultarusuario?busca=15
+router.get('/consultarusuario/:busca', function(req,res){
+    Usuario.find({Cracha: req.params.busca}).sort({Cracha: 'desc'}).then((usuario) =>{
+        console.log(req.params.busca);
+        console.log(usuario);
+       res.render('../public/consultarusuario', {usuario: usuario});
+       }).catch((erro) => {
+           console.log(erro);
+           req.flash("error_msg","Erro ao consultar os usuários. Erro:");
+       }); 
+   });
 
 //DELETAR USUÁRIO
 
