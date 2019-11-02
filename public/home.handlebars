@@ -6,11 +6,9 @@
   <p class="lead">Há contas a serem vencidas!</p>
   <hr class="my-4">
   {{#each usuario}}
-  {{#if LoginStatus}}
   <p>Usuário para ser Liberado! Cracha: {{Cracha}} Nome: {{Nome}} 
   <a href ="/liberarcadastro/{{_id}}">
   <button type="button" class="btn btn-warning">Liberar Cadastro</button></a></p>
-  {{/if}}
 						{{else}}
 <p>Nenhum pedido de usuários para serem liberados.</p>
             {{/each}}

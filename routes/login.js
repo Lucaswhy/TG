@@ -71,7 +71,7 @@ router.post("/validalogin", function(req,res,next){
 }); 
 
 router.get("/home", home, function(req,res){
-    Usuario.find().sort({Cracha: 'asc'}).then((usuario) =>{
+    Usuario.find({LoginStatus: false}).then((usuario) =>{
         res.render('../public/home', {usuario: usuario});
         }).catch((erro) => {
             console.log(erro);
@@ -196,14 +196,24 @@ router.get('/consultarusuario', isAdmin, function(req,res){
 });
 //http://localhost:8081/consultarusuario?busca=15
 router.get('/consultarusuario/:busca', function(req,res){
-    Usuario.find({Cracha: req.params.busca}).sort({Cracha: 'desc'}).then((usuario) =>{
-        console.log(req.params.busca);
-        console.log(usuario);
-       res.render('../public/consultarusuario', {usuario: usuario});
-       }).catch((erro) => {
-           console.log(erro);
-           req.flash("error_msg","Erro ao consultar os usuários. Erro:");
-       }); 
+    if(!isNaN(req.params.busca)){    
+        Usuario.find({Cracha: req.params.busca}).sort({Cracha: 'desc'}).then((usuario) =>{
+            console.log(req.params.busca);
+            console.log(usuario);
+        res.render('../public/consultarusuario', {usuario: usuario});
+        }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar os usuários. Erro:");
+        });
+        }
+    else{
+        Usuario.find({Nome: new RegExp(req.params.busca, "i")}).sort({Nome: 'asc'}).then((usuario) =>{
+            res.render('../public/consultarusuario', {usuario: usuario});
+            }).catch((erro) => {
+                console.log(erro);
+                req.flash("error_msg","Erro ao consultar os usuários. Erro:");
+            });
+        } 
    });
 
 //DELETAR USUÁRIO

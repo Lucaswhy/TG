@@ -21,7 +21,7 @@ const Bancos  = new Schema({
     },
 
     numeroBanco: {
-        type: String,
+        type: Number,
         required: true
     },
 
