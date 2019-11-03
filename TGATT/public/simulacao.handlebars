@@ -1,0 +1,153 @@
+   <link rel='stylesheet' type='text/css' media='screen' href='simulacao.css'>
+
+   <h2>Simulação de Contas</h2>
+
+        <div id="divTabela" class="maxWidth">
+            <table id="tableCons">
+                <thead>
+                    <tr>
+                        <br>
+                        <hr>
+                        <div class="container mt-4">	
+						    <div class="card">
+							    <div class="card-body">
+                                <div style="width: 100%; height: 400px; overflow-y: scroll;">
+                                {{#each conta}}
+                                   <input type="checkbox" id="Conta" name="Conta">
+
+                                    Codigo da Conta:{{codConta}}
+                                        
+                                    Valor: {{valConta}}
+                                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
+                                    Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
+                                    
+                                    Multa: {{Multa}}
+
+                                    Juros:  {{Juros}}
+
+                                    Desconto: {{Desconto}}
+                                    <hr style="width: 90%">
+                                    {{else}}
+                                    
+                                    {{/each}}
+
+							    </div>
+                            </div>
+						</div>
+                        </tr>
+                </thead>
+            </table>
+
+        </div>
+    <form class="form-cadastro">
+         <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="TotaldeContas">Contas selecionadas: </label>
+                <input type="text" class="form-control" id="TotaldeContas" name="totalContas" value="" disabled>
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault01">Contas faltando: </label>
+                <input type="text" class="form-control" id="validationDefault01" name="totalContasF" value="" disabled >
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault04">Valor Restante: </label>
+                <input type="text" class="form-control" id="validationDefault04" name="valorRestante" value="" disabled >
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault03">Valor Faltante: </label>
+                <input type="text" class="form-control" id="validationDefault03" name="valorFaltante" value="" disabled >
+            </div>
+        <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas();valorRestFalt();">Simular</button></a>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Valor Total: </label>
+                <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
+            </div>
+            
+</form>
+
+
+<script type="text/javascript">
+
+    function qtdeContas(){
+
+        var qtConta = document.getElementsByName('Conta');
+        var qtdeSel = 0;
+        var qtdeFal = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(qtConta[i].checked){
+                qtdeSel = qtdeSel + 1;
+            }
+
+            else{
+                qtdeFal = qtdeFal + 1;
+            }
+
+        }   
+            document.getElementsByName("totalContas")[0].value =  qtdeSel;
+            document.getElementsByName("totalContasF")[0].value =  qtdeFal;
+    }   
+
+    function valorTotal(){
+
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('valConta');
+        var vTotal = 0;
+        var val = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(Conta[i].checked){
+                var array = vConta[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
+                val = parseFloat(vConta[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }   
+            document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
+
+    function valorRestFalt(){
+
+        var Contas = document.getElementsByName('Conta');
+        var vContas = document.getElementsByName('valConta');
+        var vSaldo = 1000;
+        var vTotal = 0;
+        var val = 0;
+                
+        for (var i = 0; i < Contas.length; i++){
+            
+            if(Contas[i].checked){
+                var array = vContas[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vContas[i].value = vContas[i].value.replace(/[.]/g, "");
+                val = parseFloat(vContas[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }
+
+        vRest = vSaldo - vTotal;
+
+        if(vRest > 0){
+            document.getElementsByName("valorRestante")[0].value = 'R$' + vRest.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+            document.getElementsByName("valorFaltante")[0].value = 'R$0,00'
+        }
+        else if(vRest < 0){
+            document.getElementsByName("valorRestante")[0].value = 'R$0,00';
+            document.getElementsByName("valorFaltante")[0].value = 'R$' + vRest.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+        }
+        else{
+            document.getElementsByName("valorRestante")[0].value = 'R$0,00';
+            document.getElementsByName("valorFaltante")[0].value = 'R$0,00';
+        }
+    }
+
+</script>

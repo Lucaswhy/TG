@@ -1,0 +1,62 @@
+<h2>Editar Bancos</h2>
+
+    {{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+    {{else}}
+    {{/each}}
+
+    <form class="form-cadastro" method="POST" action="/bancoedicao">
+
+        <input type="hidden" name="_id" value="{{banco._id}}">
+
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Código do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Cod. Banco" name="CodBanco" value="{{banco.codBanco}}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Nome do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome do Banco" name="NomeBanco" value="{{banco.nomeBanco}}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Número do Banco</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Num. Banco" name="NumBanco" value="{{banco.numeroBanco}}">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">CNPJ</label>
+                <input type="text" class="form-control cnpj" id="validationDefault02" placeholder="CNPJ" name="CNPJn" value="{{banco.CNPJ}}">
+            </div>
+            <input type="hidden" name="CNPJ" value="">
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Telefone</label>
+                <input type="text" class="form-control phone" id="validationDefault02" placeholder="Telefone" name="Telefone" value="{{banco.Telefone}}">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">E-mail</label>
+                <input type="email" class="form-control" id="validationDefault02" placeholder="E-mail" name="Email" value="{{banco.Email}}">
+            </div>
+        </div>
+
+        <h3>Tipo</h3>
+		<br>
+
+        <div class="form-row">
+            <div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB240" name="tipoarq" class="custom-control-input" required>
+  				<label class="custom-control-label" for="radioCNAB240">CNAB 240</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" id="radioCNAB400" name="tipoarq" class="custom-control-input">
+  				<label class="custom-control-label" for="radioCNAB400">CNAB 400</label>
+			</div>
+        </div>
+		<br>
+
+        <button class="btn btn-primary" type="submit" onclick="limpaCNPJ()">Editar</button>
+    </form>
