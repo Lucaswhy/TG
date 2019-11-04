@@ -1,16 +1,15 @@
-<h2>Editar Usuário</h2>
-
     {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
     {{else}}
     {{/each}}
 
 
-    <form class="form-editar" method="POST" action="/validaedicao">
+    <form class="form-editar ml-5" method="POST" action="/validaedicao">
+        <h2>Editar Usuário</h2>
 
         <input type="hidden" name="_id" value="{{usuario._id}}">
        
-        <div class="form-row">
+        <div class="form-row mt-4">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault01">Crachá</label>
                 <input type="number" class="form-control" id="validationDefault01" placeholder="Crachá" name="Cracha" value="{{usuario.Cracha}}" >
@@ -119,11 +118,163 @@
             </div>
         </div>
 
-        <button class="btn btn-primary mt-4" type="submit" onclick="limpaCPF();sobrescreveData()"  >Editar</button>
+        <fieldset class="border col-md-11 pr-4 mr-5 mt-5" style="background-color: rgb(243, 243, 243);">
+            <legend>Permissões:</legend>
+            <div class="form-row">
+
+
+                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="contas">
+                    <legend style="font-size:medium">Contas:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="contasCad">
+                        <label class="custom-control-label" for="contasCad">Cadastrar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="cntasCons">
+                        <label class="custom-control-label" for="cntasCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="contasEdi">
+                        <label class="custom-control-label" for="contasEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="contasExc">
+                        <label class="custom-control-label" for="contasExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="fornecedores">
+                    <legend style="font-size:medium">Fornecedores:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="fornCad">
+                        <label class="custom-control-label" for="fornCad">Cadastrar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="fornCons">
+                        <label class="custom-control-label" for="fornCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="fornEdi">
+                        <label class="custom-control-label" for="fornEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="fornExc">
+                        <label class="custom-control-label" for="fornExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="Bancos">
+                    <legend style="font-size:medium">Bancos:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="bancosCad">
+                        <label class="custom-control-label" for="bancosCad">Cadastrar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="bancosCons">
+                        <label class="custom-control-label" for="bancosCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="bancosEdi">
+                        <label class="custom-control-label" for="bancosEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="bancosExc">
+                        <label class="custom-control-label" for="bancosExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="agencias">
+                    <legend style="font-size:medium">Agências:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="agenciasCad">
+                        <label class="custom-control-label" for="agenciasCad">Cadastrar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="agenciasCons">
+                        <label class="custom-control-label" for="agenciasCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="agenciasEdi">
+                        <label class="custom-control-label" for="agenciasEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4 mb-3">
+                        <input type="checkbox" class="custom-control-input" id="agenciasExc">
+                        <label class="custom-control-label" for="agenciasExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-3 mb-5 mr-4 pr-5 pl-3 border rounded" id="contaBanc">
+                    <legend style="font-size:medium">Contas Bancárias:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="contaBancCad">
+                        <label class="custom-control-label" for="contaBancCad">Cadastrar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="contaBancCons">
+                        <label class="custom-control-label" for="contaBancCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="contaBancEdi">
+                        <label class="custom-control-label" for="contaBancEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="contaBancExc">
+                        <label class="custom-control-label" for="contaBancExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="relatorios">
+                    <legend style="font-size:medium">Relatórios:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="relatoriosEmit">
+                        <label class="custom-control-label" for="relatoriosEmit">Emitir</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="relatoriosCons">
+                        <label class="custom-control-label" for="relatoriosCons">Consultar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="relatoriosEdi">
+                        <label class="custom-control-label" for="relatoriosEdi">Editar</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4 mb-3">
+                        <input type="checkbox" class="custom-control-input" id="relatoriosExc">
+                        <label class="custom-control-label" for="relatoriosExc">Excluir</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-2,5 mb-5 mr-4 pr-5 pl-3 border rounded" id="simulacao">
+                    <legend style="font-size:medium">Simulação:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="simulacaoGerar">
+                        <label class="custom-control-label" for="simulacaoGerar">Gerar Simulação</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset class="col-md-3 mb-5 mr-4 pr-5 pl-3 border rounded" id="remessa">
+                    <legend style="font-size:medium">Arquivo Remessa:</legend>
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="remessaGerar">
+                        <label class="custom-control-label" for="remessaGerar">Gerar Arquivo Remessa</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mt-4">
+                        <input type="checkbox" class="custom-control-input" id="remessaCons">
+                        <label class="custom-control-label" for="remessaCons">Consultar Arquivo Retorno</label>
+                    </div>
+                </fieldset>
+
+
+            </div>
+        </fieldset>
+        <button class="btn btn-primary mt-5 mb-5" style="background-color: #4ABDAC; border-color: #4ABDAC;" type="submit" onclick="limpaCPF();sobrescreveData()"  >Editar</button>
         <a href ="/usuariodeletar/{{usuario._id}}">
-        <button type="button" class="btn btn-danger mt-4">Deletar Usuário</button></a>
-        <a href ="/liberarcadastro/{{usuario._id}}">
-        <button type="button" class="btn btn-warning mt-4">Liberar Cadastro</button></a>
     </form>
 
     <script type="text/javascript">
