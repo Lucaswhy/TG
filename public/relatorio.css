@@ -1,0 +1,34 @@
+.form-cadastro {
+	width: 100%;
+	max-width: 1200px;
+	padding: 15px;
+	margin: auto;
+	margin-top: 10px;
+  }
+
+  h2, h1, h3{
+	width: 100%;
+	max-width: 1200px;
+	padding: 10px;
+	margin: auto;
+	margin-top: 10px;
+  }
+
+.btn-primary{
+    position: absolute;
+    margin-left: 60%;
+	background-color: #4ABDAC !important; 
+	color: white !important;
+	border-color: #4ABDAC !important;
+}
+
+.btn-primary:hover{
+	background-color: #EFEFEF !important;
+	color: black !important;
+}
+
+  .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+  .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+  .navbar-nav > li > .dropdown-menu > a {color: aliceblue}

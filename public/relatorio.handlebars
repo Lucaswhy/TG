@@ -1,0 +1,159 @@
+   <link rel='stylesheet' type='text/css' media='screen' href='relatorio.css'>
+
+   <h2>Emissão de Relatórios</h2>
+   <hr>
+
+   <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Filtros
+            </div>
+            <div class="card-body">
+                <form class="form-row">
+                    <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="contas">
+                        <legend style="font-size:medium">Tipo de Contas:</legend>
+                        <div class="custom-control custom-checkbox mt-2">
+                            <input type="checkbox" class="custom-control-input" id="pagar">
+                            <label class="custom-control-label" for="pagar">A pagar</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mt-4">
+                            <input type="checkbox" class="custom-control-input" id="pagas">
+                            <label class="custom-control-label" for="pagas">Pagas</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mt-4">
+                            <input type="checkbox" class="custom-control-input" id="vencidas">
+                            <label class="custom-control-label" for="vencidas">Vencidas</label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-md-3,5 mb-3 ml-3 pl-3 pr-5 border rounded">
+                        <legend style="font-size:medium">Datas:</legend>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="valconta">Emissão de</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao1">
+                            <div class="input-group-prepend ml-3">
+                                <span class="input-group-text" id="valconta">até</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao2">
+                        </div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="valconta">Pagamento de</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao1">
+                            <div class="input-group-prepend ml-3">
+                                <span class="input-group-text" id="valconta">até</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao2">
+                        </div>
+                        <div class="input-group mt-4 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="valconta">Vencimento de</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao1">
+                            <div class="input-group-prepend ml-3">
+                                <span class="input-group-text" id="valconta">até</span>
+                            </div>
+                            <input type="date" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required name="emissao2">
+                        </div>
+                    </fieldset>
+                </form>
+                <form class="form-row">
+                    <fieldset class="col-md-2.5 mb-3 pl-2 pr-4 border rounded">
+                        <legend style="font-size:medium">Fornecedor:</legend>
+                        <select id="inputSituacao" class="form-control mb-4" name="fornecedor" value="{{fornecedores.RazaoSocial}}">
+                            <option selected>Selecione o fornecedor</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="col-md-3,5 mb-3 ml-3 pl-3 pr-4 border rounded">
+                        <legend style="font-size:medium">Valor:</legend>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="valconta">Valor mínimo de</span>
+                            </div>
+                            <input type="text" class="form-control money" placeholder="0,00" id="vminimo" aria-describedby="inputGroupPrepend2" required name="emissao1">
+                            <div class="input-group-prepend ml-3">
+                                <span class="input-group-text" id="valconta">Valor máximo de</span>
+                            </div>
+                            <input type="text" class="form-control money" placeholder="0,00" id="vmaximo" aria-describedby="inputGroupPrepend2" required name="emissao2">
+                        </div>
+                    </fieldset>
+                </form>
+                <fieldset class="border col-md-6 pr-4 mr-5 pb-0">
+                    <legend style="font-size:medium">Ordenação:</legend>
+                    <div class="form-row">
+                        <fieldset class="col-md-4 ml-4 pr-5 pl-3 mb-5 border rounded" id="contas">
+                            <legend style="font-size:small">Ordem:</legend>
+                            <div class="custom-control custom-radio mt-4">
+                                <input type="radio" class="custom-control-input" id="crescente" name="ordem">
+                                <label class="custom-control-label" for="crescente">Crescente</label>
+                            </div>
+                            <div class="custom-control custom-radio mt-5">
+                                <input type="radio" class="custom-control-input" id="decrescente" name="ordem">
+                                <label class="custom-control-label" for="decrescente">Decrescente</label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="col-md-6 mb-5 ml-4 pr-5 pl-3 border rounded" id="contas">
+                            <legend style="font-size:small">Ordenar por:</legend>
+                            <div class="custom-control custom-radio mt-2">
+                                <input type="radio" class="custom-control-input" id="valor" name="ordenar">
+                                <label class="custom-control-label" for="valor">Valor</label>
+                            </div>
+                            <div class="custom-control custom-radio mt-4">
+                                <input type="radio" class="custom-control-input" id="dataEmissao" name="ordenar">
+                                <label class="custom-control-label" for="dataEmissao">Data de Emissão</label>
+                            </div>
+                            <div class="custom-control custom-radio mt-4 mb-3">
+                                <input type="radio" class="custom-control-input" id="dataVencimento" name="ordenar">
+                                <label class="custom-control-label" for="dataVencimento">Data de Vencimento</label>
+                            </div>
+                            <div class="custom-control custom-radio mt-4 mb-3">
+                                <input type="radio" class="custom-control-input" id="dataPagamento" name="ordenar">
+                                <label class="custom-control-label" for="dataPagamento">Data de Pagamento</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </fieldset>
+                <div class="mb-5" style="position:relative;">
+                    <button type="button" class="btn btn-primary">Aplicar</button></a>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <div id="divTabela" class="maxWidth mb-5">
+        <table id="tableCons">
+            <thead>
+                <tr>
+                    <br>
+                    <div class="container mt-4">	
+					    <div class="card">
+						    <div class="card-body">
+                                <div style="width: 100%; height: 400px; overflow-y: scroll;">
+                                    {{#each conta}}
+
+                                    Codigo da Conta:{{codConta}}
+                                        
+                                    Valor: {{valConta}}
+                                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
+                                    Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
+                                    
+                                    Multa: {{Multa}}
+
+                                    Juros:  {{Juros}}
+
+                                    Desconto: {{Desconto}}
+                                    <hr style="width: 90%">
+                                    {{else}}
+                                    
+                                    {{/each}}
+
+							    </div>
+                            </div>
+					    </div>
+                    </div>
+                </tr>
+            </thead>
+        </table>
+    </div>
