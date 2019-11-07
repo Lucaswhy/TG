@@ -207,6 +207,46 @@ const Usuario  = new Schema({
         type: Boolean,
         default: false
     },
+    //Permissões de Agência
+    cadAgencia: {
+        type: Boolean,
+        default: true
+    },
+
+    conAgencia: {
+        type: Boolean,
+        default: true
+    },
+
+    editAgencia: {
+        type: Boolean,
+        default: false
+    },
+
+    delAgencia: {
+        type: Boolean,
+        default: false
+    },
+    //Permissões de Conta Bancaria
+    cadContBanc: {
+        type: Boolean,
+        default: true
+    },
+
+    conContBanc: {
+        type: Boolean,
+        default: true
+    },
+
+    editContBanc: {
+        type: Boolean,
+        default: false
+    },
+
+    delContBanc: {
+        type: Boolean,
+        default: false
+    },
 
     //Permissão de funcionalidades
 

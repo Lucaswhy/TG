@@ -1,5 +1,3 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='consultaragencia.css'>
-
    {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
     {{else}}
@@ -52,3 +50,19 @@
             </table>
         </div>
     </form>
+
+    <script type="text/javascript">
+        function search(){
+
+         var bc = new String;
+
+         bc = document.getElementsByName("busca")[0].value;
+         if(bc != ""){           
+              window.location.href="http://localhost:8081/consultaragencia/"+bc;
+         }
+         else{           
+              window.location.href="http://localhost:8081/consultaragencia/";
+         }
+    }
+
+    </script>

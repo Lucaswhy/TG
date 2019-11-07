@@ -6,9 +6,12 @@ require("../models/Contabancaria");
 const Contabancaria = mongoose.model('contabancaria');
 require("../models/Agencias"); 
 const Agencia = mongoose.model('agencia');
-
+const {cadContBanc} = require("../helpers/cadContBanc");
+const {conContBanc} = require("../helpers/conContBanc");
+const {delContBanc} = require("../helpers/delContBanc");
+const {editContBanc} = require("../helpers/editContBanc");
 //Cadastrar Bancos
-router.get("/cadastrarcontabancaria", (req,res) => {
+router.get("/cadastrarcontabancaria", cadContBanc, (req,res) => {
 	Agencia.find().then((agencia) =>{
 	res.render("../public/cadastrarcontabancaria", {agencia: agencia});
 	}).catch((erro) =>{
@@ -43,7 +46,7 @@ res.render('../public/contabancariacadastrada')
 });
 
 //Consultar
-router.get('/consultarcontabancaria', function(req,res){
+router.get('/consultarcontabancaria', conContBanc, function(req,res){
     Contabancaria.find().populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
        res.render('../public/consultarcontabancaria', {contabancaria: contabancaria});
        }).catch((erro) => {
@@ -52,7 +55,7 @@ router.get('/consultarcontabancaria', function(req,res){
        }); 
    });
 //Deletar
-router.get("/deletarcontabancaria/:id", function(req,res){
+router.get("/deletarcontabancaria/:id", delContBanc, function(req,res){
     Contabancaria.findOneAndDelete({_id : req.params.id}).then((contabancaria) =>{
         req.flash("success_msg","Conta deletada. ");
         res.redirect('/consultarcontabancaria');
@@ -63,7 +66,7 @@ router.get("/deletarcontabancaria/:id", function(req,res){
 });
 //Editar
 
-router.get("/editarcontabancaria", (req,res) => {
+router.get("/editarcontabancaria", editContBanc, (req,res) => {
 	Agencia.find().then((agencia) =>{
 	res.render("../public/editarcontabancaria", {agencia: agencia});
 	}).catch((erro) =>{

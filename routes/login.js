@@ -64,7 +64,7 @@ router.get("/", function(req,res){
 
 router.post("/validalogin", function(req,res,next){
     passport.authenticate("local",{
-        successRedirect: "/cadastrarcontas" ,
+        successRedirect: "/home" ,
         failureRedirect: "/",
         failureFlash: true
     })(req,res,next)
@@ -195,7 +195,7 @@ router.get('/consultarusuario', isAdmin, function(req,res){
     }); 
 });
 //http://localhost:8081/consultarusuario?busca=15
-router.get('/consultarusuario/:busca', function(req,res){
+router.get('/consultarusuario/:busca',isAdmin, function(req,res){
     if(!isNaN(req.params.busca)){    
         Usuario.find({Cracha: req.params.busca}).sort({Cracha: 'desc'}).then((usuario) =>{
             console.log(req.params.busca);

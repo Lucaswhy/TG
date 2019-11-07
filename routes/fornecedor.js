@@ -4,7 +4,10 @@ const router = express.Router();
 const mongoose = require("mongoose");
 require("../models/Fornecedores"); 
 const Fornecedor = mongoose.model('fornecedor');
-
+const {cadForn} = require("../helpers/cadForn");
+const {conForn} = require("../helpers/conForn");
+const {delForn} = require("../helpers/delForn");
+const {editForn} = require("../helpers/editForn");
 //FUNCOES GLOBAIS
 function validarCNPJ(cnpj) {
  
@@ -61,7 +64,7 @@ function validarCNPJ(cnpj) {
 }
 
 //Cadastrar Fornecedor
-router.get("/cadastrarfornecedor", function(req,res){
+router.get("/cadastrarfornecedor", cadForn, function(req,res){
     res.render('../public/cadastrarfornecedor');
 });
 
@@ -96,7 +99,7 @@ res.render('../public/fornecedorcadastrado');
 });
 
 //Consultar Fornecedor
-router.get('/consultarfornecedor', function(req,res){
+router.get('/consultarfornecedor', conForn, function(req,res){
     Fornecedor.find().sort({codFornecedor: 'asc'}).then((fornecedor) =>{
        res.render('../public/consultarfornecedor', {fornecedor: fornecedor});
        }).catch((erro) => {
@@ -104,8 +107,26 @@ router.get('/consultarfornecedor', function(req,res){
            req.flash("error_msg","Erro ao consultar fornecedores.");
        }); 
    });
+router.get('/consultarfornecedor/:busca',conForn, function(req,res){
+    if(!isNaN(req.params.busca)){    
+        Fornecedor.find({codFornecedor: req.params.busca}).sort({codFornecedor: 'desc'}).then((fornecedor) =>{
+        res.render('../public/consultarfornecedor', {fornecedor: fornecedor});
+        }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar os fornecedores. Erro:");
+        });
+        }
+    else{
+        Fornecedor.find({RazaoSocial: new RegExp(req.params.busca, "i")}).sort({RazaoSocial: 'asc'}).then((fornecedor) =>{
+            res.render('../public/consultarfornecedor', {fornecedor: fornecedor});
+            }).catch((erro) => {
+                console.log(erro);
+                req.flash("error_msg","Erro ao consultar os fornecedores. Erro:");
+            });
+        } 
+   });
 //Deletar Fornecedor
-router.get("/deletarfornecedor/:id", function(req,res){
+router.get("/deletarfornecedor/:id", delForn, function(req,res){
     Fornecedor.findOneAndDelete({_id : req.params.id}).then((fornecedor) =>{
         req.flash("success_msg","Fornecedor deletado. ");
         res.redirect('/consultarfornecedor');
@@ -116,7 +137,7 @@ router.get("/deletarfornecedor/:id", function(req,res){
 });
 //Editar Fornecedor
 
-router.get("/editarfornecedor/:id", function(req,res){
+router.get("/editarfornecedor/:id", editForn, function(req,res){
     Fornecedor.findOne({_id: req.params.id}).then((fornecedor) =>{
 
     res.render('../public/editarfornecedor', {fornecedor: fornecedor});

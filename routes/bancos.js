@@ -4,9 +4,12 @@ const router = express.Router();
 const mongoose = require("mongoose");
 require("../models/Bancos"); 
 const Banco = mongoose.model('banco');
-
+const {cadBanco} = require("../helpers/cadBanco");
+const {conBanco} = require("../helpers/conBanco");
+const {delBanco} = require("../helpers/delBanco");
+const {editBanco} = require("../helpers/editBanco");
 //Cadastrar Bancos
-router.get("/cadastrarbancos", function(req,res){
+router.get("/cadastrarbancos", cadBanco, function(req,res){
     res.render('../public/cadastrarbancos');
 });
 
@@ -36,7 +39,7 @@ res.render('../public/bancocadastrado')
 });
 
 //Consultar
-router.get('/consultarbancos', function(req,res){
+router.get('/consultarbancos', conBanco, function(req,res){
     Banco.find().sort({codBanco: 'asc'}).then((banco) =>{
        res.render('../public/consultarbancos', {banco: banco});
        }).catch((erro) => {
@@ -44,8 +47,26 @@ router.get('/consultarbancos', function(req,res){
            req.flash("error_msg","Erro ao consultar banco.");
        }); 
    });
+   router.get('/consultarbancos/:busca',conBanco, function(req,res){
+    if(!isNaN(req.params.busca)){    
+        Banco.find({codBanco: req.params.busca}).sort({codBanco: 'desc'}).then((banco) =>{
+        res.render('../public/consultarbancos', {banco: banco});
+        }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar o banco. Erro:");
+        });
+        }
+    else{
+        Banco.find({nomeBanco: new RegExp(req.params.busca, "i")}).sort({nomeBanco: 'asc'}).then((banco) =>{
+            res.render('../public/consultarbancos', {banco: banco});
+            }).catch((erro) => {
+                console.log(erro);
+                req.flash("error_msg","Erro ao consultar o banco. Erro:");
+            });
+        } 
+   });
 //Deletar
-router.get("/deletarbanco/:id", function(req,res){
+router.get("/deletarbanco/:id", delBanco, function(req,res){
     Banco.findOneAndDelete({_id : req.params.id}).then((banco) =>{
         req.flash("success_msg","Banco deletado. ");
         res.redirect('/consultarbancos');
@@ -56,7 +77,7 @@ router.get("/deletarbanco/:id", function(req,res){
 });
 //Editar
 
-router.get("/editarbancos/:id", function(req,res){
+router.get("/editarbancos/:id", editBanco, function(req,res){
     Banco.findOne({_id: req.params.id}).then((banco) =>{
     res.render('../public/editarbancos', {banco: banco});
     }).catch((erro) =>{

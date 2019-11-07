@@ -5,9 +5,12 @@ require("../models/Agencias");
 const Agencia = mongoose.model('agencia');
 require("../models/Bancos"); 
 const Banco = mongoose.model('banco');
-
+const {cadAgencia} = require("../helpers/cadAgencia");
+const {conAgencia} = require("../helpers/conAgencia");
+const {delAgencia} = require("../helpers/delAgencia");
+const {editAgencia} = require("../helpers/editAgencia");
 //Cadastrar Bancos
-router.get("/cadastraragencias", (req,res) => {
+router.get("/cadastraragencias", cadAgencia, (req,res) => {
 	Banco.find().then((banco) =>{
 	res.render("../public/cadastraragencias", {banco: banco});
 	}).catch((erro) =>{
@@ -43,7 +46,7 @@ res.render('../public/agenciacadastrada')
 });
 
 //Consultar
-router.get('/consultaragencia', function(req,res){
+router.get('/consultaragencia', conAgencia, function(req,res){
     Agencia.find().populate("Banco").sort({codAgencia: 'asc'}).then((agencia) =>{
        res.render('../public/consultaragencia', {agencia: agencia});
        }).catch((erro) => {
@@ -52,7 +55,7 @@ router.get('/consultaragencia', function(req,res){
        }); 
    });
 //Deletar
-router.get("/deletaragencia/:id", function(req,res){
+router.get("/deletaragencia/:id", delAgencia, function(req,res){
     Agencia.findOneAndDelete({_id : req.params.id}).then((agencia) =>{
         req.flash("success_msg","Agencia deletada. ");
         res.redirect('/consultaragencia');
@@ -63,7 +66,7 @@ router.get("/deletaragencia/:id", function(req,res){
 });
 //Editar
 
-router.get("/editaragencias/:id", function(req,res){
+router.get("/editaragencias/:id", editAgencia, function(req,res){
     Banco.find().then((banco) =>{
     Agencia.findOne({_id: req.params.id}).then((agencia) =>{
     res.render('../public/editaragencias', {agencia: agencia,banco: banco});
