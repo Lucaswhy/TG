@@ -2,8 +2,22 @@
 	color: white;
 }
 
+.btn-primary:hover{
+	background-color: #4ABDAC !important;
+	color: black !important;
+}
+
+.btn-warning{
+	color: white !important;
+}
+
+.btn-warning:hover{
+	background-color: #4ABDAC !important;
+	color: black !important;
+}
+
 .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
 
-  .navbar-nav > li > .dropdown-menu { background-color: #525864 !important; }
+.navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
 
-  .navbar-nav > li > .dropdown-menu > a {color: aliceblue !important;}
+.navbar-nav > li > .dropdown-menu > a {color: aliceblue}

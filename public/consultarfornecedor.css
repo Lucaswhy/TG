@@ -25,6 +25,24 @@
 	color: black !important;
 }
 
+.btn-danger{
+	color: white !important;
+}
+
+.btn-danger:hover{
+	background-color: #EFEFEF !important;
+	color: black !important;
+}
+
+.btn-warning{
+	color: white !important;
+}
+
+.btn-warning:hover{
+	background-color: #EFEFEF !important;
+	color: black !important;
+}
+
 #fornecedores{
 	color: white;
 }

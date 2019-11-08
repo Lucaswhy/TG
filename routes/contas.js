@@ -130,4 +130,9 @@ router.get("/simulacao", function(req,res){
         }); 
 });
 
+//Relatorios
+router.get("/relatorio", function(req,res){
+    res.render('../public/relatorio')
+});
+
 module.exports = router

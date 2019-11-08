@@ -41,29 +41,24 @@
         			</div>
       			</li>
 				<li class="nav-item">
-        			<a class="nav-link" id="relatorios" href="#">Emitir Relatórios</a>
+        			<a class="nav-link" id="relatorios" href="http://localhost:8081/relatorio">Relatórios</a>
       			</li>
 				<li class="nav-item">
-        			<a class="nav-link" id="home" href="#">Gerar Simulação de Contas</a>
+        			<a class="nav-link" id="simulacao" href="http://localhost:8081/simulacao">Simulação</a>
       			</li>
-				<li class="nav-item">
-        			<a class="nav-link" id="home" href="#">Gerar Arquivo Remessa</a>
+				<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="remessa" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          				Arquivo Remessa
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          				<a class="dropdown-item" id="gerarremessa" href="http://localhost:8081/gerarremessa">Gerar Remessa</a>
+          				<a class="dropdown-item" id="consretorno" href="http://localhost:8081/consultarretorno">Consultar Retorno</a>
+        			</div>
       			</li>
     		</ul>
 			<ul class="navbar-nav ml-auto">
 				<a class="navbar-brand text-light">
-					<script language="javascript">
-						meses = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
-						semana = new Array("Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado");
-						hoje = new Date();
-						dia = hoje.getDate();
-						dias = hoje.getDay();
-						mes = hoje.getMonth();
-						ano = hoje.getFullYear();
-						diaext = semana[dias] + ", " + dia + " de " + meses[mes]
-						+ " de " + ano;
-						document.write(diaext);
-  					</script>
+					<a href="/logout"><img src="imagens/logout.png" width=40 height=40></a>
 				</a>
 			</ul>
   		</div>
