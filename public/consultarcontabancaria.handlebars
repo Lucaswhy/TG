@@ -1,9 +1,69 @@
-   <link rel='stylesheet' type='text/css' media='screen' href='consultarcontabancaria.css'>
-   
-   {{#each erros}}
+    {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
     {{else}}
     {{/each}}
+
+    <style type="text/css">
+        .form-cadastro {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        h2, h3, h1{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary{
+            background-color: #4ABDAC !important; 
+            color: white !important;
+            border-color: #4ABDAC !important;
+        }
+
+        .btn-primary:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        .btn-danger{
+            color: white !important;
+        }
+
+        .btn-danger:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        .btn-warning{
+            color: white !important;
+        }
+
+        .btn-warning:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        #bancos{
+            color: white;
+        }
+
+        #conscontabanc{
+            background-color:white;
+            color:black !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+        .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+        .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
+    </style>
 
 	<form id="divBusca" class="form-cadastro">
 
@@ -42,7 +102,7 @@
                                     Situação: {{SituacaoContaBanc}}
                                         </p>
                                     <a href ="/deletarcontabancaria/{{_id}}">
-                                    <button type="button" class="btn btn-warning mt-4">Deletar Banco</button></a>
+                                    <button type="button" class="btn btn-danger mt-4">Deletar Banco</button></a>
                                     <a href ="/editarcontabancaria/{{_id}}">
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
 							    </div>
