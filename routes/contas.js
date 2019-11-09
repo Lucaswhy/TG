@@ -4,6 +4,10 @@ const router = express.Router();
 const mongoose = require("mongoose");
 require("../models/Contas"); 
 const Conta = mongoose.model('conta');
+
+require("../models/Contabancaria"); 
+const Contabancaria = mongoose.model('contabancaria');
+
 const {cadConta} = require("../helpers/cadConta");
 const {conConta} = require("../helpers/conConta");
 const {delConta} = require("../helpers/delConta");
@@ -123,10 +127,15 @@ router.post("/contaedicao", function(req,res){
 //Simulacao
 router.get("/simulacao", function(req,res){
     Conta.find().sort({codConta: 'asc'}).then((conta) =>{
-        res.render('../public/simulacao', {conta: conta});
+        Contabancaria.find({SituacaoContaBanc: "Ativa."}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
+        res.render('../public/simulacao', {conta: conta,contabancaria: contabancaria});
         }).catch((erro) => {
             console.log(erro);
             req.flash("error_msg","Erro ao consultar contas.");
+        })
+    }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar contas bancarias.");
         }); 
 });
 

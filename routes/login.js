@@ -4,6 +4,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 require("../models/Usuario");
 const Usuario = mongoose.model('usuario');
+require("../models/Contas");
+const Conta = mongoose.model('conta');
 
 const passport = require("passport");
 
@@ -11,6 +13,7 @@ const {isAdmin} = require("../helpers/isAdmin");
 const {home} = require("../helpers/home");
 
 //FUNCOES GLOBAIS
+
 function validaCPF(cpf){
 
     var i = 0; // index de iteracao
@@ -72,10 +75,30 @@ router.post("/validalogin", function(req,res,next){
 
 router.get("/home", home, function(req,res){
     Usuario.find({LoginStatus: false}).then((usuario) =>{
-        res.render('../public/home', {usuario: usuario});
-        }).catch((erro) => {
+        
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+
+        if(mm<10) {
+            mm = '0'+mm
+        } 
+        today = mm + '/' + dd + '/' + yyyy;
+
+        Conta.find({dataVencimento: yyyy+"-"+mm+"-"+dd+"T00:00:00.000Z"}).then((conta)=>{
+        res.render('../public/home', {conta: conta,usuario: usuario});
+    }).catch((erro) => {
+        console.log(erro);
+        req.flash("error_msg","Erro no banco.");
+    }); 
+    }).catch((erro) => {
             console.log(erro);
-            req.flash("error_msg","Erro ao realizar login.");
+            req.flash("error_msg","Erro no banco.");
         }); 
 });
 
@@ -84,7 +107,7 @@ router.get("/homeusuario", function(req,res){
         res.render('../public/homeusuario', {usuario: usuario});
         }).catch((erro) => {
             console.log(erro);
-            req.flash("error_msg","Erro ao realizar login.");
+            req.flash("error_msg","Erro no banco.");
         }); 
 });
 
@@ -286,7 +309,6 @@ router.post("/validaedicao", isAdmin, function(req,res){
    else{ 
        
        Usuario.findOne({Cracha: req.body.Cracha}).then((usuario)=>{
-        
         usuario.Cracha = req.body.Cracha
         usuario.Nome = req.body.Nome
         usuario.CPF = req.body.CPF
@@ -300,7 +322,14 @@ router.post("/validaedicao", isAdmin, function(req,res){
         usuario.Estado = req.body.Estado
         usuario.Email = req.body.Email
         usuario.Senha = req.body.Senha
-    
+
+        if(req.body.cadConta == "on"){
+        usuario.cadConta = true;
+        }
+        else{
+            usuario.cadConta = false;
+        }
+        
         usuario.save().then(() => {
             req.flash("success_msg","Usuário editado com sucesso!");
             res.redirect("/consultarusuario");
