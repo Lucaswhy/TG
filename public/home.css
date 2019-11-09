@@ -2,21 +2,16 @@
 	color: white;
 }
 
-.btn-warning{
-	color: white !important;
-}
-
-.btn-warning:hover{
-	background-color: white !important;
+.btn-primary:hover{
+	background-color: #4ABDAC !important;
 	color: black !important;
 }
 
-.btn-danger{
+.btn-warning{
 	color: white !important;
 }
-
-.btn-danger:hover{
-	background-color: white !important;
+.btn-warning:hover{
+	background-color: #4ABDAC !important;
 	color: black !important;
 }
 

@@ -3,50 +3,6 @@
     {{else}}
     {{/each}}
 
-    <style type="text/css">
-        .form-cadastro {
-            width: 100%;
-            max-width: 1200px;
-            padding: 15px;
-            margin: auto;
-            margin-top: 10px;
-        }
-
-        h2, h1{
-            width: 100%;
-            max-width: 1200px;
-            padding: 10px;
-            margin: auto;
-            margin-top: 30px;
-        }
-
-        h3{
-            width: 100%;
-            max-width: 1200px;
-            padding: 10px;
-            margin: auto;
-        }
-
-        .btn-primary{
-            background-color: #4ABDAC !important; 
-            color: white !important;
-            border-color: #4ABDAC !important;
-        }
-
-        .btn-primary:hover{
-            background-color: #EFEFEF !important;
-            color: black !important;
-        }
-
-        body{
-            background-color: #EFEFEF !important;
-        }
-
-        nav{
-            background-color: #4ABDAC !important;
-        }
-    </style>
-
 
     <form class="form-editar ml-5" method="POST" action="/validaedicao">
         <h2>Editar Usuário</h2>
@@ -170,7 +126,7 @@
                 <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="contas">
                     <legend style="font-size:medium">Contas:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="contasCad">
+                        <input type="checkbox" class="custom-control-input" id="contasCad" name="cadConta" value="0">
                         <label class="custom-control-label" for="contasCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
@@ -305,7 +261,7 @@
 
             </div>
         </fieldset>
-        <button class="btn btn-primary mt-5 mb-5" type="submit" onclick="limpaCPF();sobrescreveData()"  >Editar</button>
+        <button class="btn btn-primary mt-5 mb-5" style="background-color: #4ABDAC; border-color: #4ABDAC;" type="submit" onclick="limpaCPF();sobrescreveData()"  >Editar</button>
         <a href ="/usuariodeletar/{{usuario._id}}">
     </form>
 

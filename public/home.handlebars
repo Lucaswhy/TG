@@ -1,31 +1,41 @@
-	<link rel='stylesheet' type='text/css' media='screen' href='home.css'>
+<link rel='stylesheet' type='text/css' media='screen' href='home.css'>
 
 
-	<div class="jumbotron" style="background-color: #4ABDAC">
+    <div class="jumbotron" style="background-color: #4ABDAC">
   <h1 class="display-4">Bem-Vindo Admin!</h1>
+  {{#if conta}}
   <p class="lead">Há contas a serem vencidas!</p>
+  {{/if}}
+   {{#each conta}}
+   Valor: {{valConta}} do Fornecedor: {{nomeFornecedor}}
+  Vencendo hoje: {{#formatDate dataVencimento}}{{/formatDate}}
+  <br>
+  {{else}}
+   <p class="lead">Nenhuma conta para ser vencida.</p>
+  {{/each}}
+  <tr>
   <hr class="my-4">
   <a class="btn btn-primary btn-lg mb-3" href="/consultarusuario" role="button">Consultar Usuários</a>
-  <p>Usuário para ser Liberado! 
+  {{#if usuario}}
+  <p>Há usuários para serem liberados! 
+    {{/if}}
+  <div class="d-flex flex-wrap wrap ">
   {{#each usuario}}
-    <div class="container mt-4 form-row">	
-      <div class="card w-25 p-2">
-        <div class="card-body">
+    <div class = "card mt-4 p-2 flex-row ">
+      <div class = "card-body">
           <h4>Cracha: {{Cracha}}</h4>
-          <hr style="margin-bottom: 0.4rem !important;margin-top: 0.4rem">
           <p>
-            Nome: {{Nome}}
+            Usuário: {{Nome}}
           </p>
-          <div class="form-row">
+          <div class="form-row flex-column justify-content-end">
             <a href ="/liberarcadastro/{{_id}}">
             <button type="button" class="btn btn-warning">Liberar Cadastro</button></a>
             <a href ="/usuariodeletar/{{_id}}">
             <button type="button" class="btn btn-danger mt-2">Deletar Usuário</button></a>
+    </div>
           </div>
-        </div>
-      </div>
-    </div> 
-						{{else}}
+  </div> 
+                        {{else}}
   <p>Nenhum pedido de usuários para serem liberados.</p>
             {{/each}}
-	</div>
+    </div>
