@@ -1,3 +1,4 @@
+const moment = require('moment');
 const express = require('express');
 const router = express.Router();
 
@@ -141,7 +142,50 @@ router.get("/simulacao", function(req,res){
 
 //Relatorios
 router.get("/relatorio", function(req,res){
-    res.render('../public/relatorio')
+    res.render('../public/relatorio');
+});
+
+router.get("/relatorio/:busca",function(req,res){
+    
+    console.log(req.params.busca);
+    var Params = new Array;
+    Params = req.params.busca;
+    Params = Params.replace(/[.]/g, ",");
+    var Search = Params.split("+");
+
+    var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; 
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+
+        if(mm<10) {
+            mm = '0'+mm
+        } 
+        
+    console.log(Search[0]);
+    console.log(Search[1]);
+    console.log(Search[2]);
+
+    if(Search[8]!=""){
+    Conta.find({Situacao: new RegExp(Search[0],"i"),
+        dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
+        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+      //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
+}).sort({[Search[7]]:Search[8]}).then((conta)=>{
+    console.log(conta);
+        res.render('../public/relatorio',{conta: conta});
+    }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar contas.");
+        })
+    }
+    else{
+        res.render('../public/relatorio');
+    }
 });
 
 module.exports = router

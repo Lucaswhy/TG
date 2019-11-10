@@ -323,12 +323,167 @@ router.post("/validaedicao", isAdmin, function(req,res){
         usuario.Email = req.body.Email
         usuario.Senha = req.body.Senha
 
-        if(req.body.cadConta == "on"){
-        usuario.cadConta = true;
-        }
-        else{
-            usuario.cadConta = false;
-        }
+                        if(req.body.cadConta == "on"){
+                        usuario.cadConta = true;
+                        }
+                        else{
+                            usuario.cadConta = false;
+                        }
+
+                        if(req.body.conConta == "on"){
+                            usuario.conConta = true;
+                        }
+                        else{
+                            usuario.conConta = false;
+                        }
+
+                        if(req.body.editConta == "on"){
+                            usuario.editConta = true;
+                            }
+                        else{
+                            usuario.editConta = false;
+                        }
+
+                        if(req.body.delConta == "on"){
+                            usuario.delConta = true;
+                        }
+                        else{
+                            usuario.delConta = false;
+                        }
+
+                        if(req.body.cadForn == "on"){
+                            usuario.cadForn = true;
+                        }
+                        else{
+                                usuario.cadForn = false;
+                        }
+                    
+                        if(req.body.conForn == "on"){
+                                usuario.conForn = true;
+                        }
+                        else{
+                                usuario.conForn = false;
+                        }
+                    
+                        if(req.body.editForn == "on"){
+                            usuario.editForn = true;
+                        }
+                        else{
+                            usuario.editForn = false;
+                        }
+                    
+                        if(req.body.delForn == "on"){
+                            usuario.delForn = true;
+                        }
+                        else{
+                            usuario.delForn = false;
+                        }
+
+                        if(req.body.cadBanco == "on"){
+                            usuario.cadBanco = true;
+                            }
+                        else{
+                            usuario.cadBanco = false;
+                        }
+                    
+                        if(req.body.conBanco == "on"){
+                            usuario.conBanco = true;
+                        }
+                        else{
+                            usuario.conBanco = false;
+                        }
+                    
+                        if(req.body.editBanco == "on"){
+                            usuario.editBanco = true;
+                        }
+                        else{
+                            usuario.editBanco = false;
+                        }
+                    
+                        if(req.body.delBanco == "on"){
+                            usuario.delBanco = true;
+                        }
+                        else{
+                            usuario.delBanco = false;
+                        }
+
+                        if(req.body.cadAgencia == "on"){
+                            usuario.cadAgencia = true;
+                        }
+                        else{
+                            usuario.cadAgencia = false;
+                        }
+                    
+                        if(req.body.conAgencia == "on"){
+                            usuario.conAgencia = true;
+                        }
+                        else{
+                            usuario.conAgencia = false;
+                        }
+                    
+                        if(req.body.editAgencia == "on"){
+                            usuario.editAgencia = true;
+                        }
+                        else{
+                            usuario.editAgencia = false;
+                        }
+                    
+                        if(req.body.delAgencia == "on"){
+                            usuario.delAgencia = true;
+                        }
+                        else{
+                            usuario.delAgencia = false;
+                        }
+
+                        if(req.body.cadContBanc == "on"){
+                            usuario.cadContBanc = true;
+                        }
+                        else{
+                            usuario.cadContBanc = false;
+                        }
+                    
+                        if(req.body.conContBanc == "on"){
+                            usuario.conContBanc = true;
+                        }
+                        else{
+                            usuario.conContBanc = false;
+                        }
+                    
+                        if(req.body.editContBanc == "on"){
+                            usuario.editContBanc = true;
+                        }
+                            else{
+                            usuario.editContBanc = false;
+                        }
+                    
+                        if(req.body.delContBanc == "on"){
+                            usuario.delContBanc = true;
+                        }
+                        else{
+                            usuario.delContBanc = false;
+                        }
+
+                        if(req.body.gerarSimulacao == "on"){
+                            usuario.gerarSimulacao = true;
+                        }
+                        else{
+                            usuario.gerarSimulacao = false;
+                        }
+                    
+                        if(req.body.emitirRelatorio == "on"){
+                            usuario.emitirRelatorio = true;
+                        }
+                        else{
+                            usuario.emitirRelatorio = false;
+                        }
+                    
+                        if(req.body.gerarRemessa == "on"){
+                            usuario.gerarRemessa = true;
+                        }
+                        else{
+                            usuario.gerarRemessa = false;
+                        }
+        
         
         usuario.save().then(() => {
             req.flash("success_msg","Usuário editado com sucesso!");
