@@ -170,25 +170,24 @@
 
         <fieldset class="border col-md-11 pr-4 mr-5 mt-5" style="background-color: rgb(243, 243, 243);">
             <legend>Permissões:</legend>
+            
             <div class="form-row">
-
-
                 <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="contas">
                     <legend style="font-size:medium">Contas:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="contasCad" name="cadConta" value="0">
+                        <input type="checkbox" class="custom-control-input" id="contasCad" name="cadConta">
                         <label class="custom-control-label" for="contasCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="cntasCons">
+                        <input type="checkbox" class="custom-control-input" id="cntasCons" name="conConta">
                         <label class="custom-control-label" for="cntasCons">Consultar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="contasEdi">
+                        <input type="checkbox" class="custom-control-input" id="contasEdi" name="editConta">
                         <label class="custom-control-label" for="contasEdi">Editar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="contasExc">
+                        <input type="checkbox" class="custom-control-input" id="contasExc" name="delConta">
                         <label class="custom-control-label" for="contasExc">Excluir</label>
                     </div>
                 </fieldset>
@@ -197,19 +196,19 @@
                 <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="fornecedores">
                     <legend style="font-size:medium">Fornecedores:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="fornCad">
+                        <input type="checkbox" class="custom-control-input" id="fornCad" name="cadForn">
                         <label class="custom-control-label" for="fornCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="fornCons">
+                        <input type="checkbox" class="custom-control-input" id="fornCons" name="conForn">
                         <label class="custom-control-label" for="fornCons">Consultar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="fornEdi">
+                        <input type="checkbox" class="custom-control-input" id="fornEdi" name="editForn">
                         <label class="custom-control-label" for="fornEdi">Editar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="fornExc">
+                        <input type="checkbox" class="custom-control-input" id="fornExc" name="delForn">
                         <label class="custom-control-label" for="fornExc">Excluir</label>
                     </div>
                 </fieldset>
@@ -218,19 +217,19 @@
                 <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="Bancos">
                     <legend style="font-size:medium">Bancos:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="bancosCad">
+                        <input type="checkbox" class="custom-control-input" id="bancosCad" name="cadBanco">
                         <label class="custom-control-label" for="bancosCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="bancosCons">
+                        <input type="checkbox" class="custom-control-input" id="bancosCons" name="conBanco">
                         <label class="custom-control-label" for="bancosCons">Consultar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="bancosEdi">
+                        <input type="checkbox" class="custom-control-input" id="bancosEdi" name="editBanco">
                         <label class="custom-control-label" for="bancosEdi">Editar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="bancosExc">
+                        <input type="checkbox" class="custom-control-input" id="bancosExc" name="delBanco">
                         <label class="custom-control-label" for="bancosExc">Excluir</label>
                     </div>
                 </fieldset>
@@ -239,49 +238,67 @@
                 <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="agencias">
                     <legend style="font-size:medium">Agências:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="agenciasCad">
+                        <input type="checkbox" class="custom-control-input" id="agenciasCad" name="cadAgencia">
                         <label class="custom-control-label" for="agenciasCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="agenciasCons">
+                        <input type="checkbox" class="custom-control-input" id="agenciasCons" name="conAgencia">
                         <label class="custom-control-label" for="agenciasCons">Consultar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="agenciasEdi">
+                        <input type="checkbox" class="custom-control-input" id="agenciasEdi" name="editAgencia">
                         <label class="custom-control-label" for="agenciasEdi">Editar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4 mb-3">
-                        <input type="checkbox" class="custom-control-input" id="agenciasExc">
+                        <input type="checkbox" class="custom-control-input" id="agenciasExc" name="delAgencia">
                         <label class="custom-control-label" for="agenciasExc">Excluir</label>
                     </div>
                 </fieldset>
 
+                <div class="custom-control custom-checkbox" style="right: 02%; position:absolute">
+                    <div class="form-row">
+                        <input type="checkbox" class="custom-control-input" id="admin" name="isAdmin" onclick="adm()">
+                        <label class="custom-control-label" for="admin">Tornar Administrador</label>
+                    </div>
 
-                <fieldset class="col-md-3 mb-5 mr-4 pr-5 pl-3 border rounded" id="contaBanc">
+                    <div class="form-row mt-2">
+                        <input type="checkbox" class="custom-control-input" id="mTodos" name="mTodos" onclick="marcar()">
+                        <label class="custom-control-label" for="mTodos">Marcar todos</label>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="checkbox" class="custom-control-input" id="dmTodos" name="dmTodos" onclick="desmarcar()" disabled>
+                        <label class="custom-control-label" for="dmTodos">Desmarcar todos</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <fieldset class="col-md-2,1 mb-5 mr-4 pr-5 pl-3 border rounded" id="contaBanc">
                     <legend style="font-size:medium">Contas Bancárias:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="contaBancCad">
+                        <input type="checkbox" class="custom-control-input" id="contaBancCad" name="cadContBanc">
                         <label class="custom-control-label" for="contaBancCad">Cadastrar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="contaBancCons">
+                        <input type="checkbox" class="custom-control-input" id="contaBancCons" name="conContBanc">
                         <label class="custom-control-label" for="contaBancCons">Consultar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="contaBancEdi">
+                        <input type="checkbox" class="custom-control-input" id="contaBancEdi" name="editContBanc">
                         <label class="custom-control-label" for="contaBancEdi">Editar</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4 mb-3">
-                        <input type="checkbox" class="custom-control-input" id="contaBancExc">
+                        <input type="checkbox" class="custom-control-input" id="contaBancExc" name="delContBanc">
                         <label class="custom-control-label" for="contaBancExc">Excluir</label>
                     </div>
                 </fieldset>
 
 
-                <fieldset class="col-md-2 mb-5 mr-4 pr-5 pl-3 border rounded" id="relatorios">
+                <fieldset class="col-md-2,5 mb-5 mr-4 pr-5 pl-3 border rounded" id="relatorios">
                     <legend style="font-size:medium">Relatórios:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="relatoriosEmit">
+                        <input type="checkbox" class="custom-control-input" id="relatoriosEmit" name="emitirRelatorio">
                         <label class="custom-control-label" for="relatoriosEmit">Emitir Relatórios</label>
                     </div>
                 </fieldset>
@@ -290,7 +307,7 @@
                 <fieldset class="col-md-2,5 mb-5 mr-4 pr-5 pl-3 border rounded" id="simulacao">
                     <legend style="font-size:medium">Simulação:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="simulacaoGerar">
+                        <input type="checkbox" class="custom-control-input" id="simulacaoGerar" name="gerarSimulacao">
                         <label class="custom-control-label" for="simulacaoGerar">Gerar Simulação</label>
                     </div>
                 </fieldset>
@@ -299,11 +316,11 @@
                 <fieldset class="col-md-3 mb-5 mr-4 pr-5 pl-3 border rounded" id="remessa">
                     <legend style="font-size:medium">Arquivo Remessa:</legend>
                     <div class="custom-control custom-checkbox mt-2">
-                        <input type="checkbox" class="custom-control-input" id="remessaGerar">
+                        <input type="checkbox" class="custom-control-input" id="remessaGerar" name="gerarRemessa">
                         <label class="custom-control-label" for="remessaGerar">Gerar Remessa</label>
                     </div>
                     <div class="custom-control custom-checkbox mt-4">
-                        <input type="checkbox" class="custom-control-input" id="remessaCons">
+                        <input type="checkbox" class="custom-control-input" id="remessaCons" name="conRetorno">
                         <label class="custom-control-label" for="remessaCons">Consultar Retorno</label>
                     </div>
                 </fieldset>
@@ -332,6 +349,225 @@
                     
                 da = "{{#formatDateBD usuario.DataAdmissao}}{{/formatDateBD}}";
                     document.getElementsByName("DataAdmissao")[0].value = da;
+                }
+            }
+
+            function adm(){
+
+                if (document.getElementById("admin").checked){
+
+                    document.getElementsByName("cadConta")[0].checked = true;
+                    document.getElementsByName("cadConta")[0].disabled = true;
+                    document.getElementsByName("conConta")[0].checked = true;
+                    document.getElementsByName("conConta")[0].disabled = true;
+                    document.getElementsByName("editConta")[0].checked = true;
+                    document.getElementsByName("editConta")[0].disabled = true;
+                    document.getElementsByName("delConta")[0].checked = true;
+                    document.getElementsByName("delConta")[0].disabled = true;
+
+                    document.getElementsByName("cadForn")[0].checked = true;
+                    document.getElementsByName("cadForn")[0].disabled = true;
+                    document.getElementsByName("conForn")[0].checked = true;
+                    document.getElementsByName("conForn")[0].disabled = true;
+                    document.getElementsByName("editForn")[0].checked = true;
+                    document.getElementsByName("editForn")[0].disabled = true;
+                    document.getElementsByName("delForn")[0].checked = true;
+                    document.getElementsByName("delForn")[0].disabled = true;
+
+                    document.getElementsByName("cadBanco")[0].checked = true;
+                    document.getElementsByName("cadBanco")[0].disabled = true;
+                    document.getElementsByName("conBanco")[0].checked = true;
+                    document.getElementsByName("conBanco")[0].disabled = true;
+                    document.getElementsByName("editBanco")[0].checked = true;
+                    document.getElementsByName("editBanco")[0].disabled = true;
+                    document.getElementsByName("delBanco")[0].checked = true;
+                    document.getElementsByName("delBanco")[0].disabled = true;
+
+                    document.getElementsByName("cadAgencia")[0].checked = true;
+                    document.getElementsByName("cadAgencia")[0].disabled = true;
+                    document.getElementsByName("conAgencia")[0].checked = true;
+                    document.getElementsByName("conAgencia")[0].disabled = true;
+                    document.getElementsByName("editAgencia")[0].checked = true;
+                    document.getElementsByName("editAgencia")[0].disabled = true;
+                    document.getElementsByName("delAgencia")[0].checked = true;
+                    document.getElementsByName("delAgencia")[0].disabled = true;
+
+                    document.getElementsByName("cadContBanc")[0].checked = true;
+                    document.getElementsByName("cadContBanc")[0].disabled = true;
+                    document.getElementsByName("conContBanc")[0].checked = true;
+                    document.getElementsByName("conContBanc")[0].disabled = true;
+                    document.getElementsByName("editContBanc")[0].checked = true;
+                    document.getElementsByName("editContBanc")[0].disabled = true;
+                    document.getElementsByName("delContBanc")[0].checked = true;
+                    document.getElementsByName("delContBanc")[0].disabled = true;
+
+                    document.getElementsByName("gerarSimulacao")[0].checked = true;
+                    document.getElementsByName("gerarSimulacao")[0].disabled = true;
+
+                    document.getElementsByName("emitirRelatorio")[0].checked = true;
+                    document.getElementsByName("emitirRelatorio")[0].disabled = true;
+
+                    document.getElementsByName("gerarRemessa")[0].checked = true;
+                    document.getElementsByName("gerarRemessa")[0].disabled = true;
+
+                    document.getElementsByName("conRetorno")[0].checked = true;
+                    document.getElementsByName("conRetorno")[0].disabled = true;
+
+                    document.getElementsByName("mTodos")[0].checked = false;
+                    document.getElementsByName("mTodos")[0].disabled = true;
+
+                    document.getElementsByName("dmTodos")[0].checked = false;
+                    document.getElementsByName("dmTodos")[0].disabled = true;
+                }
+                else{
+
+                    document.getElementsByName("cadConta")[0].checked = false;
+                    document.getElementsByName("cadConta")[0].disabled = false;
+                    document.getElementsByName("conConta")[0].checked = false;
+                    document.getElementsByName("conConta")[0].disabled = false;
+                    document.getElementsByName("editConta")[0].checked = false;
+                    document.getElementsByName("editConta")[0].disabled = false;
+                    document.getElementsByName("delConta")[0].checked = false;
+                    document.getElementsByName("delConta")[0].disabled = false;
+
+                    document.getElementsByName("cadForn")[0].checked = false;
+                    document.getElementsByName("cadForn")[0].disabled = false;
+                    document.getElementsByName("conForn")[0].checked = false;
+                    document.getElementsByName("conForn")[0].disabled = false;
+                    document.getElementsByName("editForn")[0].checked = false;
+                    document.getElementsByName("editForn")[0].disabled = false;
+                    document.getElementsByName("delForn")[0].checked = false;
+                    document.getElementsByName("delForn")[0].disabled = false;
+
+                    document.getElementsByName("cadBanco")[0].checked = false;
+                    document.getElementsByName("cadBanco")[0].disabled = false;
+                    document.getElementsByName("conBanco")[0].checked = false;
+                    document.getElementsByName("conBanco")[0].disabled = false;
+                    document.getElementsByName("editBanco")[0].checked = false;
+                    document.getElementsByName("editBanco")[0].disabled = false;
+                    document.getElementsByName("delBanco")[0].checked = false;
+                    document.getElementsByName("delBanco")[0].disabled = false;
+
+                    document.getElementsByName("cadAgencia")[0].checked = false;
+                    document.getElementsByName("cadAgencia")[0].disabled = false;
+                    document.getElementsByName("conAgencia")[0].checked = false;
+                    document.getElementsByName("conAgencia")[0].disabled = false;
+                    document.getElementsByName("editAgencia")[0].checked = false;
+                    document.getElementsByName("editAgencia")[0].disabled = false;
+                    document.getElementsByName("delAgencia")[0].checked = false;
+                    document.getElementsByName("delAgencia")[0].disabled = false;
+
+                    document.getElementsByName("cadContBanc")[0].checked = false;
+                    document.getElementsByName("cadContBanc")[0].disabled = false;
+                    document.getElementsByName("conContBanc")[0].checked = false;
+                    document.getElementsByName("conContBanc")[0].disabled = false;
+                    document.getElementsByName("editContBanc")[0].checked = false;
+                    document.getElementsByName("editContBanc")[0].disabled = false;
+                    document.getElementsByName("delContBanc")[0].checked = false;
+                    document.getElementsByName("delContBanc")[0].disabled = false;
+
+                    document.getElementsByName("gerarSimulacao")[0].checked = false;
+                    document.getElementsByName("gerarSimulacao")[0].disabled = false;
+
+                    document.getElementsByName("emitirRelatorio")[0].checked = false;
+                    document.getElementsByName("emitirRelatorio")[0].disabled = false;
+
+                    document.getElementsByName("gerarRemessa")[0].checked = false;
+                    document.getElementsByName("gerarRemessa")[0].disabled = false;
+
+                    document.getElementsByName("conRetorno")[0].checked = false;
+                    document.getElementsByName("conRetorno")[0].disabled = false;
+
+                    document.getElementsByName("mTodos")[0].disabled = false;
+                }
+            }
+
+            function marcar(){
+                if (document.getElementById("mTodos").checked){
+
+                    document.getElementsByName("cadConta")[0].checked = true;
+                    document.getElementsByName("conConta")[0].checked = true;
+                    document.getElementsByName("editConta")[0].checked = true;
+                    document.getElementsByName("delConta")[0].checked = true;
+
+                    document.getElementsByName("cadForn")[0].checked = true;
+                    document.getElementsByName("conForn")[0].checked = true;
+                    document.getElementsByName("editForn")[0].checked = true;
+                    document.getElementsByName("delForn")[0].checked = true;
+
+                    document.getElementsByName("cadBanco")[0].checked = true;
+                    document.getElementsByName("conBanco")[0].checked = true;
+                    document.getElementsByName("editBanco")[0].checked = true;
+                    document.getElementsByName("delBanco")[0].checked = true;
+
+                    document.getElementsByName("cadAgencia")[0].checked = true;
+                    document.getElementsByName("conAgencia")[0].checked = true;
+                    document.getElementsByName("editAgencia")[0].checked = true;
+                    document.getElementsByName("delAgencia")[0].checked = true;
+
+                    document.getElementsByName("cadContBanc")[0].checked = true;
+                    document.getElementsByName("conContBanc")[0].checked = true;
+                    document.getElementsByName("editContBanc")[0].checked = true;
+                    document.getElementsByName("delContBanc")[0].checked = true;
+
+                    document.getElementsByName("gerarSimulacao")[0].checked = true;
+
+                    document.getElementsByName("emitirRelatorio")[0].checked = true;
+
+                    document.getElementsByName("gerarRemessa")[0].checked = true;
+
+                    document.getElementsByName("conRetorno")[0].checked = true;
+
+                    document.getElementsByName("dmTodos")[0].disabled = false;
+
+                    document.getElementsByName("mTodos")[0].checked = false;
+                    document.getElementsByName("mTodos")[0].disabled = true;
+                }
+            }
+
+            function desmarcar(){
+                if (document.getElementById("dmTodos").checked){
+
+                    document.getElementsByName("cadConta")[0].checked = false;
+                    document.getElementsByName("conConta")[0].checked = false;
+                    document.getElementsByName("editConta")[0].checked = false;
+                    document.getElementsByName("delConta")[0].checked = false;
+
+                    document.getElementsByName("cadForn")[0].checked = false;
+                    document.getElementsByName("conForn")[0].checked = false;
+                    document.getElementsByName("editForn")[0].checked = false;
+                    document.getElementsByName("delForn")[0].checked = false;
+
+                    document.getElementsByName("cadBanco")[0].checked = false;
+                    document.getElementsByName("conBanco")[0].checked = false;
+                    document.getElementsByName("editBanco")[0].checked = false;
+                    document.getElementsByName("delBanco")[0].checked = false;
+
+                    document.getElementsByName("cadAgencia")[0].checked = false;
+                    document.getElementsByName("conAgencia")[0].checked = false;
+                    document.getElementsByName("editAgencia")[0].checked = false;
+                    document.getElementsByName("delAgencia")[0].checked = false;
+
+                    document.getElementsByName("cadContBanc")[0].checked = false;
+                    document.getElementsByName("conContBanc")[0].checked = false;
+                    document.getElementsByName("editContBanc")[0].checked = false;
+                    document.getElementsByName("delContBanc")[0].checked = false;
+
+                    document.getElementsByName("gerarSimulacao")[0].checked = false;
+
+                    document.getElementsByName("emitirRelatorio")[0].checked = false;
+
+                    document.getElementsByName("gerarRemessa")[0].checked = false;
+
+                    document.getElementsByName("conRetorno")[0].checked = false;
+
+                    document.getElementsByName("dmTodos")[0].disabled = false;
+
+                    document.getElementsByName("mTodos")[0].checked = false;
+                    document.getElementsByName("mTodos")[0].disabled = false;
+
+                    document.getElementsByName("dmTodos")[0].checked = false;
+                    document.getElementsByName("dmTodos")[0].disabled = true;
                 }
             }
 </script>
