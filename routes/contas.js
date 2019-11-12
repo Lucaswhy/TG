@@ -49,7 +49,7 @@ router.get("/contacadastrada", function(req,res){
 res.render('../public/contacadastrada')
 });
 
-//Consultar Boyzzzzzzzzzzzzzzzz
+//Consultar 
 router.get('/consultarcontas', conConta, function(req,res){
     Conta.find().sort({codConta: 'asc'}).then((conta) =>{
        res.render('../public/consultarcontas', {conta: conta});
@@ -76,7 +76,7 @@ router.get('/consultarcontas', conConta, function(req,res){
             });
         } 
    });
-//Deletar Boyzzzzzzzzzzzzzzzzzz
+//Deletar
 router.get("/deletarcontas/:id", delConta, function(req,res){
     Conta.findOneAndDelete({_id : req.params.id}).then((conta) =>{
         req.flash("success_msg","Conta deletada. ");
@@ -86,7 +86,7 @@ router.get("/deletarcontas/:id", delConta, function(req,res){
         req.flash("error_msg","Conta não encontrada.");
     })
 });
-//Editar BOOOOOOOOOOOOOOOOOOOOOOOOOYZZZZZZZZZZ
+//Editar
 router.get("/editarcontas/:id", editConta, function(req,res){
     Conta.findOne({_id: req.params.id}).then((conta) =>{
 
@@ -101,10 +101,11 @@ router.get("/editarcontas/:id", editConta, function(req,res){
 router.post("/contaedicao", function(req,res){
     Conta.findOne({codConta: req.body.CodConta}).then((conta)=>{
         
-        conta.tipoConta = req.body.tipoconta
+        conta.tipoConta = req.body.tipoConta
         conta.codConta = req.body.CodConta
         conta.valConta = req.body.ValConta
         conta.nomeFornecedor = req.body.NomeFornecedor
+        conta.Situacao = req.body.Situacao
         conta.Juros = req.body.Juros
         conta.Multa = req.body.Multa
         conta.Desconto = req.body.Desconto
@@ -138,6 +139,17 @@ router.get("/simulacao", function(req,res){
             console.log(erro);
             req.flash("error_msg","Erro ao consultar contas bancarias.");
         }); 
+});
+
+
+//Arquivo remessa + retorno
+router.get("/pagarconta", function(req,res){
+    Conta.find().sort({codConta: 'asc'}).then((conta)=>{
+    res.render('../public/pagarconta',{conta: conta});
+    }).catch((erro)=>{
+        console.log(erro);
+        req.flash("error_msg","Erro ao pagar conta");
+    });
 });
 
 //Relatorios

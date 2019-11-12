@@ -22,7 +22,6 @@ router.post("/validabancos", function(req,res){
     numeroBanco: req.body.NumBanco,
     Email: req.body.Email,
     Telefone: req.body.Telefone,
-    Tipo: req.body.tipoarq
 }
 
 new Banco(novoBanco).save().then(function(){
@@ -96,7 +95,6 @@ router.post("/bancoedicao", function(req,res){
         banco.numeroBanco =  req.body.NumBanco,
         banco.Email =  req.body.Email,
         banco.Telefone =  req.body.Telefone,
-        banco.Tipo =  req.body.tipoarq
     
         banco.save().then(() => {
             req.flash("success_msg","Banco editado com sucesso!");

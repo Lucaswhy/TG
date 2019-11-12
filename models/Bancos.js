@@ -33,13 +33,7 @@ const Bancos  = new Schema({
     Telefone: {
         type: String,
         required: true
-    },
-    
-    Tipo: {
-        type: String,
-        required: true
-    },
-
+    }
 });
 
 mongoose.model("banco", Bancos)

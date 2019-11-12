@@ -323,6 +323,10 @@ router.post("/validaedicao", isAdmin, function(req,res){
         usuario.Email = req.body.Email
         usuario.Senha = req.body.Senha
 
+                        if(req.body.isAdmin == "on"){
+                        usuario.isAdmin = true;
+                        }
+
                         if(req.body.cadConta == "on"){
                         usuario.cadConta = true;
                         }

@@ -5,11 +5,23 @@
 	<form class="form-cadastro" method="POST" action="/validacontas">
         <br>
         <div class="form-row">
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Código da Conta</label>
                 <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" required name="CodConta">
             </div>
-            <div class="col-md-2 mb-3">
+			<div class="col-md-3 mb-3">
+                <label for="validationDefault02">Tipo de Conta</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome pro tipo de conta" required name="tipoConta">
+            </div>
+            
+			<div class="col-md-3 mb-3">
+                <label for="validationDefault02">Fornecedor</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome do fornecedor" required name="NomeFornecedor">
+            </div>
+  		</div>
+        
+        <div class="form-row">
+			<div class="col-md-2 mb-3">
       			<label for="validationDefaultUsername">Valor da Conta</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
@@ -18,13 +30,6 @@
         			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta">
       			</div>
     		</div>
-			<div class="col-md-4 mb-3">
-                <label for="validationDefault02">Fornecedor</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Fornecedor" required name="NomeFornecedor">
-            </div>
-  		</div>
-        
-        <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Juros</label>
                 <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Juros">
@@ -51,15 +56,15 @@
 
 		<div class="form-row">
 			<div class="col-md-2.5 mb-3">
-				<label for="inputSituacao">Situação da conta:</label>
-				<select id="inputSituacao" class="form-control" name="Situacao" value="{{usuario.Situacao}}">
-					<option selected>Selecione a situação da conta.</option>
-					<option>Fechada.</option>
-					<option>Aberta.</option>
-					<option>Cancelada.</option>
+				<label for="inputSituacao">Situação da conta</label>
+				<select id="inputSituacao" class="form-control" name="Situacao">
+					<option>Fechada</option>
+					<option>Aberta</option>
+					<option>Cancelada</option>
 				</select>
 			</div>
 		</div>
+
 
         <div class="form-row">
 			<div class="col-md-2 mb-3">
