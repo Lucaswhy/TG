@@ -182,12 +182,12 @@ router.get("/relatorio/:busca",function(req,res){
     console.log(Search[1]);
     console.log(Search[2]);
 
-    if(Search[8]!=""){
+    if(Search[1]!="" || Search[2]!=""){
     Conta.find({Situacao: new RegExp(Search[0],"i"),
-        dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
-        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+      //  dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
+      //  dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
       //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
-}).sort({[Search[7]]:Search[8]}).then((conta)=>{
+}).sort({[Search[1]]:Search[2]}).then((conta)=>{
     console.log(conta);
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
