@@ -58,6 +58,7 @@
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta</label>
 				<select id="inputSituacao" class="form-control" name="Situacao">
+					<option value="" disabled selected>-- Situação --</option>
 					<option>Fechada</option>
 					<option>Aberta</option>
 					<option>Cancelada</option>
@@ -80,11 +81,11 @@
         <div class="form-row">
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Observação</label>
-                <textarea class="form-control" id="validationTextarea" placeholder="Observação" required name="Observacao"></textarea >
+                <textarea class="form-control" id="validationTextarea" placeholder="Observação" name="Observacao"></textarea >
             </div>
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Descrição</label>
-                <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" required name="Descricao"></textarea>
+                <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" name="Descricao"></textarea>
         	</div>
 		</div>
 
