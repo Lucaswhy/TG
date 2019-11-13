@@ -130,8 +130,8 @@ router.post("/cadastrarusuario", function(req,res){
         count++;
     }
 
-    if (req.body.Senha.length > 10){
-        erros.push({texto: "Senha muito longa! Deve ter no máximo 10 digitos."});
+    if (req.body.Senha.length > 12){
+        erros.push({texto: "Senha muito longa! Deve ter no máximo 12 digitos."});
         count++;
     }
 
@@ -277,8 +277,8 @@ router.post("/validaedicao", isAdmin, function(req,res){
         count++;
     }
 
-    if (req.body.Senha.length > 10){
-        erros.push({texto: "Senha muito longa! Deve ter no máximo 10 digitos."});
+    if (req.body.Senha.length > 12){
+        erros.push({texto: "Senha muito longa! Deve ter no máximo 12 digitos."});
         count++;
     }
 
@@ -296,11 +296,6 @@ router.post("/validaedicao", isAdmin, function(req,res){
         erros.push({texto: "CPF inválido."});
         count++;
     } 
-
-    if(req.body.Senha != req.body.Senha2){
-        erros.push({texto: "As senhas digitadas são diferentes."});
-        count++;
-    }
 
    if(count > 0){
     res.render('../public/editarerro',{erros: erros});

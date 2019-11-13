@@ -88,17 +88,15 @@
                                     <a href ="/editarusuario/{{_id}}">
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
 
+                        {{#if LoginStatus}}
                                     <a href ="/liberarcadastro/{{_id}}">
                                     <button type="button" class="btn btn-warning mt-4">Liberar Cadastro</button></a>
+                        {{else}}
+                        
+                        {{/if}}
                                 </div>
                             </div>
                         </div>
-                        {{#if LoginStatus}}
-                        <h4>
-                        Liberado!</h4>
-                        {{else}}
-                        <h4>Não liberado! teste</h4> 
-                        {{/if}}
                         {{else}}
                         
                         {{/each}}
