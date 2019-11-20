@@ -1,58 +1,60 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='pagarconta.css'>
 
-   <h2>Pagar Contas</h2>
+    <h2>Pagar Contas</h2>
 
-        <div id="divTabela" class="maxWidth">
-            <table id="tableCons">
+    <br>
+    <hr>
+
+    <div class="container" style="width: 1000px;">	
+        <div class="card" style="width: 100%; height: 600px; overflow-y: scroll;">
+            <table class="table">
                 <thead>
                     <tr>
-                        <br>
-                        <hr>
-                        <div class="container ml-4">	
-						    <div class="card">
-							    <div class="card-body">
-                                <div style="width: 100%; height: 400px; overflow-y: scroll;">
-                                {{#each conta}}
-                                   <input type="checkbox" id="Conta" name="Conta">
-
-                                    Codigo da Conta:{{codConta}}
-                                        
-                                    Valor: {{valConta}}
-                                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
-                                    Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
-                                    
-                                    Multa: {{Multa}}
-
-                                    Juros:  {{Juros}}
-
-                                    Desconto: {{Desconto}}
-                                    <hr style="width: 90%">
-                                    {{else}}
-                                    
-                                    {{/each}}
-
-							    </div>
-                            </div>
-						</div>
-                        </tr>
+                    <th scope="col">Codigo da Conta</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data de Vencimento</th>
+                    <th scope="col">Multa</th>
+                    <th scope="col">Juros</th>
+                    <th scope="col">Desconto</th>
+                    </tr>
                 </thead>
-            </table>
+                {{#each conta}}
+                <tbody>
+                    <tr>
+                    <th scope="row"><input type="checkbox" id="Conta" name="Conta"> {{codConta}}</th>
+                    <td>{{valConta}}</td>
+                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">
+                    <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
+                    <td>{{Juros}}</td>
+                    <td>{{Multa}}</td>
+                    <td>{{Desconto}}</td>
+                    </tr>
+                </tbody>
+                {{else}}
 
+                {{/each}}
+            </table>
         </div>
+    </div>
+
     <form class="form-cadastro">
          <div class="form-row">
+
             <div class="col-md-2 mb-3">
                 <label for="TotaldeContas">Contas selecionadas: </label>
                 <input type="text" class="form-control" id="TotaldeContas" name="totalContas" value="" disabled>
-            </div>                           
+            </div>           
+                            
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Valor Total: </label>
                 <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
             </div>
             
-                  <a href="http:/localhost:8081/pagar"> <button class="btn btn-primary">Pagar Avulso</button> </a>
-                  <a href="http:/localhost:8081/remessa"> <button class="btn btn-primary">Gerar Remessa</button> </a>
-            </div>
-</form>
+            <a href="http:/localhost:8081/pagar"> <button class="btn btn-primary">Pagar Avulso</button> </a>
+            <a href="http:/localhost:8081/remessa"> <button class="btn btn-primary">Gerar Remessa</button> </a>
+        
+        </div>
+    </form>
 
 
 <script type="text/javascript">

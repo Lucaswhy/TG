@@ -75,6 +75,7 @@ router.post("/validalogin", function(req,res,next){
 
 router.get("/home", home, function(req,res){
     Usuario.find({LoginStatus: false}).then((usuario) =>{
+        Usuario.find({flagSenha: true}).then((novaSenha)=> {
         
         var today = new Date();
         var dd = today.getDate();
@@ -91,7 +92,7 @@ router.get("/home", home, function(req,res){
         today = mm + '/' + dd + '/' + yyyy;
 
         Conta.find({dataVencimento: yyyy+"-"+mm+"-"+dd+"T00:00:00.000Z"}).then((conta)=>{
-        res.render('../public/home', {conta: conta,usuario: usuario});
+        res.render('../public/home', {conta: conta,usuario: usuario,novaSenha: novaSenha});
     }).catch((erro) => {
         console.log(erro);
         req.flash("error_msg","Erro no banco.");
@@ -99,7 +100,11 @@ router.get("/home", home, function(req,res){
     }).catch((erro) => {
             console.log(erro);
             req.flash("error_msg","Erro no banco.");
-        }); 
+    });
+    }).catch((erro) => {
+        console.log(erro);
+        req.flash("error_msg","Erro no banco.");
+});
 });
 
 router.get("/homeusuario", function(req,res){
@@ -109,6 +114,61 @@ router.get("/homeusuario", function(req,res){
             console.log(erro);
             req.flash("error_msg","Erro no banco.");
         }); 
+});
+
+router.get("/esqueciminhasenha", function(req,res){
+    res.render('../public/esqueciminhasenha', {layout: false});
+});
+
+router.post("/validasenha", function(req,res){
+
+    var count = 0;
+    var erros = [];
+
+    if (req.body.NSenha.length < 5){
+        erros.push({texto: "Senha muito curta! Deve ter no mínimo 5 digitos."});
+        count++;
+    }
+
+    if (req.body.CSenha.length > 12){
+        erros.push({texto: "Senha muito longa! Deve ter no máximo 12 digitos."});
+        count++;
+    }
+
+    if(req.body.NSenha != req.body.CSenha){
+        erros.push({texto: "As senhas digitadas são diferentes."});
+        count++;
+    }
+
+    if(count > 0){
+        res.render('../public/esqueciminhasenha',{erros: erros,layout: false});
+    }
+
+    else{
+        Usuario.findOne({Email: req.body.Email}).then((usuario) =>{
+            if(!usuario){
+                req.flash("error_msg","Este e-mail não existe no sistema.");
+                res.redirect("/esqueciminhasenha");
+        }
+        else{
+            usuario.flagSenha = true;
+            usuario.EsqueciSenha = req.body.NSenha;
+            
+            usuario.save().then(() => {
+                req.flash("success_msg","Requisição de senha feita com sucesso! Entre em contato com o administrador.");
+                res.redirect("/esqueciminhasenha");
+            }).catch((erro) =>{
+                console.log(erro);
+                req.flash("error_msg","Falha ao requerir a edição de senha.");
+                res.redirect("/esqueciminhasenha");
+        
+            });
+         }
+
+    });
+}
+
+    
 });
 
 //CADASTRAR USUÁRIO
@@ -217,7 +277,7 @@ router.get('/consultarusuario', isAdmin, function(req,res){
         req.flash("error_msg","Erro ao consultar os usuários. Erro:");
     }); 
 });
-//http://localhost:8081/consultarusuario?busca=15
+
 router.get('/consultarusuario/:busca',isAdmin, function(req,res){
     if(!isNaN(req.params.busca)){    
         Usuario.find({Cracha: req.params.busca}).sort({Cracha: 'desc'}).then((usuario) =>{
@@ -506,6 +566,22 @@ router.get("/liberarcadastro/:id", isAdmin, function(req,res){
          }).catch((erro) =>{
         console.log(erro);
         req.flash("error_msg","Usuário não liberado.");
+    })
+});
+
+//TROCAR SENHA
+router.get("/trocarsenha/:id", isAdmin, function(req,res){
+    Usuario.findOne({_id:req.params.id}).then((usuario) =>{
+        usuario.flagSenha = false;
+        usuario.Senha = usuario.EsqueciSenha;
+        usuario.EsqueciSenha = "";
+        usuario.save();
+    }).then(() =>{
+        req.flash("success_msg","Senha alterada com sucesso! ");
+        res.redirect('/consultarusuario');
+         }).catch((erro) =>{
+        console.log(erro);
+        req.flash("error_msg","Falha no banco, senha não foi alterada.");
     })
 });
 

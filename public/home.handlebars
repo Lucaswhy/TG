@@ -19,7 +19,7 @@
   {{#if usuario}}
   <p>Há usuários para serem liberados! 
     {{/if}}
-  <div class="d-flex flex-wrap wrap ">
+  <div id="old" class="d-flex flex-wrap wrap ">
   {{#each usuario}}
     <div class = "card mt-4 p-2 flex-row ">
       <div class = "card-body">
@@ -35,10 +35,30 @@
             <button type="button" class="btn btn-danger mt-2">Deletar Usuário</button></a>
     </div>
           </div>
-  </div> 
+  </div>
                         {{else}}
   <p>Nenhum pedido de usuários para serem liberados.</p>
             {{/each}}
+  <tr>
+  <div id="new" class="d-flex flex-wrap wrap ">
+    {{#each novaSenha}}
+    <div class = "card mt-4 p-2 flex-row ">
+      <div class = "card-body">
+          <h4>Cracha: {{Cracha}}</h4>
+          <hr style="margin-bottom: 0.4rem !important;margin-top: 0.4rem">
+          <p>
+            Usuário: {{Nome}}
+          </p>
+          <div class="form-row flex-column justify-content-end">
+            <a href ="/trocarsenha/{{_id}}">
+            <button type="button" class="btn btn-danger">Liberar mudança de Senha</button></a>
+    </div>
+          </div>
+  </div>
+
+    {{else}}
+    <p>Nenhuma solicitação de troca de senha foi requerida.</p>
+    {{/each}}
 
     </div>
 

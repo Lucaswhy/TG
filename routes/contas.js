@@ -129,7 +129,7 @@ router.post("/contaedicao", function(req,res){
 //Simulacao
 router.get("/simulacao", function(req,res){
     Conta.find().sort({codConta: 'asc'}).then((conta) =>{
-        Contabancaria.find({SituacaoContaBanc: "Ativa."}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
+        Contabancaria.find({SituacaoContaBanc: "Ativa."}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
         res.render('../public/simulacao', {conta: conta,contabancaria: contabancaria});
         }).catch((erro) => {
             console.log(erro);
@@ -163,31 +163,15 @@ router.get("/relatorio/:busca",function(req,res){
     var Params = new Array;
     Params = req.params.busca;
     Params = Params.replace(/[.]/g, ",");
-    var Search = Params.split("+");
+    var Search = Params.split("+");        
 
-    var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; 
-        var yyyy = today.getFullYear();
-
-        if(dd<10) {
-            dd = '0'+dd
-        } 
-
-        if(mm<10) {
-            mm = '0'+mm
-        } 
-        
-    console.log(Search[0]);
-    console.log(Search[1]);
-    console.log(Search[2]);
-
-    if(Search[1]!="" || Search[2]!=""){
+    if(Search[8]!="" || Search[9]!=""){
     Conta.find({Situacao: new RegExp(Search[0],"i"),
-      //  dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
-      //  dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+       dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
+        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+        nomeFornecedor: new RegExp(Search[5],"i")
       //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
-}).sort({[Search[1]]:Search[2]}).then((conta)=>{
+}).sort({[Search[8]]:Search[9]}).then((conta)=>{
     console.log(conta);
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
@@ -196,7 +180,18 @@ router.get("/relatorio/:busca",function(req,res){
         })
     }
     else{
-        res.render('../public/relatorio');
+        Conta.find({Situacao: new RegExp(Search[0],"i"),
+       dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
+        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+        nomeFornecedor: new RegExp(Search[5],"i")
+      //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
+    }).sort().then((conta)=>{
+    console.log(conta);
+        res.render('../public/relatorio',{conta: conta});
+    }).catch((erro) => {
+            console.log(erro);
+            req.flash("error_msg","Erro ao consultar contas.");
+        })
     }
 });
 

@@ -2,43 +2,70 @@
 
    <h2>Simulação de Contas</h2>
 
-        <div id="divTabela" class="maxWidth">
+        <div id="divTabela">
             <table id="tableCons">
                 <thead>
                     <tr>
                         <br>
                         <hr>
-                        <div class="container mt-4">	
+                        <div class="container mt-4" style="width: 900px;">	
 						    <div class="card">
 							    <div class="card-body">
-                                <div style="width: 100%; height: 400px; overflow-y: scroll;">
-                                {{#each conta}}
-                                   <input type="checkbox" id="Conta" name="Conta">
+                                    <div style="width: 100%; height: 400px; overflow-y: scroll;">
+                                        {{#each conta}}
+                                    <input type="checkbox" id="Conta" name="Conta">
 
-                                    Codigo da Conta:{{codConta}}
+                                        Codigo da Conta:{{codConta}}
+                                            
+                                        Valor: {{valConta}}
+                                        <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
+                                        Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
                                         
-                                    Valor: {{valConta}}
-                                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
-                                    Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
-                                    
-                                    Multa: {{Multa}}
+                                        Multa: {{Multa}}
 
-                                    Juros:  {{Juros}}
+                                        Juros:  {{Juros}}
 
-                                    Desconto: {{Desconto}}
-                                    <hr style="width: 90%">
-                                    {{else}}
-                                    
-                                    {{/each}}
+                                        Desconto: {{Desconto}}
+                                        <hr style="width: 90%">
+                                        {{else}}
+                                        
+                                        {{/each}}
 
-							    </div>
-                            </div>
-						</div>
+                                    </div>
+                                </div>
+						    </div>
                         </tr>
                 </thead>
             </table>
+            <div class="container mb-4" style="width: 600px;">	
+                    <div class="card" style="width: 100%; height: 200px; overflow-y: scroll;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Conta Bancária</th>
+                                <th scope="col">Banco</th>
+                                <th scope="col">Agência</th>
+                                <th scope="col">Saldo</th>
+                                </tr>
+                            </thead>
+                            {{#each contabancaria}}
+                            <tbody>
+                                <tr>
+                                <th scope="row"><input type="radio" id="ContaBancaria" name="ContaBancaria"> {{codContaBanc}}</th>
+                                <td>{{Agencia.Banco.nomeBanco}}</td>
+                                <td>{{Agencia.numAgencia}}</td>
+                                <td>{{Saldo}}</td>
+                                <input type="hidden" id="Saldo" name="Saldo" value="{{Saldo}}">
+                                </tr>
+                            </tbody>
+                            {{else}}
 
+                            {{/each}}
+                        </table>
+                    </div>
+                </div>
         </div>
+        
     <form class="form-cadastro">
          <div class="form-row">
             <div class="col-md-2 mb-3">
@@ -50,6 +77,7 @@
                 <input type="text" class="form-control" id="validationDefault01" name="totalContasF" value="" disabled >
             </div>
         </div>
+
         <div class="form-row">
             <div class="col-md-2 mb-3">
                 <label for="validationDefault04">Valor Restante: </label>
@@ -59,16 +87,38 @@
                 <label for="validationDefault03">Valor Faltante: </label>
                 <input type="text" class="form-control" id="validationDefault03" name="valorFaltante" value="" disabled >
             </div>
-        <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas();valorRestFalt();">Simular</button></a>
+            <button type="button" class="btn btn-primary" onclick="valorTotal();qtdeContas();valorRestFalt()">Simular</button></a>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Valor Total: </label>
                 <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
             </div>
+        </div>
             
 </form>
 
 
 <script type="text/javascript">
+
+    function saldoBancario(){
+        var Conta = document.getElementsByName('ContaBancaria');
+        var vSaldo = document.getElementsByName('Saldo');
+        var vTotal = 0;
+        var val = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(Conta[i].checked){
+                var array = vSaldo[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vSaldo[i].value = vSaldo[i].value.replace(/[.]/g, "");
+                val = parseFloat(vSaldo[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }
+        return(vTotal);
+}
 
     function qtdeContas(){
 
@@ -117,7 +167,7 @@
 
         var Contas = document.getElementsByName('Conta');
         var vContas = document.getElementsByName('valConta');
-        var vSaldo = 1000;
+        var vSaldo =  saldoBancario();
         var vTotal = 0;
         var val = 0;
                 

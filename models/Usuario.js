@@ -137,6 +137,16 @@ const Usuario  = new Schema({
         required: true
     },
 
+    flagSenha:{
+        type: Boolean,
+        default: false
+    },
+
+    EsqueciSenha:{
+        type: String,
+        default: ""
+    },
+
     LoginStatus: {
      type: Boolean,
      default: false

@@ -89,8 +89,14 @@
                                     <button type="button" class="btn btn-primary mt-4">Editar</button></a>
 
                         {{#if LoginStatus}}
-                                    <a href ="/liberarcadastro/{{_id}}">
+                                    
+                        {{else}}
+                        <a href ="/liberarcadastro/{{_id}}">
                                     <button type="button" class="btn btn-warning mt-4">Liberar Cadastro</button></a>
+                        {{/if}}
+                        {{#if flagSenha}}
+                                    <a href ="/trocarsenha/{{_id}}">
+                                    <button type="button" class="btn btn-danger">Liberar mudança de Senha</button></a>
                         {{else}}
                         
                         {{/if}}

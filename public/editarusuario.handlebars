@@ -53,8 +53,8 @@
         .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
     </style>
 
-
-    <form class="form-editar ml-5" method="POST" action="/validaedicao">
+    <body onload="permissoes()">
+        <form class="form-editar ml-5" method="POST" action="/validaedicao">
         <h2>Editar Usuário</h2>
 
         <input type="hidden" name="_id" value="{{usuario._id}}">
@@ -327,6 +327,8 @@
         <button class="btn btn-primary mt-5 mb-5" style="background-color: #4ABDAC; border-color: #4ABDAC;" type="submit" onclick="limpaCPF();sobrescreveData()"  >Editar</button>
         <a href ="/usuariodeletar/{{usuario._id}}">
     </form>
+    </body>
+    
 
     <script type="text/javascript">
                 function sobrescreveData(){
@@ -564,6 +566,163 @@
 
                     document.getElementsByName("dmTodos")[0].checked = false;
                     document.getElementsByName("dmTodos")[0].disabled = true;
+                }
+            }
+
+            function permissoes(){
+
+                if({{usuario.isAdmin}} == true){
+                    document.getElementsByName("isAdmin")[0].checked = true;
+
+                    document.getElementsByName("cadConta")[0].checked = true;
+                    document.getElementsByName("cadConta")[0].disabled = true;
+                    document.getElementsByName("conConta")[0].checked = true;
+                    document.getElementsByName("conConta")[0].disabled = true;
+                    document.getElementsByName("editConta")[0].checked = true;
+                    document.getElementsByName("editConta")[0].disabled = true;
+                    document.getElementsByName("delConta")[0].checked = true;
+                    document.getElementsByName("delConta")[0].disabled = true;
+
+                    document.getElementsByName("cadForn")[0].checked = true;
+                    document.getElementsByName("cadForn")[0].disabled = true;
+                    document.getElementsByName("conForn")[0].checked = true;
+                    document.getElementsByName("conForn")[0].disabled = true;
+                    document.getElementsByName("editForn")[0].checked = true;
+                    document.getElementsByName("editForn")[0].disabled = true;
+                    document.getElementsByName("delForn")[0].checked = true;
+                    document.getElementsByName("delForn")[0].disabled = true;
+
+                    document.getElementsByName("cadBanco")[0].checked = true;
+                    document.getElementsByName("cadBanco")[0].disabled = true;
+                    document.getElementsByName("conBanco")[0].checked = true;
+                    document.getElementsByName("conBanco")[0].disabled = true;
+                    document.getElementsByName("editBanco")[0].checked = true;
+                    document.getElementsByName("editBanco")[0].disabled = true;
+                    document.getElementsByName("delBanco")[0].checked = true;
+                    document.getElementsByName("delBanco")[0].disabled = true;
+
+                    document.getElementsByName("cadAgencia")[0].checked = true;
+                    document.getElementsByName("cadAgencia")[0].disabled = true;
+                    document.getElementsByName("conAgencia")[0].checked = true;
+                    document.getElementsByName("conAgencia")[0].disabled = true;
+                    document.getElementsByName("editAgencia")[0].checked = true;
+                    document.getElementsByName("editAgencia")[0].disabled = true;
+                    document.getElementsByName("delAgencia")[0].checked = true;
+                    document.getElementsByName("delAgencia")[0].disabled = true;
+
+                    document.getElementsByName("cadContBanc")[0].checked = true;
+                    document.getElementsByName("cadContBanc")[0].disabled = true;
+                    document.getElementsByName("conContBanc")[0].checked = true;
+                    document.getElementsByName("conContBanc")[0].disabled = true;
+                    document.getElementsByName("editContBanc")[0].checked = true;
+                    document.getElementsByName("editContBanc")[0].disabled = true;
+                    document.getElementsByName("delContBanc")[0].checked = true;
+                    document.getElementsByName("delContBanc")[0].disabled = true;
+
+                    document.getElementsByName("gerarSimulacao")[0].checked = true;
+                    document.getElementsByName("gerarSimulacao")[0].disabled = true;
+
+                    document.getElementsByName("emitirRelatorio")[0].checked = true;
+                    document.getElementsByName("emitirRelatorio")[0].disabled = true;
+
+                    document.getElementsByName("gerarRemessa")[0].checked = true;
+                    document.getElementsByName("gerarRemessa")[0].disabled = true;
+
+                    document.getElementsByName("conRetorno")[0].checked = true;
+                    document.getElementsByName("conRetorno")[0].disabled = true;
+
+                    document.getElementsByName("mTodos")[0].checked = false;
+                    document.getElementsByName("mTodos")[0].disabled = true;
+
+                    document.getElementsByName("dmTodos")[0].checked = false;
+                    document.getElementsByName("dmTodos")[0].disabled = true;
+                }
+
+                if({{usuario.cadConta}} == true){
+                    document.getElementsByName("cadConta")[0].checked = true;
+                }
+                if({{usuario.conConta}} == true){
+                    document.getElementsByName("conConta")[0].checked = true;
+                }
+                if({{usuario.editConta}} == true){
+                    document.getElementsByName("editConta")[0].checked = true;
+                }
+                if({{usuario.delConta}} == true){
+                    document.getElementsByName("delConta")[0].checked = true;
+                }
+
+
+                if({{usuario.cadForn}} == true){
+                    document.getElementsByName("cadForn")[0].checked = true;
+                }
+                if({{usuario.conForn}} == true){
+                    document.getElementsByName("conForn")[0].checked = true;
+                }
+                if({{usuario.editForn}} == true){
+                    document.getElementsByName("editForn")[0].checked = true;
+                }
+                if({{usuario.delForn}} == true){
+                    document.getElementsByName("delForn")[0].checked = true;
+                }
+
+
+                if({{usuario.cadBanco}} == true){
+                    document.getElementsByName("cadBanco")[0].checked = true;
+                }
+                if({{usuario.conBanco}} == true){
+                    document.getElementsByName("conBanco")[0].checked = true;
+                }
+                if({{usuario.editBanco}} == true){
+                    document.getElementsByName("editBanco")[0].checked = true;
+                }
+                if({{usuario.delBanco}} == true){
+                    document.getElementsByName("delBanco")[0].checked = true;
+                }
+
+
+                if({{usuario.cadAgencia}} == true){
+                    document.getElementsByName("cadAgencia")[0].checked = true;
+                }
+                if({{usuario.conAgencia}} == true){
+                    document.getElementsByName("conAgencia")[0].checked = true;
+                }
+                if({{usuario.editAgencia}} == true){
+                    document.getElementsByName("editAgencia")[0].checked = true;
+                }
+                if({{usuario.delAgencia}} == true){
+                    document.getElementsByName("delAgencia")[0].checked = true;
+                }
+
+
+                if({{usuario.cadContBanc}} == true){
+                    document.getElementsByName("cadContBanc")[0].checked = true;
+                }
+                if({{usuario.conContBanc}} == true){
+                    document.getElementsByName("conContBanc")[0].checked = true;
+                }
+                if({{usuario.editContBanc}} == true){
+                    document.getElementsByName("editContBanc")[0].checked = true;
+                }
+                if({{usuario.delContBanc}} == true){
+                    document.getElementsByName("delContBanc")[0].checked = true;
+                }
+
+
+                if({{usuario.gerarSimulacao}} == true){
+                    document.getElementsByName("gerarSimulacao")[0].checked = true;
+                }
+
+
+                if({{usuario.emitirRelatorio}} == true){
+                    document.getElementsByName("emitirRelatorio")[0].checked = true;
+                }
+
+
+                if({{usuario.gerarRemessa}} == true){
+                    document.getElementsByName("gerarRemessa")[0].checked = true;
+                }
+                if({{usuario.conRetorno}} == true){
+                    document.getElementsByName("conRetorno")[0].checked = true;
                 }
             }
 </script>
