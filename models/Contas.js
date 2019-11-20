@@ -15,7 +15,7 @@ const Contas  = new Schema({
     },
 
     valConta: {
-        type: String,
+        type: Number,
         required: true
     },
 
@@ -28,7 +28,7 @@ const Contas  = new Schema({
     },
 
     Multa: {
-        type: String
+        type: Number
     },
 
     Desconto: {
@@ -43,6 +43,10 @@ const Contas  = new Schema({
     dataVencimento: {
         type: Date,
         required: true
+    },
+
+    dataPagamento: {
+        type: Date,
     },
 
     codigoBarras: {

@@ -9,10 +9,6 @@
                 <label for="validationDefault02">Código da Conta</label>
                 <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" required name="CodConta">
             </div>
-			<div class="col-md-3 mb-3">
-                <label for="validationDefault02">Tipo de Conta</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome pro tipo de conta" required name="tipoConta">
-            </div>
             
 			<div class="col-md-3 mb-3">
                 <label for="validationDefault02">Fornecedor</label>
@@ -28,7 +24,7 @@
           				<span class="input-group-text" id="valconta">R$</span>
         			</div>
         			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2">
-					<input type="hidden" id="ValConta" name="ValConta">
+					<input type="hidden" id="ValCont" name="ValConta" value="">
 				</div>
     		</div>
             <div class="col-md-2 mb-3">
@@ -42,7 +38,7 @@
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
         			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2">
-					<input type="hidden" id="Multa" name="Multa">
+					<input type="hidden" id="Mult" name="Multa" value="">
 				</div>
     		</div>
 			<div class="col-md-2 mb-3">
@@ -94,17 +90,37 @@
 			function limpaValor(){
 
 				val = new String;
-				multa = new String;
+				mul = new String;
 
 				val = document.getElementsByName("ValConta2")[0].value;
-				multa = document.getElementsByName("Multa2")[0].value;
+				mul = document.getElementsByName("Multa2")[0].value;
 
-				val = val.replace(",",".");
-				multa = multa.replace(",",".");
+				val = val.replace(/[,]/g, ".");
+				mul = mul.replace(/[,]/g, ".");
+
+				var array = val.split(".");
+                var cent = parseFloat(array[1]);
+                cent = cent/100; 
+
+				var array2 = mul.split(".");
+				var cent2 = parseFloat(array2[1]);
+				cent2 = cent2/100; 
+
+				var value = parseFloat(array[0]);
+				var multa = parseFloat(array2[0]);
+
+				alert(value);
+				alert(multa);
+
+				value = value + cent;
+				multa = multa + cent2;
+
+				alert(value.toFixed(2));
+				alert(multa.toFixed(2));
 				
-				getElementsByName("ValConta")[0].value = parseFloat(val);
+				document.getElementsByName("ValConta")[0].value = value.toFixed(2);
 
-				getElementsByName("Multa")[0].value = parseFloat(multa);
+				document.getElementsByName("Multa")[0].value = multa.toFixed(2);
 				
 			}
 	</script>

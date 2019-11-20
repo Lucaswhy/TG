@@ -21,7 +21,6 @@ router.get("/cadastrarcontas", cadConta, function(req,res){
 router.post("/validacontas", function(req,res){
 
     const novaConta = {
-    tipoConta: req.body.tipoconta,
     codConta: req.body.CodConta,
     valConta: req.body.ValConta,
     nomeFornecedor: req.body.NomeFornecedor,
@@ -101,7 +100,6 @@ router.get("/editarcontas/:id", editConta, function(req,res){
 router.post("/contaedicao", function(req,res){
     Conta.findOne({codConta: req.body.CodConta}).then((conta)=>{
         
-        conta.tipoConta = req.body.tipoConta
         conta.codConta = req.body.CodConta
         conta.valConta = req.body.ValConta
         conta.nomeFornecedor = req.body.NomeFornecedor

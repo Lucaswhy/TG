@@ -57,12 +57,7 @@
             <div class="col-md-3 mb-3">
                 <label for="validationDefault02">Código da Conta</label>
                 <input type="number" class="form-control" id="validationDefault01" placeholder="Cod. Conta" required name="CodConta" value="{{conta.codConta}}"> 
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationDefault02">Tipo de Conta</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome pro tipo de conta" required name="tipoConta">
-            </div>
-            
+            </div>            
 			<div class="col-md-4 mb-3">
                 <label for="validationDefault02">Fornecedor</label>
                 <input type="text" class="form-control" id="validationDefault03" placeholder="Fornecedor" required name="NomeFornecedor" value="{{conta.nomeFornecedor}}">
@@ -76,8 +71,9 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="valconta">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault02" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta" value="{{conta.valConta}}">
-      			</div>
+        			<input type="text" class="form-control money" id="validationDefault02" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2" value="{{conta.valConta}}">
+      			    <input type="hidden" id="ValCont" name="ValConta" value="">
+                </div>
     		</div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Juros</label>
@@ -89,8 +85,9 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault05" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa" value="{{conta.Multa}}">
-      			</div>
+        			<input type="text" class="form-control money" id="validationDefault05" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2" value="{{conta.Multa}}">
+      			    <input type="hidden" id="Mult" name="Multa" value="">
+                  </div>
     		</div>
 			<div class="col-md-2 mb-3">
       			<label for="validationDefaultUsername">Desconto</label>
@@ -129,15 +126,15 @@
         <div class="form-row">
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Observação</label>
-                <textarea class="form-control" id="validationDefault09" placeholder="Observação" required name="Observacao" >{{conta.Observacao}}</textarea>
+                <textarea class="form-control" id="validationDefault09" placeholder="Observação" name="Observacao" >{{conta.Observacao}}</textarea>
             </div>
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Descrição</label>
-                <textarea class="form-control" id="validationDefault10" placeholder="Descrição" required name="Descricao">{{conta.Descricao}}</textarea>
+                <textarea class="form-control" id="validationDefault10" placeholder="Descrição" name="Descricao">{{conta.Descricao}}</textarea>
         	</div>
 		</div>
 
-        <button class="btn btn-primary" type="submit" onclick="sobrescreveData()">Editar</button>
+        <button class="btn btn-primary" type="submit" onclick="sobrescreveData();limpaValor()">Editar</button>
 
     </form>
 
@@ -159,4 +156,24 @@
                     document.getElementsByName("DataVencimento")[0].value = dv;
                 }
             }
+
+			function limpaValor(){
+
+				val = new String;
+				mul = new String;
+
+				val = document.getElementsByName("ValConta2")[0].value;
+				mul = document.getElementsByName("Multa2")[0].value;
+
+				val = val.replace(/[,]/g, ".");
+				mul = mul.replace(/[,]/g, ".");
+
+				var value = parseFloat(val);
+				var multa = parseFloat(mul);
+				
+				document.getElementsByName("ValConta")[0].value = value.toFixed(2);
+
+				document.getElementsByName("Multa")[0].value = multa.toFixed(2);
+				
+			}
 	</script>
