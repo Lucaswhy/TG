@@ -27,8 +27,9 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="valconta">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta">
-      			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2">
+					<input type="hidden" id="ValConta" name="ValConta">
+				</div>
     		</div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Juros</label>
@@ -40,17 +41,13 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa">
-      			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2">
+					<input type="hidden" id="Multa" name="Multa">
+				</div>
     		</div>
 			<div class="col-md-2 mb-3">
-      			<label for="validationDefaultUsername">Desconto</label>
-      			<div class="input-group">
-        			<div class="input-group-prepend">
-          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
-        			</div>
-        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Desconto">
-      			</div>
+      			<label for="validationDefault02">Desconto</label>
+                <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Desconto">
     		</div>
         </div>
 
@@ -89,16 +86,25 @@
         	</div>
 		</div>
 
-        <button class="btn btn-primary" type="submit">Cadastrar</button>
+        <button class="btn btn-primary" onclick="limpaValor()" type="submit">Cadastrar</button>
 
     </form>
 
 	<script type="text/javascript">
 			function limpaValor(){
 
-			vc = new String;
-			multa = new String;
-			desc = new String;
+				val = new String;
+				multa = new String;
 
+				val = document.getElementsByName("ValConta2")[0].value;
+				multa = document.getElementsByName("Multa2")[0].value;
+
+				val = val.replace(",",".");
+				multa = multa.replace(",",".");
+				
+				getElementsByName("ValConta")[0].value = parseFloat(val);
+
+				getElementsByName("Multa")[0].value = parseFloat(multa);
+				
 			}
 	</script>

@@ -61,8 +61,8 @@
        
         <div class="form-row mt-4">
             <div class="col-md-2 mb-3">
-                <label for="validationDefault01">Crachá</label>
-                <input type="number" class="form-control" id="validationDefault01" placeholder="Crachá" name="Cracha" value="{{usuario.Cracha}}" >
+                <label for="validationDefault01">Matrícula</label>
+                <input type="number" class="form-control" id="validationDefault01" placeholder="Matrícula" name="Cracha" value="{{usuario.Cracha}}" >
             </div>
             <div class="col-md-6 mb-3">
                 <label for="validationDefault01">Nome</label>
@@ -720,9 +720,6 @@
 
                 if({{usuario.gerarRemessa}} == true){
                     document.getElementsByName("gerarRemessa")[0].checked = true;
-                }
-                if({{usuario.conRetorno}} == true){
-                    document.getElementsByName("conRetorno")[0].checked = true;
                 }
             }
 </script>
