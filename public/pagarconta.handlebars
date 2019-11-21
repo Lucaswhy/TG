@@ -48,8 +48,9 @@
                 <label for="validationDefault02">Valor Total: </label>
                 <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
             </div>
-            
-            <button class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
+            <div>
+            <button id="btnPaga" type="button" class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
+            </div>
             <a href="http:/localhost:8081/remessa"> <button class="btn btn-primary">Gerar Remessa</button> </a>
         
         </div>
@@ -106,8 +107,6 @@
         var Conta = document.getElementsByName('Conta');
         var vConta = document.getElementsByName('idConta');
         var bc = new String;
-
-        alert(vConta[0].value);
         
     for(var i = 0; i < Conta.length; i++){
         if(Conta[i].checked){
@@ -121,10 +120,8 @@
          }
     }
 
-        alert(bc);
-
-         if(bc.length > 0){           
-              window.location.href="http:/localhost:8081/validaPagarConta/"+bc;
+         if(bc != ""){           
+              window.location.href="/validaPagarConta/"+bc;
          }
          else{           
              alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
