@@ -1,5 +1,3 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='pagarconta.css'>
-
     <h2>Pagar Contas</h2>
 
     <br>
@@ -29,6 +27,7 @@
                     <td>{{Multa}}</td>
                     <td>{{Desconto}}</td>
                     </tr>
+                    <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
                 </tbody>
                 {{else}}
 
@@ -50,7 +49,7 @@
                 <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
             </div>
             
-            <a href="http:/localhost:8081/pagar"> <button class="btn btn-primary">Pagar Avulso</button> </a>
+            <button class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
             <a href="http:/localhost:8081/remessa"> <button class="btn btn-primary">Gerar Remessa</button> </a>
         
         </div>
@@ -100,5 +99,36 @@
             }
         }   
             document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
+
+    function pagar(){
+
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('idConta');
+        var bc = new String;
+
+        alert(vConta[0].value);
+        
+    for(var i = 0; i < Conta.length; i++){
+        if(Conta[i].checked){
+            if(bc != ""){
+            bc = bc + "+" + String(vConta[i].value);
+            }
+
+            else{
+                bc = String(vConta[i].value);
+            }
+         }
+    }
+
+        alert(bc);
+
+         if(bc.length > 0){           
+              window.location.href="http:/localhost:8081/validaPagarConta/"+bc;
+         }
+         else{           
+             alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
+              window.location.href="http://localhost:8081/pagarconta/";
+         }
     }
 </script>

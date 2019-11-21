@@ -1,0 +1,77 @@
+<link rel='stylesheet' type='text/css' media='screen' href='pagarconta.css'>
+
+    <h2>Consultar Arquivo Retorno</h2>
+
+    <br>
+    <hr>
+
+    <div class="container" style="width: 1000px;">	
+        <div class="card" style="width: 100%; height: 600px; overflow-y: scroll;">
+            <table class="table">
+                <thead>
+                    <th scope="col">Nome do Arquivo</th>
+                </thead>
+                {{#each conta}}
+                <tbody>
+                </tbody>
+                {{else}}
+
+                {{/each}}
+            </table>
+        </div>
+    </div>
+
+    <form class="form-cadastro">
+         <div class="form-row">
+            
+            <a href="http:/localhost:8081/pagar"> <button class="btn btn-primary">Consultar Arquivo</button> </a>
+        
+        </div>
+    </form>
+
+
+<script type="text/javascript">
+
+    function qtdeContas(){
+
+        var qtConta = document.getElementsByName('Conta');
+        var qtdeSel = 0;
+        var qtdeFal = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(qtConta[i].checked){
+                qtdeSel = qtdeSel + 1;
+            }
+
+            else{
+                qtdeFal = qtdeFal + 1;
+            }
+
+        }   
+            document.getElementsByName("totalContas")[0].value =  qtdeSel;
+            document.getElementsByName("totalContasF")[0].value =  qtdeFal;
+    }   
+
+    function valorTotal(){
+
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('valConta');
+        var vTotal = 0;
+        var val = 0;
+        
+        for (var i = 0; i < Conta.length; i++){
+            
+            if(Conta[i].checked){
+                var array = vConta[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;                
+
+                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
+                val = parseFloat(vConta[i].value);
+                vTotal = vTotal + val + cent;
+            }
+        }   
+            document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    }
+</script>

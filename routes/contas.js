@@ -140,14 +140,57 @@ router.get("/simulacao", function(req,res){
 });
 
 
-//Arquivo remessa + retorno
+//Arquivo remessa + Pagar avulso
 router.get("/pagarconta", function(req,res){
-    Conta.find().sort({codConta: 'asc'}).then((conta)=>{
+    Conta.find({Situacao: "Aberta"}).sort({codConta: 'asc'}).then((conta)=>{
     res.render('../public/pagarconta',{conta: conta});
     }).catch((erro)=>{
         console.log(erro);
         req.flash("error_msg","Erro ao pagar conta");
     });
+});
+
+router.get("/validaPagarConta/:id", function(req,res){
+
+    var Params = new Array;
+    Params = req.params.id;
+    var cPagas = Params.split("+");
+    var j = 1;
+    for(var i = 0;i<cPagas.length;i++){
+    Conta.findOne({_id: cPagas[i]}).then((conta) =>{
+
+        conta.Situacao = "Fechada";
+
+        conta.save().then(() => {
+            j = 1;
+        }).catch((erro) =>{
+            console.log(erro);
+            i = cPagas.length;
+            j = 0;
+            req.flash("error_msg","Erro ao salvar o pagamento da conta. Contate o Administrador.");
+            res.redirect("/pagarconta");
+        })
+
+        }).catch((erro) =>{
+            console.log(erro);
+            i = cPagas.length;
+            j = 0;
+        });
+    }
+    if(j == 0){
+    req.flash("error_msg", "Houve um problema no pagamento.");
+    res.redirect("/pagarconta");
+    }
+
+    else{
+        req.flash("success_msg","Conta(s) paga(s) com sucesso!");
+        res.redirect("/pagarconta");
+    }
+});
+
+//Retorno
+router.get("/retorno", function(req,res){
+    res.render('../public/consultarretorno');
 });
 
 //Relatorios
@@ -157,7 +200,6 @@ router.get("/relatorio", function(req,res){
 
 router.get("/relatorio/:busca",function(req,res){
     
-    console.log(req.params.busca);
     var Params = new Array;
     Params = req.params.busca;
     Params = Params.replace(/[.]/g, ",");
