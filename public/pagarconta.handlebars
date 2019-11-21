@@ -1,11 +1,16 @@
+    <link rel='stylesheet' type='text/css' media='screen' href='pagarconta.css'>
+
     <h2>Pagar Contas</h2>
 
     <br>
     <hr>
-
-    <div class="container" style="width: 1000px;">	
-        <div class="card" style="width: 100%; height: 600px; overflow-y: scroll;">
-            <table class="table">
+    <div id="divTabela">
+            <table id="tableCons">
+        <div class="container mt-4" style="width: 1000px;">	
+            <div class="card">
+                <div class="card-body">
+                    <div style="width: 100%; height: 600px; overflow-y: scroll;">
+            
                 <thead>
                     <tr>
                     <th scope="col">Codigo da Conta</th>
@@ -19,7 +24,7 @@
                 {{#each conta}}
                 <tbody>
                     <tr>
-                    <th scope="row"><input type="checkbox" id="Conta" name="Conta"> {{codConta}}</th>
+                    <th scope="row"><input type="checkbox" id="Conta" name="Conta" onclick="qtdeContas()"> {{codConta}}</th>
                     <td>{{valConta}}</td>
                     <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">
                     <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
@@ -32,9 +37,43 @@
                 {{else}}
 
                 {{/each}}
+                                    </div>
+                                </div>
+						    </div>
+                        </tr>
+                </thead>
             </table>
+            <div class="container mb-4" style="width: 600px;">	
+                    <div class="card" style="width: 100%; height: 200px; overflow-y: scroll;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Conta Bancária</th>
+                                <th scope="col">Banco</th>
+                                <th scope="col">Agência</th>
+                                <th scope="col">Saldo</th>
+                                </tr>
+                            </thead>
+                            {{#each contabancaria}}
+                            <tbody>
+                                <tr>
+                                <th scope="row"><input type="radio" id="ContaBancaria" name="ContaBancaria" onclick="qtdeContas()"> {{codContaBanc}}</th>
+                                <td>{{Agencia.Banco.nomeBanco}}</td>
+                                <td>{{Agencia.numAgencia}}</td>
+                                <td>{{Saldo}}</td>
+                                <input type="hidden" id="Saldo" name="Saldo" value="{{Saldo}}">
+                                </tr>
+                                <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
+                            </tbody>
+                            {{else}}
+
+                            {{/each}}
+                        </table>
+                    </div>
+                            <input type="checkbox" id="CB" name="checkCB" onclick="valorTotal()">Quero usar uma conta bancária para pagar.
+                </div>
         </div>
-    </div>
+        
 
     <form class="form-cadastro">
          <div class="form-row">
@@ -46,7 +85,7 @@
                             
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Valor Total: </label>
-                <input type="text" class="form-control" id="validationDefault02" name="totalValor" value="" disabled>
+                <input type="text" class="form-control" id="validationDefault52" name="totalValor" value="" disabled>
             </div>
             <div>
             <button id="btnPaga" type="button" class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
@@ -90,9 +129,13 @@
         for (var i = 0; i < Conta.length; i++){
             
             if(Conta[i].checked){
-                var array = vConta[i].value.split(",");
+                alert(Conta[i].value);
+                alert(vConta[i].value);
+                var array = vConta[i].value.split(".");
                 var cent = parseFloat(array[1]);
-                var cent = cent/100;                
+                var cent = cent/100;
+
+                alert(cent);               
 
                 vConta[i].value = vConta[i].value.replace(/[.]/g, "");
                 val = parseFloat(vConta[i].value);
@@ -107,6 +150,8 @@
         var Conta = document.getElementsByName('Conta');
         var vConta = document.getElementsByName('idConta');
         var bc = new String;
+        
+if(document.getElementsByName('checkCB').checked == false){
         
     for(var i = 0; i < Conta.length; i++){
         if(Conta[i].checked){
@@ -128,4 +173,9 @@
               window.location.href="http://localhost:8081/pagarconta/";
          }
     }
+
+    else{
+
+    }
+}
 </script>

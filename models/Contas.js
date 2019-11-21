@@ -63,6 +63,10 @@ const Contas  = new Schema({
 
     Situacao: {
         type: String
+    },
+
+    Pagador: {
+        type: String
     }
 });
 

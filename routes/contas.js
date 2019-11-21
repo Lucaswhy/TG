@@ -143,11 +143,15 @@ router.get("/simulacao", function(req,res){
 //Arquivo remessa + Pagar avulso
 router.get("/pagarconta", function(req,res){
     Conta.find({Situacao: "Aberta"}).sort({codConta: 'asc'}).then((conta)=>{
-    res.render('../public/pagarconta',{conta: conta});
+        Contabancaria.find({SituacaoContaBanc: "Ativa"}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
+    res.render('../public/pagarconta',{conta: conta,contabancaria: contabancaria});
     }).catch((erro)=>{
         console.log(erro);
-        req.flash("error_msg","Erro ao pagar conta");
-    });
+        req.flash("error_msg","Erro ao consultar conta(s).");
+    })}).catch((erro) => {
+        console.log(erro);
+        req.flash("error_msg","Erro ao consultar conta(s) bancaria(s).");
+    }); 
 });
 
 router.get("/validaPagarConta/:id", function(req,res){
