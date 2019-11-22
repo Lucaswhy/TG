@@ -30,6 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
             },
             formatDateBD: (date) =>{
                 return moment(date).add(3,"hours").format('MM/DD/YYYY'); 
+            },
+            corrigirValor: (val) =>{
+                var valor = new String;
+
+                valor = 'R$' + val.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+
+                return(valor);
+                
             }
         }
 
