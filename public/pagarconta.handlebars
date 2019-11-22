@@ -25,8 +25,8 @@
                 <tbody>
                     <tr>
                     <th scope="row"><input type="checkbox" id="Conta" name="Conta" onclick="qtdeContas()"> {{codConta}}</th>
-                    <td>{{valConta}}</td>
-                    <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">
+                    <td>{{#corrigirValor valConta}}{{/corrigirValor}}</td>
+                    <input type="hidden" id="valConta" name="valConta" value="{{#corrigirValor valConta}}{{/corrigirValor}}">
                     <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
                     <td>{{Juros}}</td>
                     <td>{{Multa}}</td>
@@ -116,7 +116,6 @@
 
         }   
             document.getElementsByName("totalContas")[0].value =  qtdeSel;
-            document.getElementsByName("totalContasF")[0].value =  qtdeFal;
     }   
 
     function valorTotal(){
@@ -129,16 +128,13 @@
         for (var i = 0; i < Conta.length; i++){
             
             if(Conta[i].checked){
-                alert(Conta[i].value);
-                alert(vConta[i].value);
-                var array = vConta[i].value.split(".");
+
+                var array = vConta[i].value.split(",");
                 var cent = parseFloat(array[1]);
                 var cent = cent/100;
+                
 
-                alert(cent);               
-
-                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
-                val = parseFloat(vConta[i].value);
+                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
                 vTotal = vTotal + val + cent;
             }
         }   

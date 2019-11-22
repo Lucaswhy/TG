@@ -17,8 +17,8 @@
 
                                         Codigo da Conta:{{codConta}}
                                             
-                                        Valor: {{valConta}}
-                                        <input type="hidden" id="valConta" name="valConta" value="{{valConta}}">  
+                                        Valor: {{#corrigirValor valConta}}{{/corrigirValor}}
+                                        <input type="hidden" id="valConta" name="valConta" value="{{#corrigirValor valConta}}{{/corrigirValor}}">  
                                         Data de Vencimento: {{#formatDate dataVencimento}}{{/formatDate}}
                                         
                                         Multa: {{Multa}}
@@ -153,10 +153,9 @@
             if(Conta[i].checked){
                 var array = vConta[i].value.split(",");
                 var cent = parseFloat(array[1]);
-                var cent = cent/100;                
+                var cent = cent/100;
 
-                vConta[i].value = vConta[i].value.replace(/[.]/g, "");
-                val = parseFloat(vConta[i].value);
+                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
                 vTotal = vTotal + val + cent;
             }
         }   
