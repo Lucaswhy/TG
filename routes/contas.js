@@ -127,7 +127,7 @@ router.post("/contaedicao", function(req,res){
 //Simulacao
 router.get("/simulacao", function(req,res){
     Conta.find().sort({codConta: 'asc'}).then((conta) =>{
-        Contabancaria.find({SituacaoContaBanc: "Ativa."}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
+        Contabancaria.find({SituacaoContaBanc: "Ativa"}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
         res.render('../public/simulacao', {conta: conta,contabancaria: contabancaria});
         }).catch((erro) => {
             console.log(erro);

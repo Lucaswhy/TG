@@ -60,17 +60,17 @@
                                 <th scope="row"><input type="radio" id="ContaBancaria" name="ContaBancaria" onclick="qtdeContas()"> {{codContaBanc}}</th>
                                 <td>{{Agencia.Banco.nomeBanco}}</td>
                                 <td>{{Agencia.numAgencia}}</td>
-                                <td>{{Saldo}}</td>
+                                <td>{{#corrigirValor Saldo}}{{/corrigirValor}}</td>
                                 <input type="hidden" id="Saldo" name="Saldo" value="{{Saldo}}">
                                 </tr>
-                                <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
+                                <input type="hidden" id="idContaB" name="idContaB" value="{{_id}}">
                             </tbody>
                             {{else}}
 
                             {{/each}}
                         </table>
                     </div>
-                            <input type="checkbox" id="CB" name="checkCB" onclick="valorTotal()">Quero usar uma conta bancária para pagar.
+                            <input type="checkbox" id="CB" name="checkCB" >Quero usar uma conta bancária para pagar.
                 </div>
         </div>
         
@@ -116,6 +116,8 @@
 
         }   
             document.getElementsByName("totalContas")[0].value =  qtdeSel;
+
+            valorTotal();
     }   
 
     function valorTotal(){
@@ -143,13 +145,50 @@
 
     function pagar(){
 
-        var Conta = document.getElementsByName('Conta');
-        var vConta = document.getElementsByName('idConta');
-        var bc = new String;
+        var vTotal = 0;
+        var val = 0;
         
-if(document.getElementsByName('checkCB').checked == false){
+    if(document.getElementsByName('checkCB')[0].checked){
+
+        var CB = document.getElementsByName('ContaBancaria');
+        var vSaldo = document.getElementsByName('Saldo');
+        var vId = document.getElementsByName('idContaB');
+
+    alert("a");
+        
+        for(var i=0;i< CB.length;i++){
+
+            if(CB[i].checked){
+
+                var idConta = new String;
+                idConta = vId[i].value;
+
+                var array = vSaldo[i].value.split(",");
+                var cent = parseFloat(array[1]);
+                var cent = cent/100;
+                alert(array[0]);
+                alert(array[1]);
+                alert(cent);
+                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
+                vTotal = vTotal + val + cent;
+
+                alert(vTotal);
+
+            }
+        
+        }
+    
+    }
+
+    else{
+    
+    var Conta = document.getElementsByName('Conta');
+    var bc = new String;
+
+        alert("b");
         
     for(var i = 0; i < Conta.length; i++){
+        alert("b"); 
         if(Conta[i].checked){
             if(bc != ""){
             bc = bc + "+" + String(vConta[i].value);
@@ -160,6 +199,7 @@ if(document.getElementsByName('checkCB').checked == false){
             }
          }
     }
+        alert(bc);
 
          if(bc != ""){           
               window.location.href="/validaPagarConta/"+bc;
@@ -168,10 +208,9 @@ if(document.getElementsByName('checkCB').checked == false){
              alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
               window.location.href="http://localhost:8081/pagarconta/";
          }
+         alert("b");
+        
     }
 
-    else{
-
-    }
 }
 </script>

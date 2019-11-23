@@ -51,7 +51,6 @@
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta</label>
 				<select id="inputSituacao" class="form-control" name="Situacao">
-					<option value="" disabled selected>-- Situação --</option>
 					<option>Fechada</option>
 					<option>Aberta</option>
 					<option>Cancelada</option>
@@ -109,14 +108,8 @@
 				var value = parseFloat(array[0]);
 				var multa = parseFloat(array2[0]);
 
-				alert(value);
-				alert(multa);
-
 				value = value + cent;
 				multa = multa + cent2;
-
-				alert(value.toFixed(2));
-				alert(multa.toFixed(2));
 				
 				document.getElementsByName("ValConta")[0].value = value.toFixed(2);
 

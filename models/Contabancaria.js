@@ -21,7 +21,7 @@ const Contabancaria  = new Schema({
     },
 
     Saldo: {
-        type: String,   
+        type: Number,   
         required: true
     },
 

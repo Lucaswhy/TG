@@ -88,15 +88,16 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Saldo" value="{{contabancaria.Saldo}}">
-      			</div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Saldo2" value="{{#corrigirValor contabancaria.Saldo}}{{/corrigirValor}}">
+      			<input type="hidden" id="ValCont" name="Saldo" value="">
+                  </div>
     		</div>
             <div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta:</label>
 				<select id="inputSituacao" class="form-control" name="SituacaoConta" value="">
 					<option selected>{{contabancaria.SituacaoContaBanc}}</option>
-					<option>Ativa.</option>
-					<option>Inativa.</option>
+					<option>Ativa</option>
+					<option>Inativa</option>
 				</select>
 			</div>
         </div>
@@ -113,7 +114,7 @@
         </div>
 		<br>
 
-        <button class="btn btn-primary" type="submit" onclick="sobrescreveData()">Editar</button>
+        <button class="btn btn-primary" type="submit" onclick="sobrescreveData();limpaValor()">Editar</button>
     </form>
 
     <script type="text/javascript">
@@ -128,4 +129,24 @@
                     document.getElementsByName("DataAbetura")[0].value = de;
                 }
             }
+
+        function limpaValor(){
+
+				val = new String;
+
+				val = document.getElementsByName("Saldo2")[0].value;
+                
+				val = val.replace(/[,]/g, ".");
+
+				var array = val.split(".");
+                var cent = parseFloat(array[1]);
+                cent = cent/100; 
+
+				var value = parseFloat(array[0]);
+
+				value = value + cent;
+				
+				document.getElementsByName("Saldo")[0].value = value.toFixed(2);
+				
+			}
 	</script>

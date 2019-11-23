@@ -54,8 +54,8 @@
                                 <th scope="row"><input type="radio" id="ContaBancaria" name="ContaBancaria"> {{codContaBanc}}</th>
                                 <td>{{Agencia.Banco.nomeBanco}}</td>
                                 <td>{{Agencia.numAgencia}}</td>
-                                <td>{{Saldo}}</td>
-                                <input type="hidden" id="Saldo" name="Saldo" value="{{Saldo}}">
+                                <td>{{#corrigirValor Saldo}}{{/corrigirValor}}</td>
+                                <input type="hidden" id="Saldo" name="Saldo" value="{{#corrigirValor Saldo}}{{/corrigirValor}}">
                                 </tr>
                             </tbody>
                             {{else}}
@@ -110,10 +110,8 @@
             if(Conta[i].checked){
                 var array = vSaldo[i].value.split(",");
                 var cent = parseFloat(array[1]);
-                var cent = cent/100;                
-
-                vSaldo[i].value = vSaldo[i].value.replace(/[.]/g, "");
-                val = parseFloat(vSaldo[i].value);
+                var cent = cent/100;
+                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
                 vTotal = vTotal + val + cent;
             }
         }
@@ -177,13 +175,13 @@
                 var cent = parseFloat(array[1]);
                 var cent = cent/100;                
 
-                vContas[i].value = vContas[i].value.replace(/[.]/g, "");
-                val = parseFloat(vContas[i].value);
+                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
                 vTotal = vTotal + val + cent;
             }
         }
 
         vRest = vSaldo - vTotal;
+        
 
         if(vRest > 0){
             document.getElementsByName("valorRestante")[0].value = 'R$' + vRest.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");

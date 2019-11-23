@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
                 var valor = new String;
 
                 valor = 'R$' + val.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
-
+                
                 return(valor);
                 
             }
