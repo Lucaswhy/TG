@@ -141,6 +141,7 @@
             }
         }   
             document.getElementsByName("totalValor")[0].value = 'R$' + vTotal.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+            return(vTotal);
     }
 
     function pagar(){
@@ -153,8 +154,12 @@
         var CB = document.getElementsByName('ContaBancaria');
         var vSaldo = document.getElementsByName('Saldo');
         var vId = document.getElementsByName('idContaB');
+        var Conta = document.getElementsByName('Conta');
+        var vConta = document.getElementsByName('idConta');
 
-    alert("a");
+        var bc = new String;
+        var count = 0;
+
         
         for(var i=0;i< CB.length;i++){
 
@@ -163,32 +168,52 @@
                 var idConta = new String;
                 idConta = vId[i].value;
 
-                var array = vSaldo[i].value.split(",");
-                var cent = parseFloat(array[1]);
-                var cent = cent/100;
-                alert(array[0]);
-                alert(array[1]);
-                alert(cent);
-                val = parseFloat(array[0].replace(/[.,R$]/g, ""));
-                vTotal = vTotal + val + cent;
+                vTotal = valorTotal();
 
-                alert(vTotal);
+                count = 1;
 
             }
         
         }
-    
+
+        if(count > 0){
+
+        for(var i = 0; i < Conta.length; i++){
+        if(Conta[i].checked){
+
+            if(bc != ""){
+            bc = bc + "+" + String(vConta[i].value);
+            }
+
+            else{
+                bc = String(vConta[i].value);
+            }
+         }
     }
+         if(bc != ""){
+              window.location.href="/validaPagarContaB/"+String(idConta)+"+"+String(vTotal)+"/"+bc;
+         }
+         else{
+             alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
+              window.location.href="http://localhost:8081/pagarconta/";
+         }
+     
+    }
+
+    else{
+        alert("Selecione uma conta bancaria!");
+    }
+
+}
+    
+
 
     else{
     
     var Conta = document.getElementsByName('Conta');
-    var bc = new String;
+    var vConta = document.getElementsByName('idConta');
 
-        alert("b");
-        
     for(var i = 0; i < Conta.length; i++){
-        alert("b"); 
         if(Conta[i].checked){
             if(bc != ""){
             bc = bc + "+" + String(vConta[i].value);
@@ -199,16 +224,14 @@
             }
          }
     }
-        alert(bc);
 
-         if(bc != ""){           
+         if(bc != ""){          
               window.location.href="/validaPagarConta/"+bc;
          }
          else{           
              alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
               window.location.href="http://localhost:8081/pagarconta/";
          }
-         alert("b");
         
     }
 

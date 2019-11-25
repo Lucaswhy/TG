@@ -192,6 +192,89 @@ router.get("/validaPagarConta/:id", function(req,res){
     }
 });
 
+router.get("/validaPagarContaB/:cb/:id", function(req,res){
+    
+    var Params = new Array;
+    Params = req.params.id;
+    var cPagas = Params.split("+");
+
+    var Params2 = new Array;
+    Params2 = req.params.cb;
+    var cbank = Params2.split("+");
+
+    console.log(cbank[0]);
+    console.log(cbank[1]);
+
+    var array = cbank[1].split(".");
+    var cent = parseFloat(array[1]);
+    cent = cent/100;
+    var val = parseFloat(array[0].replace(/[.,R$]/g, ""));
+    var vTotal = 0;
+    vTotal = vTotal + val + cent;
+
+    
+    console.log(cent);
+    console.log(val);
+    console.log(vTotal);
+    console.log(cbank[0]);
+    console.log(cbank[1]);
+
+    var j = 1;
+
+    for(var i = 0;i<cPagas.length;i++){
+    Conta.findOne({_id: cPagas[i]}).then((conta) =>{
+
+        conta.Situacao = "Fechada";
+
+        conta.save().then(() => {
+            j = 1;
+        }).catch((erro) =>{
+            console.log(erro);
+            i = cPagas.length;
+            j = 0;
+            req.flash("error_msg","Erro ao salvar o pagamento da conta. Contate o Administrador.");
+            res.redirect("/pagarconta");
+        })
+
+        }).catch((erro) =>{
+            console.log(erro);
+            i = cPagas.length;
+            j = 0;
+        });
+    }
+    if(j == 0){
+    req.flash("error_msg", "Houve um problema no pagamento.");
+    res.redirect("/pagarconta");
+    }
+
+    else{
+
+        Contabancaria.findOne({_id: cbank[0]}).then((contabancaria) =>{
+            
+            var vSaldo = contabancaria.Saldo;
+            console.log(vSaldo);
+            vSaldo = vSaldo - vTotal;
+            console.log(vSaldo);
+            contabancaria.Saldo = vSaldo;     
+            
+            contabancaria.save().then(() => {
+                j = 1;
+            }).catch((erro) =>{
+                console.log(erro);
+                req.flash("error_msg","Erro ao  descontar o pagamento da conta bancaria. Contate o Administrador.");
+                res.redirect("/pagarconta");
+            })
+
+        })
+
+        req.flash("success_msg","Conta(s) paga(s) com sucesso!");
+        res.redirect("/pagarconta");
+    }
+
+
+
+});
+
 //Retorno
 router.get("/retorno", function(req,res){
     res.render('../public/consultarretorno');
