@@ -212,6 +212,7 @@
     
     var Conta = document.getElementsByName('Conta');
     var vConta = document.getElementsByName('idConta');
+    var bc = new String;
 
     for(var i = 0; i < Conta.length; i++){
         if(Conta[i].checked){
@@ -225,7 +226,7 @@
          }
     }
 
-         if(bc != ""){          
+         if(bc != ""){
               window.location.href="/validaPagarConta/"+bc;
          }
          else{           

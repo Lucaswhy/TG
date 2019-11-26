@@ -66,7 +66,8 @@ const Contas  = new Schema({
     },
 
     Pagador: {
-        type: String
+        type: String,
+        default: "Conta ainda não foi paga."
     }
 });
 

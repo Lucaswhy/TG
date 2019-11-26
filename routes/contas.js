@@ -164,6 +164,7 @@ router.get("/validaPagarConta/:id", function(req,res){
     Conta.findOne({_id: cPagas[i]}).then((conta) =>{
 
         conta.Situacao = "Fechada";
+        conta.Pagador = String(req.user.Nome);
 
         conta.save().then(() => {
             j = 1;
@@ -202,22 +203,17 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
     Params2 = req.params.cb;
     var cbank = Params2.split("+");
 
-    console.log(cbank[0]);
-    console.log(cbank[1]);
-
     var array = cbank[1].split(".");
     var cent = parseFloat(array[1]);
+
+    if(isNaN(cent) == true){
+        cent = 0;
+    }
+
     cent = cent/100;
     var val = parseFloat(array[0].replace(/[.,R$]/g, ""));
     var vTotal = 0;
     vTotal = vTotal + val + cent;
-
-    
-    console.log(cent);
-    console.log(val);
-    console.log(vTotal);
-    console.log(cbank[0]);
-    console.log(cbank[1]);
 
     var j = 1;
 
@@ -225,6 +221,7 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
     Conta.findOne({_id: cPagas[i]}).then((conta) =>{
 
         conta.Situacao = "Fechada";
+        conta.Pagador = String(req.user.Nome);
 
         conta.save().then(() => {
             j = 1;
@@ -252,9 +249,7 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
         Contabancaria.findOne({_id: cbank[0]}).then((contabancaria) =>{
             
             var vSaldo = contabancaria.Saldo;
-            console.log(vSaldo);
             vSaldo = vSaldo - vTotal;
-            console.log(vSaldo);
             contabancaria.Saldo = vSaldo;     
             
             contabancaria.save().then(() => {
