@@ -13,6 +13,8 @@ const {cadConta} = require("../helpers/cadConta");
 const {conConta} = require("../helpers/conConta");
 const {delConta} = require("../helpers/delConta");
 const {editConta} = require("../helpers/editConta");
+
+var fs = require('fs');
 //Cadastrar Contas boyz
 router.get("/cadastrarcontas", cadConta, function(req,res){
     res.render('../public/cadastrarcontas');
@@ -154,6 +156,8 @@ router.get("/pagarconta", function(req,res){
     }); 
 });
 
+//Pagando Avulso
+
 router.get("/validaPagarConta/:id", function(req,res){
 
     var Params = new Array;
@@ -265,6 +269,24 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
         req.flash("success_msg","Conta(s) paga(s) com sucesso!");
         res.redirect("/pagarconta");
     }
+
+//Remessa
+router.get("/remessa", function(req,res){
+    
+    var today = new Date();
+    var dd = today.getDay();
+    var mm = today.getMonth();
+    var yyyy = today.getFullYear();
+
+    fs.writeFile("C:\Users\optiplex169\Documents\me\TG\nodejs\remessa\batata" + ".txt" ,"Hello, txt!", function(erro) {
+
+        if(erro) {
+            throw erro;
+        }
+    
+        console.log("Arquivo salvo");
+    }); 
+});
 
 
 
