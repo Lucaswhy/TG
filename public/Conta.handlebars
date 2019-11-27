@@ -1,0 +1,29 @@
+
+
+
+<div class="form-row">
+			<div class="col-md-2.5 mb-3">
+				<label for="inputSituacao">Tipo da Conta</label>
+				<select id="inputSituacao" class="form-control" name="nomeTipoConta">
+					{{#each tipoconta}}
+                    <option value="{{_id}}">{{nomeTipoConta}}</option>
+                    {{else}}
+                        <option value="">Nenhum tipo de conta registrado!</option>
+                    {{/each}}
+				</select>
+			</div>
+    <button class="btn btn-primary" type="submit" onclick="sendConta()">Selecionar</button>
+
+</div>
+
+	<script type="text/javascript">
+
+    function sendConta(){
+
+        id = "Padrão"
+
+        window.location.href="http://localhost:8081/cadastrarcontas/"+id;
+
+    }
+
+</script>
