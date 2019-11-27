@@ -9,6 +9,12 @@ const tipoContas  = new Schema({
         unique: true
     },
 
+    nomeTipoConta:{
+        type: String,
+        required: true,
+        unique: true
+    },
+
     Multa: {
         type: Boolean
     },
