@@ -9,15 +9,29 @@ const Conta = mongoose.model('conta');
 require("../models/Contabancaria"); 
 const Contabancaria = mongoose.model('contabancaria');
 
+require("../models/TipoConta"); 
+const TipoConta = mongoose.model('tipoconta');
+
 const {cadConta} = require("../helpers/cadConta");
 const {conConta} = require("../helpers/conConta");
 const {delConta} = require("../helpers/delConta");
 const {editConta} = require("../helpers/editConta");
 
 var fs = require('fs');
-//Cadastrar Contas boyz
-router.get("/cadastrarcontas", cadConta, function(req,res){
-    res.render('../public/cadastrarcontas');
+
+router.get("/Conta", cadConta, function(req,res){
+    TipoConta.find().sort({codTipoConta: 'asc'}).then((tipoconta) =>{
+    res.render('../public/Conta',{tipoconta: tipoconta});
+    }).catch((erro) => {
+        console.log(erro);
+        req.flash("error_msg","Erro ao consultar os tipos de conta.");
+    }); 
+});
+
+router.get("/cadastrarcontas/:tipo", cadConta, function(req,res){
+    TipoConta.find({nomeTipoConta: req.params.tipo}).then((tipoconta) =>{
+    res.render('../public/cadastrarcontas', {tipoconta: tipoconta});
+    });
 });
 
 router.post("/validacontas", function(req,res){
