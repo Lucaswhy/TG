@@ -5,44 +5,38 @@
     <br>
     <hr>
     <div id="divTabela">
-            <table id="tableCons">
-        <div class="container mt-4" style="width: 1000px;">	
-            <div class="card">
-                <div class="card-body">
-                    <div style="width: 100%; height: 600px; overflow-y: scroll;">
-            
-                <thead>
-                    <tr>
-                    <th scope="col">Codigo da Conta</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Data de Vencimento</th>
-                    <th scope="col">Multa</th>
-                    <th scope="col">Juros</th>
-                    <th scope="col">Desconto</th>
-                    </tr>
-                </thead>
-                {{#each conta}}
-                <tbody>
-                    <tr>
-                    <th scope="row"><input type="checkbox" id="Conta" name="Conta" onclick="qtdeContas()"> {{codConta}}</th>
-                    <td>{{#corrigirValor valConta}}{{/corrigirValor}}</td>
-                    <input type="hidden" id="valConta" name="valConta" value="{{#corrigirValor valConta}}{{/corrigirValor}}">
-                    <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
-                    <td>{{Juros}}</td>
-                    <td>{{Multa}}</td>
-                    <td>{{Desconto}}</td>
-                    </tr>
-                    <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
-                </tbody>
-                {{else}}
+        <div class="container mb-5" style="width: 1000px;">	
+                <div class="card" style="width: 100%; height: 600px; overflow-y: scroll;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Codigo da Conta</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Data de Vencimento</th>
+                            <th scope="col">Multa</th>
+                            <th scope="col">Juros</th>
+                            <th scope="col">Desconto</th>
+                            </tr>
+                        </thead>
+                        {{#each conta}}
+                        <tbody>
+                            <tr>
+                            <th scope="row"><input type="checkbox" id="Conta" name="Conta" onclick="qtdeContas()"> {{codConta}}</th>
+                            <td>{{#corrigirValor valConta}}{{/corrigirValor}}</td>
+                            <input type="hidden" id="valConta" name="valConta" value="{{#corrigirValor valConta}}{{/corrigirValor}}">
+                            <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
+                            <td>{{Juros}}</td>
+                            <td>{{Multa}}</td>
+                            <td>{{Desconto}}</td>
+                            </tr>
+                            <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
+                        </tbody>
+                        {{else}}
 
-                {{/each}}
-                                    </div>
-                                </div>
-						    </div>
-                        </tr>
-                </thead>
-            </table>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
             <div class="container mb-4" style="width: 600px;">	
                     <div class="card" style="width: 100%; height: 200px; overflow-y: scroll;">
                         <table class="table">
@@ -70,9 +64,9 @@
                             {{/each}}
                         </table>
                     </div>
-                            <input type="checkbox" id="CB" name="checkCB" >Quero usar uma conta bancária para pagar.
-                </div>
-        </div>
+                    <input type="checkbox" id="CB" name="checkCB" > Quero usar uma conta bancária para pagar.
+            </div>
+    </div>
         
 
     <form class="form-cadastro">
