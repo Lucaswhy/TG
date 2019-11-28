@@ -28,6 +28,10 @@ router.get("/Conta", cadConta, function(req,res){
     }); 
 });
 
+router.get("/cadastrarcontas/", cadConta, function(req,res){
+    res.render('../public/cadastrarcontas');
+});
+
 router.get("/cadastrarcontas/:tipo", cadConta, function(req,res){
     TipoConta.find({nomeTipoConta: req.params.tipo}).then((tipoconta) =>{
     res.render('../public/cadastrarcontas', {tipoconta: tipoconta});
@@ -321,16 +325,23 @@ router.get("/relatorio/:busca",function(req,res){
     var Params = new Array;
     Params = req.params.busca;
     Params = Params.replace(/[.]/g, ",");
-    var Search = Params.split("+");        
+    var Search = Params.split("+");
 
-    if(Search[8]!="" || Search[9]!=""){
+    if(Search[8] == ""){
+        Search[8] == "0";
+    }
+
+    if(Search[9] == ""){
+       Search[9] == "99999999999.99";
+    }
+
+    if(Search[10]!="" || Search[11]!=""){
     Conta.find({Situacao: new RegExp(Search[0],"i"),
-       dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
-        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
-        nomeFornecedor: new RegExp(Search[5],"i")
-      //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
-}).sort({[Search[8]]:Search[9]}).then((conta)=>{
-    console.log(conta);
+       dataEmissao:{$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+        dataVencimento: {$gte: new Date(Search[5]),$lte: new Date(Search[6])},
+        nomeFornecedor: new RegExp(Search[7],"i"),
+        valConta: new RegExp({"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])},"i") 
+}).sort({[Search[10]]:Search[11]}).then((conta)=>{
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
             console.log(erro);
@@ -341,8 +352,8 @@ router.get("/relatorio/:busca",function(req,res){
         Conta.find({Situacao: new RegExp(Search[0],"i"),
        dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
         dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
-        nomeFornecedor: new RegExp(Search[5],"i")
-      //  valConta: new RegExp({"$gte": new Date(),"$lte": new Date(2020, 12, 22)},"i")       
+        nomeFornecedor: new RegExp(Search[5],"i"),
+        valConta: new RegExp({"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])},"i")    
     }).sort().then((conta)=>{
     console.log(conta);
         res.render('../public/relatorio',{conta: conta});
