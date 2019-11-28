@@ -324,7 +324,6 @@ router.get("/relatorio/:busca",function(req,res){
     
     var Params = new Array;
     Params = req.params.busca;
-    Params = Params.replace(/[.]/g, ",");
     var Search = Params.split("+");
 
     if(Search[8] == ""){
@@ -335,12 +334,31 @@ router.get("/relatorio/:busca",function(req,res){
        Search[9] == "99999999999.99";
     }
 
+    val1 = parseFloat(Search[8]);
+    val2 = parseFloat(Search[9]);
+
+    console.log("valor 1 e 2:"+ val1 + " "  + val2);
+
+    console.log("Search 0:" + Search[0]);
+    console.log("Search 1:" + Search[1]);
+    console.log("Search 2:" + Search[2]);
+    console.log("Search 3:" + Search[3]);
+    console.log("Search 4:" + Search[4]);
+    console.log("Search 5:" + Search[5]);
+    console.log("Search 6:" + Search[6]);
+    console.log("Search 7:" + Search[7]);
+    console.log("Search 8:" + Search[8]);
+    console.log("Search 9:" + Search[9]);
+    console.log("Search 10:" + Search[10]);
+    console.log("Search 11:" + Search[11]);
+// http://localhost:8081/relatorio/Aberta+++01,22,1999+01,01,2000+01,01,1999+01,01,1999+VM2+10+100+valConta+asc
     if(Search[10]!="" || Search[11]!=""){
+        console.log("no if");
     Conta.find({Situacao: new RegExp(Search[0],"i"),
        dataEmissao:{$gte: new Date(Search[3]),$lte: new Date(Search[4])},
         dataVencimento: {$gte: new Date(Search[5]),$lte: new Date(Search[6])},
         nomeFornecedor: new RegExp(Search[7],"i"),
-        valConta: new RegExp({"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])},"i") 
+  //      valConta: val1, 
 }).sort({[Search[10]]:Search[11]}).then((conta)=>{
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
@@ -349,6 +367,7 @@ router.get("/relatorio/:busca",function(req,res){
         })
     }
     else{
+        console.log("no else");
         Conta.find({Situacao: new RegExp(Search[0],"i"),
        dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
         dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
