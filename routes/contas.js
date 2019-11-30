@@ -326,39 +326,42 @@ router.get("/relatorio/:busca",function(req,res){
     Params = req.params.busca;
     var Search = Params.split("+");
 
-    if(Search[8] == ""){
-        Search[8] == "0";
+    if(Search[0] == ""){
+        Search[0] = "NA"
     }
 
-    if(Search[9] == ""){
-       Search[9] == "99999999999.99";
+    if(Search[1] == ""){
+        Search[1] = "NA"
     }
 
-    val1 = parseFloat(Search[8]);
-    val2 = parseFloat(Search[9]);
+    if(Search[2] == ""){
+        Search[2] = "NA"
+    }
 
-    console.log("valor 1 e 2:"+ val1 + " "  + val2);
+    if(Search[3] == ""){
+        Search[3] = "02,02,1970"
+    }
 
-    console.log("Search 0:" + Search[0]);
-    console.log("Search 1:" + Search[1]);
-    console.log("Search 2:" + Search[2]);
-    console.log("Search 3:" + Search[3]);
-    console.log("Search 4:" + Search[4]);
-    console.log("Search 5:" + Search[5]);
-    console.log("Search 6:" + Search[6]);
-    console.log("Search 7:" + Search[7]);
-    console.log("Search 8:" + Search[8]);
-    console.log("Search 9:" + Search[9]);
-    console.log("Search 10:" + Search[10]);
-    console.log("Search 11:" + Search[11]);
-// http://localhost:8081/relatorio/Aberta+++01,22,1999+01,01,2000+01,01,1999+01,01,1999+VM2+10+100+valConta+asc
-    if(Search[10]!="" || Search[11]!=""){
-        console.log("no if");
-    Conta.find({Situacao: new RegExp(Search[0],"i"),
+    if(Search[4] == ""){
+        Search[4] = "02,02,2900"
+    }
+
+    if(Search[5] == ""){
+        Search[5] = "02,02,1970"
+    }
+
+    if(Search[6] == ""){
+        Search[6] = "02,02,2900"
+    }
+
+    if(Search[10]!="" && Search[11]!=""){
+    Conta.find({$or: [{Situacao: new RegExp(Search[0],"i")},
+    {Situacao: new RegExp(Search[1],"i")},
+    {Situacao: new RegExp(Search[2],"i")}],
        dataEmissao:{$gte: new Date(Search[3]),$lte: new Date(Search[4])},
         dataVencimento: {$gte: new Date(Search[5]),$lte: new Date(Search[6])},
         nomeFornecedor: new RegExp(Search[7],"i"),
-  //      valConta: val1, 
+        valConta: {"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])} 
 }).sort({[Search[10]]:Search[11]}).then((conta)=>{
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
@@ -367,14 +370,14 @@ router.get("/relatorio/:busca",function(req,res){
         })
     }
     else{
-        console.log("no else");
-        Conta.find({Situacao: new RegExp(Search[0],"i"),
-       dataEmissao:{$gte: new Date(Search[1]),$lte: new Date(Search[2])},
-        dataVencimento: {$gte: new Date(Search[3]),$lte: new Date(Search[4])},
-        nomeFornecedor: new RegExp(Search[5],"i"),
-        valConta: new RegExp({"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])},"i")    
+        Conta.find({$or: [{Situacao: new RegExp(Search[0],"i")},
+                    {Situacao: new RegExp(Search[1],"i")},
+                    {Situacao: new RegExp(Search[2],"i")}],
+       dataEmissao:{$gte: new Date(Search[3]),$lte: new Date(Search[4])},
+        dataVencimento: {$gte: new Date(Search[5]),$lte: new Date(Search[6])},
+        nomeFornecedor: new RegExp(Search[7],"i"),
+        valConta: {"$gte": parseFloat(Search[8]),"$lte": parseFloat(Search[9])}    
     }).sort().then((conta)=>{
-    console.log(conta);
         res.render('../public/relatorio',{conta: conta});
     }).catch((erro) => {
             console.log(erro);

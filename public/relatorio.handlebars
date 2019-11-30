@@ -166,7 +166,7 @@
                 <tbody>
                     <tr>
                     <th scope="row">{{codConta}}</th>
-                    <td>{{valConta}}</td>
+                    <td>{{#corrigirValor valConta}}{{/corrigirValor}}</td>
                     <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
                     <td>{{Juros}}</td>
                     <td>{{Multa}}</td>
@@ -204,21 +204,21 @@
         var vencimento2 = new Date();
 
         if(document.getElementsByName("aberta")[0].checked == true){
-            ft += ("aberta") + "+";
+            ft += ("Aberta") + "+";
         }
         else{
             ft += "+";
         }
 
         if(document.getElementsByName("fechada")[0].checked == true){
-            ft += "fechada" + "+";
+            ft += "Fechada" + "+";
         }
         else{
             ft += "+";
         }
 
         if(document.getElementsByName("cancelada")[0].checked == true){
-            ft += "cancelada" + "+";
+            ft += "Cancelada" + "+";
         }
         else{
             ft += "+";
@@ -309,8 +309,6 @@
         else{
             ft += "+";
         }
-
-        alert(ft)
 
         window.location.href="http://localhost:8081/relatorio/"+ft;
     }
