@@ -13,8 +13,90 @@
 				</select>
 			</div>
     <button class="btn btn-primary" type="submit" onclick="sendConta()">Selecionar</button>
+    
 
 </div>
+<form class="form-cadastro" method="POST" action="/validatipocontas">
+<fieldset class="col-md-2,5 mb-5 mr-4 pr-5 pl-3 border rounded" id="simulacao">
+                    <legend style="font-size:medium">Tipo de Conta:</legend>
+                    
+                    <div class="form-row">
+                        <div class="col-md-2 mb-3">
+                            <label for="validationDefault02">Código do Tipo de Conta</label>
+                            <input type="number" class="form-control" id="validationDefault10" placeholder="Cod.Tipo de Conta" required name="CodTipoConta">
+                        </div>
+                    </div>
+
+                     <div class="form-row">
+                    <label for="validationDefault20">Nome do Tipo de Conta</label>
+                <input type="text" class="form-control" id="validationDefault20" placeholder="Nome do Tipo" name="nomeTipoConta">
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadMulta" name="cadMulta">
+                        <label class="custom-control-label" for="cadMulta">Multa: </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadDesconto" name="cadDesconto">
+                        <label class="custom-control-label" for="cadDesconto">Desconto: </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadJuros" name="cadJuros">
+                        <label class="custom-control-label" for="cadJuros">Juros: </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadBarras" name="cadBarras">
+                        <label class="custom-control-label" for="cadBarras">Codigo de Barras: </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadDescricao" name="cadDescricao">
+                        <label class="custom-control-label" for="cadDescricao">Descrição: </label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mt-2">
+                        <input type="checkbox" class="custom-control-input" id="cadObservacao" name="cadObservacao">
+                        <label class="custom-control-label" for="cadObservacao">Observação: </label>
+                    </div>                    
+                </fieldset>
+<button class="btn btn-primary" type="submit">Cadastrar Tipo</button>
+</form>
+
+<div id="new" class="d-flex flex-wrap wrap ">
+    {{#each tipoconta}}
+    <div class = "card mt-4 p-2 flex-row ">
+      <div class = "card-body">
+          <h4>Tipo: {{nomeTipoConta}}</h4>
+          <hr style="margin-bottom: 0.4rem !important;margin-top: 0.4rem">
+          <p>
+            Multa: {{Multa}},
+            </p>
+            Desconto: {{Desconto}},
+            </p>
+            Juros: {{Juros}},
+            </p>
+            codigoBarras: {{codigoBarras}},
+            </p>
+            Descricao: {{Descricao}},
+            </p>
+            Observacao: {{Observacao}}
+          </p>
+          <div class="form-row flex-column justify-content-end">
+            <a href ="/deletarcontastipo/{{_id}}">
+            <button type="button" class="btn btn-danger">Deletar Tipo</button></a>
+            <a href ="/editarcontastipo/elementos">
+            <button type="button" class="btn btn-primary">Editar Tipo</button></a>
+    </div>
+          </div>
+  </div>
+  </div>
+
+    {{else}}
+    <p>Nenhum tipo de conta Cadastrado no sistema!</p>
+    {{/each}}
 
 	<script type="text/javascript">
 
@@ -22,7 +104,7 @@
 
         id = "Padrão"
 
-        window.location.href="http://localhost:8081/cadastrarcontas/"+id;
+        window.location.href="http://localhost:8081/cadastrarcontasTipo/"+id;
 
     }
 

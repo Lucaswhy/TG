@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const tipoContas  = new Schema({
+const TipoContas  = new Schema({
     
     codTipoConta: {
         type: Number,
@@ -16,29 +16,35 @@ const tipoContas  = new Schema({
     },
 
     Multa: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     Desconto: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     Juros: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }, 
 
     codigoBarras: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     Descricao: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
 
     Observacao: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }
     
 });
 
-mongoose.model("tipoconta", tipoContas)
+mongoose.model("tipoconta", TipoContas)

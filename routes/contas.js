@@ -32,10 +32,13 @@ router.get("/cadastrarcontas/", cadConta, function(req,res){
     res.render('../public/cadastrarcontas');
 });
 
-router.get("/cadastrarcontas/:tipo", cadConta, function(req,res){
-    TipoConta.find({nomeTipoConta: req.params.tipo}).then((tipoconta) =>{
-    res.render('../public/cadastrarcontas', {tipoconta: tipoconta});
-    });
+router.get("/cadastrarcontasTipo/:tipo", function(req,res){
+    TipoConta.findOne({nomeTipoConta: req.params.tipo}).then((tipoconta) =>{
+    res.render('../public/cadastrarcontasTipo', {tipoconta: tipoconta});
+    }).catch((erro) => {
+        console.log(erro);
+        req.flash("error_msg","Erro ao consultar os tipos de conta.");
+    }); 
 });
 
 router.post("/validacontas", function(req,res){
@@ -63,6 +66,56 @@ res.redirect('/contacadastrada');
 });
 
 });
+
+router.post("/validatipocontas", function(req,res){
+
+    if(req.body.cadMulta == "on"){
+        var cadMulta = true;
+    }
+
+    if(req.body.cadDesconto == "on"){
+        var cadDesconto = true;
+    }
+
+    if(req.body.cadJuros == "on"){
+        var cadJuros = true;
+    }
+
+    if(req.body.cadBarras == "on"){
+        var cadBarras = true;
+    }
+
+    if(req.body.cadDescricao == "on"){
+        var cadDescricao = true;
+    }
+
+    if(req.body.cadObservacao == "on"){
+        var cadObservacao = true;
+    }
+
+    const novaTipoConta = {
+    
+    codTipoConta: req.body.CodTipoConta,
+    nomeTipoConta: req.body.nomeTipoConta,
+    Multa: cadMulta,
+    Desconto: cadDesconto,
+    Juros: cadJuros,
+    codigoBarras: cadBarras,
+    Descricao: cadDescricao,
+    Observacao: cadObservacao
+    
+}
+
+new TipoConta(novaTipoConta).save().then(function(){
+    req.flash("success_msg","Tipo de conta cadastrado com sucesso. ");
+    res.redirect('/Conta');
+}).catch(function(erro){
+    console.log(erro);
+    req.flash("error_msg", "Erro ao cadastrar tipo de conta." );
+});
+
+});
+
 
 router.get("/contacadastrada", function(req,res){
 res.render('../public/contacadastrada')
@@ -105,6 +158,18 @@ router.get("/deletarcontas/:id", delConta, function(req,res){
         req.flash("error_msg","Conta não encontrada.");
     })
 });
+
+router.get("/deletarcontastipo/:id", delConta, function(req,res){
+    TipoConta.findOneAndDelete({_id : req.params.id}).then((tipoconta) =>{
+        req.flash("success_msg","Tipo de conta deletada. ");
+        res.redirect('/Conta');
+         }).catch((erro) =>{
+        console.log(erro);
+        req.flash("error_msg","Tipo de conta não encontrada.");
+    })
+});
+
+
 //Editar
 router.get("/editarcontas/:id", editConta, function(req,res){
     Conta.findOne({_id: req.params.id}).then((conta) =>{
@@ -140,6 +205,33 @@ router.post("/contaedicao", function(req,res){
             console.log(erro);
             req.flash("error_msg","Conta não editado.");
             res.redirect("/consultarcontas");
+        })
+    })
+});
+
+router.get("/editarcontastipo/:elementos", function(req,res){
+
+    var Params = new Array;
+    Params = req.params.elementos;
+    var Elementos = Params.split("+");
+//http://localhost:8081/editarcontastipo/5de55d0f6d85953efc7a5980+Valor+true+true+true+true+true+true
+    TipoConta.findOne({_id: Elementos[0]}).then((tipoconta)=>{
+        
+        tipoconta.nomeTipoConta = Elementos[1]
+        tipoconta.Multa = Elementos[2]
+        tipoconta.Desconto = Elementos[3]
+        tipoconta.Juros = Elementos[4]
+        tipoconta.codigoBarras = Elementos[5]
+        tipoconta.Descricao = Elementos[6]
+        tipoconta.Observacao = Elementos[7]
+    
+        tipoconta.save().then(() => {
+            req.flash("success_msg","Tipo de conta editado com sucesso!");
+            res.redirect("/Conta");
+        }).catch((erro) =>{
+            console.log(erro);
+            req.flash("error_msg","Tipo de conta não editado.");
+            res.redirect("/Conta");
         })
     })
 });

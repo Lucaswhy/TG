@@ -3,6 +3,9 @@
 	<h2>Cadastrar Contas</h2>
 
 	<form class="form-cadastro" method="POST" action="/validacontas">
+
+    <input type="hidden" name="_id" value="{{tipoconta._id}}">
+
         <br>
         <div class="form-row">
             <div class="col-md-2 mb-3">
@@ -27,10 +30,16 @@
 					<input type="hidden" id="ValCont" name="ValConta" value="">
 				</div>
     		</div>
+            {{#if tipoconta.Juros}}
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Juros</label>
                 <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Juros">
             </div>
+            {{else}}
+            {{/if}}
+
+
+            {{#if tipoconta.Multa}}
             <div class="col-md-2 mb-3">
       			<label for="validationDefaultUsername">Multa</label>
       			<div class="input-group">
@@ -41,10 +50,17 @@
 					<input type="hidden" id="Mult" name="Multa" value="">
 				</div>
     		</div>
+            {{else}}
+            {{/if}}
+
+            {{#if tipoconta.Desconto}}
 			<div class="col-md-2 mb-3">
       			<label for="validationDefault02">Desconto</label>
                 <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Desconto">
     		</div>
+            {{else}}
+            {{/if}}
+            
         </div>
 
 		<div class="form-row">
@@ -52,13 +68,13 @@
 				<label for="inputSituacao">Situação da conta</label>
 				<select id="inputSituacao" class="form-control" name="Situacao">
 					<option>Aberta</option>
-					<option>Fechada</option>
+                    <option>Fechada</option>
 					<option>Cancelada</option>
 				</select>
 			</div>
 		</div>
 
-
+        
         <div class="form-row">
 			<div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Emissão</label>
@@ -70,16 +86,32 @@
             </div>
         </div>
 
+        {{#if tipoconta.Observacao}}
         <div class="form-row">
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Observação</label>
                 <textarea class="form-control" id="validationTextarea" placeholder="Observação" name="Observacao"></textarea >
             </div>
+        {{else}}
+        {{/if}}
+
+        {{#if tipoconta.Descricao}}
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Descrição</label>
                 <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" name="Descricao"></textarea>
         	</div>
 		</div>
+        {{else}}
+        {{/if}}
+
+        {{#if tipoconta.codigoBarras}}
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Código de Barras</label>
+                <textarea class="form-control" id="validationTextarea" placeholder="Código de Barras" name="CodBarras"></textarea >
+            </div>
+        {{else}}
+        {{/if}}
 
         <button class="btn btn-primary" onclick="limpaValor()" type="submit">Cadastrar</button>
 
