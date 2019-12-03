@@ -392,6 +392,7 @@ router.get("/remessa", function(req,res){
     var mm = today.getMonth();
     var yyyy = today.getFullYear();
     var count = 1;
+    var linhas = 1;
 
     try {
         while (fs.existsSync("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
@@ -413,8 +414,45 @@ router.get("/remessa", function(req,res){
 
     fs.writeFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,"                                POSIÇÃO                     \n"+
-    "      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"
-    +"                                      De     Até\n"
+    "      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"+
+    "                                      De     Até\n"+
+    "01.0 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'00000000000000000'"+ "        \n"+
+    "02.0 "+ count +"  "+ count + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'1'"+ "NE065        \n"+
+    "03.0 "+ "remessa_"+dd+"_"+mm+"_"+yyyy+"_"+count+"_ "+count+"                     		"+"3"+"         "+"3"+"      "+ "X(021)"+"         "+"TESTE"+ "NE001       \n"+
+    "04.0 "+ "01 " + count + "                     		"+"4"+"         "+"4"+"      "+ "9(002)"+"         "+"'01'"+ "NE001        \n"+
+    "05.0 " +"COBRANCA " + count + "                     		"+"5"+"         "+"5"+"      "+ "X(008)"+"         "+"COBRANCA"+ "NE002        \n"+
+    "06.0 " + "3746 " + "36928-3" + "                     		"+"6"+"         "+"6"+"      "+ "X(004)"+"         "+"3746 "+ "NE003        \n"+
+    "07.0 " + "Ovelha Pneus" + "Ovelha Pneus LTDA me." + "                     		"+"7"+"         "+"7"+"      "+ "X(011)"+"         "+"Ovelha Pneus "+ "NE005        \n"+
+    "08.0 " + "184 " + "184" + "                     		"+"8"+"         "+"8"+"      "+ "9(003)"+"         "+"'184' "+ "NE006        \n"+
+    "09.0 " + "I" +
+    "010.0 " +
+    "011.0 " +
+    "01.0 " +
+    "01.0 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    "01.1 " +
+    ""
+    /*Código do Registro 01.0
+      Código da Remessa    02.0
+      Literal da Remessa 03.0  
+      Código do serviço 04.0
+      Literal de serviço 05.0
+      Código da Agência 06.0
+      Nome da Empresa 07.0
+      Código do Banco 08.0
+      Nome do Banco 09.0
+      Data de Geração 10.0
+      N° Sequencial - A 11.0
+      N° Sequencial - B 12.0 */
     ,function(erro) {
 
         if(erro) {
