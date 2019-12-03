@@ -1,0 +1,3 @@
+ARQUIVO REMESSA                       REGISTRO HEADER DE ARQUIVO                       TAMANHO DO REGISTRO = 400 bytes
+   NOME DO CAMPO                      SIGNIFICADO                      POSIÇÃO     PICTURE     CONTEÚDO
+TIPO DE REGISTRO          IDENTIFICAÇÃO DO REGISTRO HEADER

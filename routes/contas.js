@@ -380,6 +380,10 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
         res.redirect("/pagarconta");
     }
 
+
+
+});
+
 //Remessa
 router.get("/remessa", function(req,res){
     
@@ -387,20 +391,53 @@ router.get("/remessa", function(req,res){
     var dd = today.getDay();
     var mm = today.getMonth();
     var yyyy = today.getFullYear();
+    var count = 1;
 
-    fs.writeFile("C:\Users\optiplex169\Documents\me\TG\nodejs\remessa\batata" + ".txt" ,"Hello, txt!", function(erro) {
+    try {
+        while (fs.existsSync("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+        ".txt")) {
+          var count = count+1;
+        }
+      } catch(err) {
+        console.error(err)
+      }
+
+      try {
+        while (fs.existsSync("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+        ".txt")) {
+          var count = count+1;
+        }
+      } catch(err) {
+        console.error(err)
+      }
+
+    fs.writeFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+    ".txt" ,"                                POSIÇÃO                     \n"+
+    "      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"
+    +"                                      De     Até\n"
+    ,function(erro) {
 
         if(erro) {
+            console.log(erro);
             throw erro;
         }
+    });
+
+    fs.writeFile("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+    ".txt" ,"Retorno teste", function(erro) {
+
+        if(erro) {
+            console.log(erro);
+            throw erro;
+        }
+    });  
+
+    req.flash("success_msg","Remessa salvo com sucesso ");
+    console.log("Arquivo salvo");
     
-        console.log("Arquivo salvo");
-    }); 
+    res.redirect("/pagarconta");
 });
 
-
-
-});
 
 //Retorno
 router.get("/retorno", function(req,res){
