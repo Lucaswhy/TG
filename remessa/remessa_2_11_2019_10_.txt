@@ -1,0 +1,14 @@
+                                POSIÇÃO                     
+      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO
+                                      De     Até
+01.0 '0' .txt                     		1         1      9(001)         '00000000000000000'         
+02.0 10  10                           		    2         2      9(002)         '1'       NE065        
+03.0 remessa_2_11_2019_10_ 10      		3         3      X(021)         TESTE      NE001       
+04.0 01 10                     		        4         4      9(002)         '01'       NE001        
+05.0 COBRANCA 10                     		5         5      X(008)         COBRANCA       NE002        
+06.0 3746 36928-3                     		6         6      X(004)         3746       NE003        
+07.0 Ovelha PneusOvelha Pneus LTDA me. 		7         7      X(011)         Ovelha Pneus       NE005        
+08.0 184 184                     		8         8      9(003)         '184'      NE006        
+09.0 Banco Itaú BBA S.A. Banco Itaú BBA S.A.           		9         9      X(019)         'Brancos'      NE007        
+010.0 2112019 2112019010         10      9(006)         2112019      NE008        
+011.0 000010 10                     		11         11      9(005)         '000010'         NE009        
