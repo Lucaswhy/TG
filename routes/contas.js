@@ -412,39 +412,94 @@ router.get("/remessa", function(req,res){
         console.error(err)
       }
 
+// REMESSA TIPO 0, HEADER
     fs.writeFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
-    ".txt" ,"                                POSIÇÃO                     \n"+
-    "      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"+
-    "                                      De     Até\n"+
+    ".txt" ,//"                                POSIÇÃO                     \n"+
+    //"      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"+
+    //"                                      De     Até\n"+
     "01.0 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'00000000000000000' "+ "        \n"+
-    "02.0 "+ count +"  "+ count + "                           		    "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'1'       "+ "NE065        \n"+
-    "03.0 "+ "remessa_"+dd+"_"+mm+"_"+yyyy+"_"+count+"_ "+count+"      		"+(linhas=(linhas + 1))+"         "+"3"+"      "+ "X(021)"+"         "+"TESTE      "+ "NE001       \n"+
-    "04.0 "+ "01 " + count + "                     		        "+"4"+"         "+"4"+"      "+ "9(002)"+"         "+"'01'       "+ "NE001        \n"+
-    "05.0 " +"COBRANCA " + count + "                     		"+"5"+"         "+"5"+"      "+ "X(008)"+"         "+"COBRANCA       "+ "NE002        \n"+
-    "06.0 " + "3746 " + "36928-3" + "                     		"+"6"+"         "+"6"+"      "+ "X(004)"+"         "+"3746       "+ "NE003        \n"+
-    "07.0 " + "Ovelha Pneus" + "Ovelha Pneus LTDA me." + " 		"+"7"+"         "+"7"+"      "+ "X(011)"+"         "+"Ovelha Pneus       "+ "NE005        \n"+
-    "08.0 " + "184 " + "184" + "                     		"+"8"+"         "+"8"+"      "+ "9(003)"+"         "+"'184'      "+ "NE006        \n"+
-    "09.0 " + "Banco Itaú BBA S.A. " + "Banco Itaú BBA S.A. " + "          		"+"9"+"         "+"9"+"      "+ "X(019)"+"         "+"'Brancos'      "+ "NE007        \n"+
-    "010.0 " + dd+mm+yyyy+" "+dd+mm+yyyy+ + "                     		"+"10"+"         "+"10"+"      "+ "9(006)"+"         "+dd+mm+yyyy+"      "+ "NE008        \n"+
-    "011.0 " + "0000"+count+ " " + count +  "                     		"+"11"+"         "+"11"+"      "+ "9(005)"+"         "+"'0000"+count+"'         "+ "NE009        \n"
+    "02.0 "+ count +"  "+ count + "                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'1'       "+ "NE065        \n"+
+    "03.0 "+ "remessa_"+dd+"_"+mm+"_"+yyyy+"_"+count+"_ "+count+"      		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(021)"+"         "+"TESTE      "+ "NE001       \n"+
+    "04.0 "+ "01 " + count + "                     		        "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'01'       "+ "NE001        \n"+
+   "05.0 " +"COBRANCA " + count + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(008)"+"         "+"COBRANCA       "+ "NE002        \n"+
+/* BUSCAR AGÊNCIA */    "06.0 " + "3746 " + "36928-3" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(004)"+"         "+"3746       "+ "NE003        \n"+
+    "08.0 " + "Ovelha Pneus " + "Ovelha Pneus LTDA me." + " 		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(011)"+"         "+"Ovelha Pneus       "+ "NE005        \n"+
+    "10.0 " + "184 " + "184" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(003)"+"         "+"'184'      "+ "NE006        \n"+
+/* BUSCAR BANCO */    "11.0 " + "Banco Itaú BBA S.A. " + "Banco Itaú BBA S.A. " + "   "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(019)"+"         "+"'Brancos'      "+ "NE007        \n"+
+    "012.0 " + dd+mm+yyyy+" "+dd+mm+yyyy+ + "                                    		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+dd+mm+yyyy+"      "+ "NE008        \n"+
+    "014.0 " + "0000"+count+ " " + count +  "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(005)"+"         "+"'0000"+count+"'         "+ "NE009        \n"
     /*Código do Registro 01.0
       Código da Remessa    02.0
       Literal da Remessa 03.0  
       Código do serviço 04.0
       Literal de serviço 05.0
       Código da Agência 06.0
-      Nome da Empresa 07.0
-      Código do Banco 08.0
-      Nome do Banco 09.0
-      Data de Geração 10.0
-      N° Sequencial - A 11.0*/
-    ,function(erro) {
+      Nome da Empresa 08.0
+      Código do Banco 10.0
+      Nome do Banco 11.0
+      Data de Geração 12.0
+      N° Sequencial - A 14.0*/
+      ,"UTF-8",function(erro) {
 
         if(erro) {
             console.log(erro);
             throw erro;
         }
     });
+// REMESSA TIPO 1,  DADOS DO TITÚLO
+    fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+    ".txt" ,
+    "01.1 "+ "'1' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'11111111111111111' "+ "        \n"+
+    "02.1 "+"'02' " +"CNPJ"+ "                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'2'       "+ "NE011        \n"+
+    "03.1 "+"0223233556 "+"02.232.3355-6 "+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(010)"+"         "+"'47.664.293/0001-75'       "+ "NE012        \n"+
+    "05.1  "+ "3746 " + "36928-3" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(004)"+"         "+"3746       "+ "NE003        \n"+
+    "06.1 " + "'1' " + "Bradesco" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'1'       "+ "NE027        \n"+
+    "07.1 " + "'3' " + "E-mail" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'3'       "+ "NE028        \n"+
+/*BUSCAR JUROS*/    "09.1" + "'00' " + "'0.75'"  + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'00'       "+ "NE013        \n"+
+    "12.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(002)"+"         "+"      "+ "       \n"+
+    "12A.1 "+ "'1' " + "        "+  "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"      "+ "NE055       \n"+
+    "13.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(002)"+"         "+"      "+ "       \n"+
+ /*DATA DE JUROS*/   "13A.1 " + dd+"_"+mm+"_"+yyyy+" "+ dd+"_"+mm+"_"+yyyy+"                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+"DDMMAAAA      "+ "NE063       \n"+
+/*BUSCAR DESCONTO*/    "13B.1 "+ "'1'" + "DDMMAAAA       "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'1'      "+ "NE061       \n"+
+    "13C.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(022)"+"         "+"      "+ "       \n"+
+    "14.1 " + "'01' " + "'01'" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'010101010101'       "+ "NE016        \n"+
+/*BUSCAR VENCIMENTO*/    "17.1 "+ dd+"_"+mm+"_"+yyyy+" "+ dd+"_"+mm+"_"+yyyy+"                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+"DDMMAAAA      "+ "NE019       \n"+
+/*BUSCAR VALORCONTA*/     "18.1 " + "'200.00' " + "'200.00" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'200.00'       "+ "NE020        \n"+
+/*BUSCAR BANCO*/    "19.1 " + "'104' " + "CAIXA ECONOMICA FEDERAL " + "   "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(003)"+"         "+"'104'      "+ "NE006        \n"+
+    "20.1 " + "'0' " + "CAIXA" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'00001'       "+ "NE021        \n"+
+    "22.1 " + "'A' " + "Aceito"+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'A'       "+ "NE023        \n"+
+/*BUSCAR DATA DE EMISSAO */  "23.1 "+ "DDMMAAAA" + "DDMMAAAA"+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+"'DDMMAAAA'       "+ "NE056        \n"+
+ /*BUSCAR JUROS*/   "26.1 " + "'0.75' " + "0.75"  + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'''0.75'''       "+ "NE064        \n"+
+/*BUSCAR VALOR*/    "28.1 " + "'2' " + "'%15" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'15'       "+ "NE062        \n"+
+    "31.1 "+"'02' " +"CNPJ"+ "                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'2'       "+ "NE011        \n"+
+    "32.1 "+"0223233556 "+"02.232.3355-6 "+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(010)"+"         "+"'47.664.293/0001-75'       "+ "NE012        \n"+
+    "33.1 "+"Ovelha Pneus"+"Ovelha Pneus LTDA me."+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(012)"+"         "+"            "+ "        \n"+
+    "34.1"+"Av. General Carneiro, 377"+"Av. General Carneiro, 377"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(025)"+"         "+"'1'            "+ "NE058        \n"+
+    "35.1"+"Vila Lucy"+"Vila Lucy"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(009)"+"         "+"Vila Lucy            "+ "NE058        \n"+
+    "36.1"+"18035640"+"18035-640"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(008)"+"         "+"'18035640'            "+ "NE058        \n"+
+    ""
+    //Código do Registro 01.1
+    //Tipo Inscrição 02.1
+    //Número Inscrição 03.1
+    //Agência 05.1
+    //ID Emissao 06;1
+    //ID Postagem 07.1
+    //Taxa Permanencia 09.1
+    //Brancos 12.1
+
+    ,"UTF-8",function(erro) {
+
+        if(erro) {
+            console.log(erro);
+            throw erro;
+        }
+    });
+//REMESSA TIPO 9, TRAILER DE REMESSA
+
+
+//ARQUIVO RETORNO
+
+//RETORNO TIPO 0, HEADER DO RETORNO
 
     fs.writeFile("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,"Retorno teste", function(erro) {
@@ -460,6 +515,8 @@ router.get("/remessa", function(req,res){
     
     res.redirect("/pagarconta");
 });
+
+    
 
 
 //Retorno
