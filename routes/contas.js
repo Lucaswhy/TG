@@ -385,7 +385,7 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
 });
 
 //Remessa
-router.get("/remessa", function(req,res){
+router.get("/remessa/id:", function(req,res){
     
     var today = new Date();
     var dd = today.getDay();
@@ -393,6 +393,12 @@ router.get("/remessa", function(req,res){
     var yyyy = today.getFullYear();
     var count = 1;
     var linhas = 1;
+    var i = 0;
+
+    var Params = new Array;
+    Params = req.params.id;
+    var registros = Params.split("+");
+
 
     try {
         while (fs.existsSync("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
@@ -446,6 +452,8 @@ router.get("/remessa", function(req,res){
             throw erro;
         }
     });
+
+for(i=0; i < registros.length; i++){
 // REMESSA TIPO 1,  DADOS DO TITÚLO
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,
@@ -473,20 +481,54 @@ router.get("/remessa", function(req,res){
 /*BUSCAR VALOR*/    "28.1 " + "'2' " + "'%15" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'15'       "+ "NE062        \n"+
     "31.1 "+"'02' " +"CNPJ"+ "                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'2'       "+ "NE011        \n"+
     "32.1 "+"0223233556 "+"02.232.3355-6 "+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(010)"+"         "+"'47.664.293/0001-75'       "+ "NE012        \n"+
-    "33.1 "+"Ovelha Pneus"+"Ovelha Pneus LTDA me."+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(012)"+"         "+"            "+ "        \n"+
-    "34.1"+"Av. General Carneiro, 377"+"Av. General Carneiro, 377"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(025)"+"         "+"'1'            "+ "NE058        \n"+
-    "35.1"+"Vila Lucy"+"Vila Lucy"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(009)"+"         "+"Vila Lucy            "+ "NE058        \n"+
-    "36.1"+"18035640"+"18035-640"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(008)"+"         "+"'18035640'            "+ "NE058        \n"+
-    ""
-    //Código do Registro 01.1
-    //Tipo Inscrição 02.1
-    //Número Inscrição 03.1
-    //Agência 05.1
-    //ID Emissao 06;1
-    //ID Postagem 07.1
-    //Taxa Permanencia 09.1
-    //Brancos 12.1
+    "33.1 "+"Ovelha Pneus "+"Ovelha Pneus LTDA me."+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(012)"+"         "+"            "+ "        \n"+
+    "34.1 "+"Av. General Carneiro, 377 "+"Av. General Carneiro, 377"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(025)"+"         "+"'1'            "+ "NE058        \n"+
+    "35.1 "+"Vila Lucy "+"Vila Lucy"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(009)"+"         "+"Vila Lucy            "+ "NE058        \n"+
+    "36.1 "+"18035640 "+"18035-640"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(008)"+"         "+"'18035640'            "+ "NE058        \n"+
+    "37.1 "+"Sorocaba "+"Sorocaba"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(008)"+"         "+"Sorocaba            "+ "NE058        \n"+
+    "38.1 "+"SP "+"São Paulo"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(008)"+"         "+"SP            "+ "NE058        \n"+
+    "39.1 "+"DDMMAAAA "+"DDMMAAAA"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+"DDMMYYYY            "+ "NE059        \n"+
+/*BUSCAR VALOR DA MULTA*/"40.1 "+"'Multa' "+"Multa"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(010)"+"         "+"'Multa'            "+ "       \n"+
+    "42.1 "+"'00' "+"Instrução 3"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'00'            "+ "       \n"+
+    "44.1 "+"'1' "+"1"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'11111111111111'"+ "       \n"+                
+    "45.1 "+"'"+i+"' 00000"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+""+ "       \n"                
+    /*Código do Registro 01.1
+    /Tipo Inscrição 02.1
+    /Número Inscrição 03.1
+    /Agência 05.1
+    /ID Emissao 06;1
+    /ID Postagem 07.1
+    /Taxa Permanencia 09.1
+    /Brancos 12.1
+    /Uso livre banco/empresa 12A.1
+    /Brancos 13.1
+    Data Juros 13A.1
+    Código Desconto 13B.1
+    Brancos 13C.1
+    Carteira 14.1
+    Vencimento 17.1
+    Valor do Título 18.1
+    Código do Banco 19.1
+    Agência 20.1
+    Aceite 22.1
+    Data Emissao Titulo 23.1
+    Juros Mora 26.1
+    Valor Percentual do desconto 28.1
+    Tipo Inscrição 31.1
+    Número Inscrição 32.1
+    Nome 33.1
+    Endereço 34.1
+    Bairro 35.1
+    CEP 36.1
+    Cidade 37.1
+    UF 38.1
+    Data da Multa 39.1
+    Valor da Multa 40.1
+    Instrução 3 42.1
+    Código da moeda 44.1
+    Número Sequencial 45.1
 
+                    */
     ,"UTF-8",function(erro) {
 
         if(erro) {
@@ -494,7 +536,22 @@ router.get("/remessa", function(req,res){
             throw erro;
         }
     });
+}
+
 //REMESSA TIPO 9, TRAILER DE REMESSA
+async function trailerRemessa(){ await fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+    ".txt" ,  "01.9 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
+    "02.9 "+"'"+i+"' 00000"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+""+ "       \n"
+    
+    ,"UTF-8",function(erro) {
+
+        if(erro) {
+            console.log(erro);
+            throw erro;
+        }
+    });
+}
+trailerRemessa();
 
 
 //ARQUIVO RETORNO
