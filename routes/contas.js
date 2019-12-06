@@ -385,15 +385,20 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
 });
 
 //Remessa
-router.get("/remessa/id:", function(req,res){
-    
-    var today = new Date();
-    var dd = today.getDay();
-    var mm = today.getMonth();
-    var yyyy = today.getFullYear();
+router.get("/remessa/:banco/:agencia/:id", function(req,res){
+
+    var today = moment().format('DD/MM/YYYY');
+    var hoje = new Date();
+    var dd = hoje.getDay();
+    var mm = hoje.getMonth();
+    var yyyy = hoje.getFullYear();
     var count = 1;
     var linhas = 1;
     var i = 0;
+    var erroRemessa = 0;
+
+    var bank = req.params.banco;
+    var agency = req.params.agencia;
 
     var Params = new Array;
     Params = req.params.id;
@@ -428,10 +433,10 @@ router.get("/remessa/id:", function(req,res){
     "03.0 "+ "remessa_"+dd+"_"+mm+"_"+yyyy+"_"+count+"_ "+count+"      		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(021)"+"         "+"TESTE      "+ "NE001       \n"+
     "04.0 "+ "01 " + count + "                     		        "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'01'       "+ "NE001        \n"+
    "05.0 " +"COBRANCA " + count + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(008)"+"         "+"COBRANCA       "+ "NE002        \n"+
-/* BUSCAR AGÊNCIA */    "06.0 " + "3746 " + "36928-3" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(004)"+"         "+"3746       "+ "NE003        \n"+
+/* BUSCAR AGÊNCIA */    "06.0 '" +agency+"' " +agency + "'                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(004)"+"         "+agency+ " NE003        \n"+
     "08.0 " + "Ovelha Pneus " + "Ovelha Pneus LTDA me." + " 		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(011)"+"         "+"Ovelha Pneus       "+ "NE005        \n"+
     "10.0 " + "184 " + "184" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(003)"+"         "+"'184'      "+ "NE006        \n"+
-/* BUSCAR BANCO */    "11.0 " + "Banco Itaú BBA S.A. " + "Banco Itaú BBA S.A. " + "   "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(019)"+"         "+"'Brancos'      "+ "NE007        \n"+
+/* BUSCAR BANCO */    "11.0 '" + bank +"' '" +  bank + "'   "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(019)"+"         "+"'Brancos'      "+ " NE007        \n"+
     "012.0 " + dd+mm+yyyy+" "+dd+mm+yyyy+ + "                                    		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+dd+mm+yyyy+"      "+ "NE008        \n"+
     "014.0 " + "0000"+count+ " " + count +  "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(005)"+"         "+"'0000"+count+"'         "+ "NE009        \n"
     /*Código do Registro 01.0
@@ -453,7 +458,22 @@ router.get("/remessa/id:", function(req,res){
         }
     });
 
+//http://localhost:8081/remessa/Itau/6424/5ddd5b96016f3f08c0b6ebab+5ddd5b72016f3f08c0b6ebaa
+//http://localhost:8081/remessa/Itau/6424/5ddd5b96016f3f08c0b6ebab
+
+async function dadosRemessa() {
 for(i=0; i < registros.length; i++){
+    
+Conta.findOne({_id: registros[i]}).then((conta) =>{
+
+
+    var dataJuros = moment(conta.DataVencimento).subtract(moment(),'days').format('DD/MM/YYYY');
+    var dVencimento = moment(conta.DataVencimento).format('DD/MM/YYYY');
+    console.log(dataJuros);
+    console.log(dVencimento);
+    console.log(today);
+    console.log(conta.NomeFornecedor);
+
 // REMESSA TIPO 1,  DADOS DO TITÚLO
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,
@@ -463,7 +483,7 @@ for(i=0; i < registros.length; i++){
     "05.1  "+ "3746 " + "36928-3" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(004)"+"         "+"3746       "+ "NE003        \n"+
     "06.1 " + "'1' " + "Bradesco" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'1'       "+ "NE027        \n"+
     "07.1 " + "'3' " + "E-mail" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'3'       "+ "NE028        \n"+
-/*BUSCAR JUROS*/    "09.1" + "'00' " + "'0.75'"  + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'00'       "+ "NE013        \n"+
+/*BUSCAR JUROS*/    "09.1" + "'00' " + "'"+conta.Juros+"'                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'00'       "+ "NE013        \n"+
     "12.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(002)"+"         "+"      "+ "       \n"+
     "12A.1 "+ "'1' " + "        "+  "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"      "+ "NE055       \n"+
     "13.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(002)"+"         "+"      "+ "       \n"+
@@ -472,7 +492,7 @@ for(i=0; i < registros.length; i++){
     "13C.1 " + "  " + "         "+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(022)"+"         "+"      "+ "       \n"+
     "14.1 " + "'01' " + "'01'" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(002)"+"         "+"'010101010101'       "+ "NE016        \n"+
 /*BUSCAR VENCIMENTO*/    "17.1 "+ dd+"_"+mm+"_"+yyyy+" "+ dd+"_"+mm+"_"+yyyy+"                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+"DDMMAAAA      "+ "NE019       \n"+
-/*BUSCAR VALORCONTA*/     "18.1 " + "'200.00' " + "'200.00" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'200.00'       "+ "NE020        \n"+
+/*BUSCAR VALORCONTA*/     "18.1 " + " '200.00' " + "'200.00" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(013)"+"         "+"'200.00'       "+ "NE020        \n"+
 /*BUSCAR BANCO*/    "19.1 " + "'104' " + "CAIXA ECONOMICA FEDERAL " + "   "+(linhas=(linhas + 1))+"         "+linhas+"      "+ "X(003)"+"         "+"'104'      "+ "NE006        \n"+
     "20.1 " + "'0' " + "CAIXA" + "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'00001'       "+ "NE021        \n"+
     "22.1 " + "'A' " + "Aceito"+ "                     		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(001)"+"         "+"'A'       "+ "NE023        \n"+
@@ -536,10 +556,24 @@ for(i=0; i < registros.length; i++){
             throw erro;
         }
     });
+
+    
+}).catch((erro) =>{
+    console.log(erro);
+    erroRemessa = 1;
+    req.flash("error_msg","Houve um erro ao consultar as contas. A remessa não será enviada. Contate o Administrador.");
+    res.redirect("/pagarconta");
+    })
+
+    }
 }
 
 //REMESSA TIPO 9, TRAILER DE REMESSA
-async function trailerRemessa(){ await fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+async function trailerRemessa(){
+    
+    await dadosRemessa();
+    
+    fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,  "01.9 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
     "02.9 "+"'"+i+"' 00000"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+""+ "       \n"
     
