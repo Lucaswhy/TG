@@ -473,7 +473,7 @@ router.get("/remessa/:banco/:numerobanco/:agencia/:id", function(req,res){
 
 // http://localhost:8081/remessa/Itau/108/6424/5dee9bd1ce1f16182c0b6622+5dee9ba8ce1f16182c0b6621
 
-async function dadosRemessa() {
+function dadosRemessa() {
 for(i=0; i < registros.length; i++){
     
 Conta.findOne({_id: registros[i]}).then((conta) =>{
@@ -590,7 +590,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
 
 //REMESSA TIPO 9, TRAILER DE REMESSA
 async function trailerRemessa(){
-    
+
     await dadosRemessa();
     
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
@@ -610,18 +610,36 @@ trailerRemessa();
 
 //ARQUIVO RETORNO
 
+var linhas2 = 1;
+
 //RETORNO TIPO 0, HEADER DO RETORNO
 
     if(erroRemessa != 1){
 
     fs.writeFile("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
-    ".txt" ,"Retorno teste", function(erro) {
+    ".txt" ,//"                                POSIÇÃO                     \n"+
+    //"      CAMPO                                            PICTURE           CONTEÚDO          DESCRIÇÃO\n"+
+    //"                                      De     Até\n"+
+    "01.0 "+ "'0' " + ".txt" + "                     		"+linhas2+"         "+linhas2+"      "+ "9(001)"+"         "+"'00000000000000000' "+ "        \n"+
+    "02.0 "+ count +"  "+ count + "                           		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(002)"+"         "+"'1'       "+ "NE065        \n"+
+    "03.0 "+ "retorno_SIGCB"+dd+"_"+mm+"_"+yyyy+"_"+count+"_ "+count+"      		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "X(021)"+"         "+"TESTE      "+ "NE001       \n"+
+    "04.0 "+ "01 " + count + "                     		        "+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(002)"+"         "+"'01'       "+ "NE001        \n"+
+   "05.0 " +"COBRANCA " + count + "                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "X(008)"+"         "+"COBRANCA       "+ "NE002        \n"+
+    "06.0 '" +agency+"' " +agency + "'                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "X(004)"+"         "+agency+ " NE003        \n"+
+    "08.0 " + "Ovelha Pneus " + "Ovelha Pneus LTDA me." + " 		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "X(011)"+"         "+"Ovelha Pneus       "+ "NE005        \n"+
+    "10.0 " + "184 " + "184" + "                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(003)"+"         "+"'184'      "+ "NE006        \n"+
+    "11.0 '" + bank +"' '" +  bank + "'   "+(linhas=(linhas2 + 1))+"         "+linhas2+"      "+ "X(019)"+"         "+"'Brancos'      "+ " NE007        \n"+
+    "012.0 " + dd+mm+yyyy+" "+dd+mm+yyyy+ + "                                    		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(006)"+"         "+dd+mm+yyyy+"      "+ "NE008        \n"+
+    "014.0 " + "0000"+count+ " " + count +  "                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(005)"+"         "+"'0000"+count+"'         "+ "NE009        \n"
+    , function(erro) {
 
         if(erro) {
             console.log(erro);
             throw erro;
         }
-    });  
+    });
+
+    
 
     req.flash("success_msg","Remessa salvo com sucesso. Atualize a Página para atualizar as contas! ");
     console.log("Arquivo salvo");
