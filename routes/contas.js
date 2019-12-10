@@ -18,6 +18,8 @@ const {delConta} = require("../helpers/delConta");
 const {editConta} = require("../helpers/editConta");
 
 var fs = require('fs');
+const { promisify } = require('util');
+const aFile = promisify(require('fs').appendFile);
 
 router.get("/Conta", cadConta, function(req,res){
     TipoConta.find().sort({codTipoConta: 'asc'}).then((tipoconta) =>{
@@ -473,7 +475,7 @@ router.get("/remessa/:banco/:numerobanco/:agencia/:id", function(req,res){
 
 // http://localhost:8081/remessa/Itau/108/6424/5dee9bd1ce1f16182c0b6622+5dee9ba8ce1f16182c0b6621
 
-function dadosRemessa() {
+async function dadosRemessa() {
 for(i=0; i < registros.length; i++){
     
 Conta.findOne({_id: registros[i]}).then((conta) =>{
@@ -484,6 +486,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
     var dEmissao = moment(conta.dataEmissao).format('DDMMYYYY');
 
 // REMESSA TIPO 1,  DADOS DO TITÚLO
+
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,
     "01.1 "+ "'1' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'11111111111111111' "+ "        \n"+
@@ -556,15 +559,16 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
     Instrução 3 42.1
     Código da moeda 44.1
     Número Sequencial 45.1
-
                     */
+                   
     ,"UTF-8",function(erro) {
 
         if(erro) {
             console.log(erro);
             throw erro;
         }
-    });
+    })
+
 
     conta.Situacao = "Fechada";
     conta.Pagador = String(req.user.Nome);
@@ -575,9 +579,10 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
         console.log(erro);
         req.flash("error_msg","Erro ao salvar o pagamento da conta. Contate o Administrador.");
         res.redirect("/pagarconta");
-    })
-
+})
     
+
+ 
 }).catch((erro) =>{
     console.log(erro);
     erroRemessa = 1;
@@ -585,13 +590,11 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
     res.redirect("/pagarconta");
     })
 
-    }
+    } 
 }
 
 //REMESSA TIPO 9, TRAILER DE REMESSA
 async function trailerRemessa(){
-
-    await dadosRemessa();
     
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,  "01.9 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
@@ -605,8 +608,18 @@ async function trailerRemessa(){
         }
     });
 }
-trailerRemessa();
 
+async function geraRemessa(){
+    try{
+    await dadosRemessa();
+    trailerRemessa();
+    } catch(erro) {
+        console.log(erro);
+    }
+
+}
+
+geraRemessa();
 
 //ARQUIVO RETORNO
 
@@ -632,6 +645,29 @@ var linhas2 = 1;
     "012.0 " + dd+mm+yyyy+" "+dd+mm+yyyy+ + "                                    		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(006)"+"         "+dd+mm+yyyy+"      "+ "NE008        \n"+
     "014.0 " + "0000"+count+ " " + count +  "                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(005)"+"         "+"'0000"+count+"'         "+ "NE009        \n"
     , function(erro) {
+
+        if(erro) {
+            console.log(erro);
+            throw erro;
+        }
+    });
+
+    for(i=0; i < registros.length; i++){
+        fs.appendFile("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+        ".txt" ,"0"+i+".1 "+""+"retorno_SIGCB_"+dd+"_"+mm+"_"+yyyy+"_"+count+"_"+".txt                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "X(020)"+"         "+"OK "+ "        \n"
+        ,function(erro) {
+
+            if(erro) {
+                console.log(erro);
+                throw erro;
+            }
+        });
+    }
+    fs.appendFile("./retorno/retorno_SIGCB_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
+    ".txt", "01.9 "+ "'0' " + ".txt" + "                     		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
+    "02.9 "+"'"+i+"' 00000"+"                           		"+(linhas2=(linhas2 + 1))+"         "+linhas2+"      "+ "9(006)"+"         "+""+ "       \n"
+
+    ,function(erro) {
 
         if(erro) {
             console.log(erro);
