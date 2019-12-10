@@ -16,6 +16,10 @@ const {cadConta} = require("../helpers/cadConta");
 const {conConta} = require("../helpers/conConta");
 const {delConta} = require("../helpers/delConta");
 const {editConta} = require("../helpers/editConta");
+const {pagConta} = require("../helpers/pagConta");
+const {gerarSim} = require("../helpers/gerarSim");
+const {emtRelatorio} = require("../helpers/emtRelatorio");
+const {conRetorno} = require("../helpers/conRetorno");
 
 var fs = require('fs');
 const { promisify } = require('util');
@@ -239,7 +243,7 @@ router.get("/editarcontastipo/:elementos", function(req,res){
 });
 
 //Simulacao
-router.get("/simulacao", function(req,res){
+router.get("/simulacao", gerarSim, function(req,res){
     Conta.find().sort({codConta: 'asc'}).then((conta) =>{
         Contabancaria.find({SituacaoContaBanc: "Ativa"}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
         res.render('../public/simulacao', {conta: conta,contabancaria: contabancaria});
@@ -255,7 +259,7 @@ router.get("/simulacao", function(req,res){
 
 
 //Arquivo remessa + Pagar avulso
-router.get("/pagarconta", function(req,res){
+router.get("/pagarconta", pagConta, function(req,res){
     Conta.find({Situacao: "Aberta"}).sort({codConta: 'asc'}).then((conta)=>{
         Contabancaria.find({SituacaoContaBanc: "Ativa"}).populate({path: "Agencia",populate:{path: "Banco"}}).sort({codContaBanc: 'asc'}).then((contabancaria) =>{
     res.render('../public/pagarconta',{conta: conta,contabancaria: contabancaria});
@@ -688,12 +692,12 @@ var linhas2 = 1;
 
 
 //Retorno
-router.get("/retorno", function(req,res){
+router.get("/retorno", conRetorno, function(req,res){
     res.render('../public/consultarretorno');
 });
 
 //Relatorios
-router.get("/relatorio", function(req,res){
+router.get("/relatorio", emtRelatorio, function(req,res){
     res.render('../public/relatorio');
 });
 
