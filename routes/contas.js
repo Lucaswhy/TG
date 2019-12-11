@@ -571,7 +571,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
             console.log(erro);
             throw erro;
         }
-    })
+});
 
 
     conta.Situacao = "Fechada";
@@ -599,7 +599,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
 
 //REMESSA TIPO 9, TRAILER DE REMESSA
 async function trailerRemessa(){
-    
+    setTimeout( function write(){    
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,  "01.9 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
     "02.9 "+"'"+i+"' 00000"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+""+ "       \n"
@@ -610,6 +610,7 @@ async function trailerRemessa(){
             console.log(erro);
             throw erro;
         }
+    }, 5000);
     });
 }
 
