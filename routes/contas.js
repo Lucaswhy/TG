@@ -22,8 +22,6 @@ const {emtRelatorio} = require("../helpers/emtRelatorio");
 const {conRetorno} = require("../helpers/conRetorno");
 
 var fs = require('fs');
-const { promisify } = require('util');
-const aFile = promisify(require('fs').appendFile);
 
 router.get("/Conta", cadConta, function(req,res){
     TipoConta.find().sort({codTipoConta: 'asc'}).then((tipoconta) =>{
@@ -693,8 +691,31 @@ var linhas2 = 1;
 
 
 //Retorno
-router.get("/retorno", conRetorno, function(req,res){
-    res.render('../public/consultarretorno');
+router.get("/retorno", function(req,res){
+    
+const path = require('path');
+const directoryPath = path.join(__dirname, '../retorno');
+var retorno = new Array;
+var i = 0;
+
+fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+        res.render('../public/home');
+        req.flash("error_msg","Erro ao consultar arquivos retornos. Contate o administrador.");
+        return console.log('Impossível encontrar o diretório de retornos.  ' + err);
+    } 
+
+    
+
+    files.forEach(function (dado) {
+        retorno[i] = {
+        Nome: dado
+        }
+        i++;
+    });
+    res.render('../public/consultarretorno',{retorno: retorno});
+});
+
 });
 
 //Relatorios
