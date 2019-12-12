@@ -716,6 +716,15 @@ fs.readdir(directoryPath, function (err, files) {
     res.render('../public/consultarretorno',{retorno: retorno});
 });
 
+router.get('/retorno/download/:arquivo', function(req, res){
+    var Arquivo = req.params.arquivo;
+    console.log(Arquivo);
+    const file = `./retorno/`+Arquivo;
+    res.download(file); 
+  });
+
+
+
 });
 
 //Relatorios
