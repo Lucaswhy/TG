@@ -414,14 +414,14 @@ router.post("/validaedicao", isAdmin, function(req,res){
                             usuario.cadForn = true;
                         }
                         else{
-                                usuario.cadForn = false;
+                            usuario.cadForn = false;
                         }
                     
                         if(req.body.conForn == "on"){
-                                usuario.conForn = true;
+                            usuario.conForn = true;
                         }
                         else{
-                                usuario.conForn = false;
+                            usuario.conForn = false;
                         }
                     
                         if(req.body.editForn == "on"){
@@ -511,7 +511,7 @@ router.post("/validaedicao", isAdmin, function(req,res){
                         if(req.body.editContBanc == "on"){
                             usuario.editContBanc = true;
                         }
-                            else{
+                        else{
                             usuario.editContBanc = false;
                         }
                     
@@ -541,6 +541,18 @@ router.post("/validaedicao", isAdmin, function(req,res){
                         }
                         else{
                             usuario.gerarRemessa = false;
+                        }
+                        if(req.body.pagarConta == "on"){
+                            usuario.pagarConta = true;
+                        }
+                        else{
+                            usuario.pagarConta = false;
+                        }
+                        if(req.body.conRetorno == "on"){
+                            usuario.conRetorno = true;
+                        }
+                        else{
+                            usuario.conRetorno = false;
                         }
         
         

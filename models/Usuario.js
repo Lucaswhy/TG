@@ -273,6 +273,14 @@ const Usuario  = new Schema({
     gerarRemessa: {
         type: Boolean,
         default: false
+    },
+    pagarConta: {
+        type: Boolean,
+        default: false
+    },
+    conRetorno: {
+        type: Boolean,
+        default: false
     }
 
 });

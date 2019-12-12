@@ -54,6 +54,7 @@ router.get('/consultarcontabancaria', conContBanc, function(req,res){
            req.flash("error_msg","Erro ao consultar banco.");
        }); 
    });
+   
 //Deletar
 router.get("/deletarcontabancaria/:id", delContBanc, function(req,res){
     Contabancaria.findOneAndDelete({_id : req.params.id}).then((contabancaria) =>{
