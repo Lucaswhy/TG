@@ -19,6 +19,7 @@ const {editConta} = require("../helpers/editConta");
 const {pagConta} = require("../helpers/pagConta");
 const {gerarSim} = require("../helpers/gerarSim");
 const {emtRelatorio} = require("../helpers/emtRelatorio");
+const {gerRemessa} = require("../helpers/gerRemessa");
 const {conRetorno} = require("../helpers/conRetorno");
 
 var fs = require('fs');
@@ -120,7 +121,6 @@ new TipoConta(novaTipoConta).save().then(function(){
 
 });
 
-
 router.get("/contacadastrada", function(req,res){
 res.render('../public/contacadastrada')
 });
@@ -186,7 +186,7 @@ router.get("/editarcontas/:id", editConta, function(req,res){
     });
 });
 
-router.post("/contaedicao", function(req,res){
+router.post("/contaedicao",editConta, function(req,res){
     Conta.findOne({codConta: req.body.CodConta}).then((conta)=>{
         
         conta.codConta = req.body.CodConta
@@ -272,7 +272,7 @@ router.get("/pagarconta", pagConta, function(req,res){
 
 //Pagando Avulso
 
-router.get("/validaPagarConta/:id", function(req,res){
+router.get("/validaPagarConta/:id",pagConta, function(req,res){
 
     var Params = new Array;
     Params = req.params.id;
@@ -316,7 +316,7 @@ router.get("/validaPagarConta/:id", function(req,res){
     }
 });
 
-router.get("/validaPagarContaB/:cb/:id", function(req,res){
+router.get("/validaPagarContaB/:cb/:id",pagConta, function(req,res){
     
     
     var Params = new Array;
@@ -399,7 +399,7 @@ router.get("/validaPagarContaB/:cb/:id", function(req,res){
 });
 
 //Remessa
-router.get("/remessa/:banco/:numerobanco/:agencia/:id", function(req,res){
+router.get("/remessa/:banco/:numerobanco/:agencia/:id",gerRemessa, function(req,res){
 
     var hoje = new Date();
     var dd = hoje.getDay();
@@ -691,7 +691,7 @@ var linhas2 = 1;
 
 
 //Retorno
-router.get("/retorno", function(req,res){
+router.get("/retorno", conRetorno, function(req,res){
     
 const path = require('path');
 const directoryPath = path.join(__dirname, '../retorno');
@@ -716,9 +716,8 @@ fs.readdir(directoryPath, function (err, files) {
     res.render('../public/consultarretorno',{retorno: retorno});
 });
 
-router.get('/retorno/download/:arquivo', function(req, res){
+router.get('/retorno/download/:arquivo', conRetorno, function(req, res){
     var Arquivo = req.params.arquivo;
-    console.log(Arquivo);
     const file = `./retorno/`+Arquivo;
     res.download(file); 
   });
