@@ -22,8 +22,6 @@ const {emtRelatorio} = require("../helpers/emtRelatorio");
 const {conRetorno} = require("../helpers/conRetorno");
 
 var fs = require('fs');
-const { promisify } = require('util');
-const aFile = promisify(require('fs').appendFile);
 
 router.get("/Conta", cadConta, function(req,res){
     TipoConta.find().sort({codTipoConta: 'asc'}).then((tipoconta) =>{
@@ -571,7 +569,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
             console.log(erro);
             throw erro;
         }
-    })
+});
 
 
     conta.Situacao = "Fechada";
@@ -599,7 +597,7 @@ Conta.findOne({_id: registros[i]}).then((conta) =>{
 
 //REMESSA TIPO 9, TRAILER DE REMESSA
 async function trailerRemessa(){
-    
+    setTimeout( function write(){    
     fs.appendFile("./remessa/remessa_" +dd+"_"+mm+"_"+yyyy+"_"+count+"_"+
     ".txt" ,  "01.9 "+ "'0' " + ".txt" + "                     		"+linhas+"         "+linhas+"      "+ "9(001)"+"         "+"'999999999999999' "+ "        \n"+
     "02.9 "+"'"+i+"' 00000"+"                           		"+(linhas=(linhas + 1))+"         "+linhas+"      "+ "9(006)"+"         "+""+ "       \n"
@@ -610,6 +608,7 @@ async function trailerRemessa(){
             console.log(erro);
             throw erro;
         }
+    }, 5000);
     });
 }
 
@@ -692,8 +691,31 @@ var linhas2 = 1;
 
 
 //Retorno
-router.get("/retorno", conRetorno, function(req,res){
-    res.render('../public/consultarretorno');
+router.get("/retorno", function(req,res){
+    
+const path = require('path');
+const directoryPath = path.join(__dirname, '../retorno');
+var retorno = new Array;
+var i = 0;
+
+fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+        res.render('../public/home');
+        req.flash("error_msg","Erro ao consultar arquivos retornos. Contate o administrador.");
+        return console.log('Impossível encontrar o diretório de retornos.  ' + err);
+    } 
+
+    
+
+    files.forEach(function (dado) {
+        retorno[i] = {
+        Nome: dado
+        }
+        i++;
+    });
+    res.render('../public/consultarretorno',{retorno: retorno});
+});
+
 });
 
 //Relatorios
