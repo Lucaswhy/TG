@@ -16,6 +16,7 @@ const {cadConta} = require("../helpers/cadConta");
 const {conConta} = require("../helpers/conConta");
 const {delConta} = require("../helpers/delConta");
 const {editConta} = require("../helpers/editConta");
+const {editContaTipo} = require("../helpers/editContaTipo");
 const {pagConta} = require("../helpers/pagConta");
 const {gerarSim} = require("../helpers/gerarSim");
 const {emtRelatorio} = require("../helpers/emtRelatorio");
@@ -213,7 +214,7 @@ router.post("/contaedicao",editConta, function(req,res){
     })
 });
 
-router.get("/editarcontastipo/:elementos", function(req,res){
+router.get("/editarcontastipo/:elementos", editContaTipo, function(req,res){
 
     var Params = new Array;
     Params = req.params.elementos;

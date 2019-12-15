@@ -281,6 +281,10 @@ const Usuario  = new Schema({
     conRetorno: {
         type: Boolean,
         default: false
+    },
+    editContaTipo: {
+        type: Boolean,
+        default: false
     }
 
 });

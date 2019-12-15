@@ -554,6 +554,12 @@ router.post("/validaedicao", isAdmin, function(req,res){
                         else{
                             usuario.conRetorno = false;
                         }
+                        if(req.body.editContaTipo == "on"){
+                            usuario.editContaTipo = true;
+                        }
+                        else{
+                            usuario.editContaTipo = false;
+                        }
         
         
         usuario.save().then(() => {
