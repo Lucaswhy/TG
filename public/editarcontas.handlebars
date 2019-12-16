@@ -66,83 +66,116 @@
 
 	<form class="form-cadastro" method="POST" action="/contaedicao">
 
-		<input type="hidden" name="_id" value="{{conta._id}}">
+        <input type="hidden" name="_id" value="{{tipoconta._id}}">
+
         <br>
         <div class="form-row">
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Código da Conta</label>
-                <input type="number" class="form-control" id="validationDefault01" placeholder="Cod. Conta" required name="CodConta" value="{{conta.codConta}}"> 
-            </div>            
-			<div class="col-md-4 mb-3">
+                <input type="number" class="form-control" id="validationDefault02" placeholder="Cod. Conta" required name="CodConta" value="{{conta.codConta}}">
+            </div>
+            
+			<div class="col-md-3 mb-3">
                 <label for="validationDefault02">Fornecedor</label>
-                <input type="text" class="form-control" id="validationDefault03" placeholder="Fornecedor" required name="NomeFornecedor" value="{{conta.nomeFornecedor}}">
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Nome do fornecedor" required name="NomeFornecedor" value="{{conta.nomeFornecedor}}">
             </div>
   		</div>
         
         <div class="form-row">
-            <div class="col-md-2 mb-3">
+			<div class="col-md-2 mb-3">
       			<label for="validationDefaultUsername">Valor da Conta</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="valconta">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault02" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2" value="{{#corrigirValor conta.valConta}}{{/corrigirValor}}">
-      			    <input type="hidden" id="ValCont" name="ValConta" value="">
-                </div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2" value="{{#corrigirValor conta.valConta}}{{/corrigirValor}}">
+					<input type="hidden" id="ValCont" name="ValConta" value="">
+				</div>
     		</div>
+            {{#if tipoconta.Juros}}
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Juros</label>
-                <input type="text" class="form-control percent" id="validationDefault04" placeholder="0%" required name="Juros" value="{{conta.Juros}}">
+                <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Juros" value="{{conta.Juros}}">
             </div>
+            {{else}}
+            {{/if}}
+
+
+            {{#if tipoconta.Multa}}
             <div class="col-md-2 mb-3">
       			<label for="validationDefaultUsername">Multa</label>
       			<div class="input-group">
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault05" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2" value="{{#corrigirValor conta.Multa}}{{/corrigirValor}}">
-      			    <input type="hidden" id="Mult" name="Multa" value="">
-                  </div>
+        			<input type="text" class="form-control money" id="validationDefaultUsername" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2" value="{{#corrigirValor conta.Multa}}{{/corrigirValor}}">
+					<input type="hidden" id="Mult" name="Multa" value="">
+				</div>
     		</div>
-            <div class="col-md-2 mb-3">
-                <label for="validationDefault02">Desconto</label>
-                <input type="text" class="form-control percent" id="Desconto" placeholder="0%" required name="Desconto" value="{{conta.Desconto}}">
-            </div>
+            {{else}}
+            {{/if}}
+
+            {{#if tipoconta.Desconto}}
+			<div class="col-md-2 mb-3">
+      			<label for="validationDefault02">Desconto</label>
+                <input type="text" class="form-control percent" id="validationDefault02" placeholder="0%" required name="Desconto" value="{{conta.Desconto}}">
+    		</div>
+            {{else}}
+            {{/if}}
+            
         </div>
 
 		<div class="form-row">
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta</label>
 				<select id="inputSituacao" class="form-control" name="Situacao">
-					<option value="" disabled selected>{{conta.Situacao}}</option>
-					<option>Fechada</option>
+                    <option value="" selected>{{conta.Situacao}}</option>
 					<option>Aberta</option>
+                    <option>Fechada</option>
 					<option>Cancelada</option>
 				</select>
 			</div>
 		</div>
 
+        
         <div class="form-row">
 			<div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Emissão</label>
-				<input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"  id="validationDefault07" name="DataEmissao" placeholder="{{#formatDate conta.dataEmissao}}{{/formatDate}}" >
+                <input type="date" class="form-control" id="dataEmi" placeholder="Data de Emissão" required name="DataEmissao" value="{{#formatDate conta.dataEmissao}}{{/formatDate}}">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Data de Vencimento</label>
-                <input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="validationDefault08"  name="DataVencimento" placeholder="{{#formatDate conta.dataVencimento}}{{/formatDate}}" >
+                <input type="date" class="form-control" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento" value="{{#formatDate conta.dataVencimento}}{{/formatDate}}">
             </div>
         </div>
 
+        {{#if tipoconta.Observacao}}
         <div class="form-row">
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Observação</label>
-                <textarea class="form-control" id="validationDefault09" placeholder="Observação" name="Observacao" >{{conta.Observacao}}</textarea>
+                <textarea class="form-control" id="validationTextarea" placeholder="Observação" name="Observacao" value="{{conta.Observacao}}"></textarea >
             </div>
+        {{else}}
+        {{/if}}
+
+        {{#if tipoconta.Descricao}}
             <div class="col-md-5 mb-3">
 				<label for="validationTextarea">Descrição</label>
-                <textarea class="form-control" id="validationDefault10" placeholder="Descrição" name="Descricao">{{conta.Descricao}}</textarea>
+                <textarea class="form-control" id="validationTextarea2" placeholder="Descrição" name="Descricao" value="{{conta.Descricao}}"></textarea>
         	</div>
 		</div>
+        {{else}}
+        {{/if}}
+
+        {{#if tipoconta.codigoBarras}}
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+				<label for="validationTextarea">Código de Barras</label>
+                <textarea class="form-control" id="validationTextarea" placeholder="Código de Barras" name="CodBarras" value="{{conta.codigoBarras}}"></textarea >
+            </div>
+		</div>
+        {{else}}
+        {{/if}}
 
         <button class="btn btn-primary" type="submit" onclick="sobrescreveData();limpaValor()">Editar</button>
 
