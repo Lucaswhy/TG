@@ -47,6 +47,21 @@
         nav{
             background-color: #4ABDAC !important;
         }
+
+        #contas{
+		    color: white;
+        }
+        
+        #conscontas{
+            background-color:white;
+            color:black !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+        .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+        .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
     </style>
 
 	<form class="form-cadastro" method="POST" action="/contaedicao">
@@ -71,7 +86,7 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="valconta">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault02" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2" value="{{conta.valConta}}">
+        			<input type="text" class="form-control money" id="validationDefault02" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="ValConta2" value="{{#corrigirValor conta.valConta}}{{/corrigirValor}}">
       			    <input type="hidden" id="ValCont" name="ValConta" value="">
                 </div>
     		</div>
@@ -85,19 +100,14 @@
         			<div class="input-group-prepend">
           				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
         			</div>
-        			<input type="text" class="form-control money" id="validationDefault05" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2" value="{{conta.Multa}}">
+        			<input type="text" class="form-control money" id="validationDefault05" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Multa2" value="{{#corrigirValor conta.Multa}}{{/corrigirValor}}">
       			    <input type="hidden" id="Mult" name="Multa" value="">
                   </div>
     		</div>
-			<div class="col-md-2 mb-3">
-      			<label for="validationDefaultUsername">Desconto</label>
-      			<div class="input-group">
-        			<div class="input-group-prepend">
-          				<span class="input-group-text" id="inputGroupPrepend2">R$</span>
-        			</div>
-        			<input type="text" class="form-control money" id="validationDefault06" placeholder="0,00" aria-describedby="inputGroupPrepend2" required name="Desconto" value="{{conta.Desconto}}">
-      			</div>
-    		</div>
+            <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Desconto</label>
+                <input type="text" class="form-control percent" id="Desconto" placeholder="0%" required name="Desconto" value="{{conta.Desconto}}">
+            </div>
         </div>
 
 		<div class="form-row">

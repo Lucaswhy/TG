@@ -24,7 +24,7 @@
                             <input type="hidden" id="valConta" name="valConta" value="{{#corrigirValor valConta}}{{/corrigirValor}}">
                             <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
                             <td>{{Juros}}</td>
-                            <td>{{Multa}}</td>
+                            <td>{{#corrigirValor Multa}}{{/corrigirValor}}</td>
                             <td>{{Desconto}}</td>
                             </tr>
                             <input type="hidden" id="idConta" name="idConta" value="{{_id}}">

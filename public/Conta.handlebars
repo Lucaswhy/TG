@@ -1,35 +1,103 @@
+<style type="text/css">
+        .form-cadastro {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
 
+        .div1{
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
 
+        .bt{
+            margin-top: 2.7%
+        }
 
-<div class="form-row">
+        h2, h1{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        h3{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+        }
+
+        .btn-primary{
+            background-color: #4ABDAC !important; 
+            color: white !important;
+            border-color: #4ABDAC !important;
+        }
+
+        .btn-primary:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        body{
+            background-color: #EFEFEF !important;
+        }
+
+        nav{
+            background-color: #4ABDAC !important;
+        }
+
+        #contas{
+		    color: white;
+        }
+        
+        #cadcontas{
+            background-color:white;
+            color:black !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+        .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+        .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
+
+    </style>
+
+<div class="form-row div1">
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Tipo da Conta</label>
 				<select id="inputSituacao" class="form-control" name="nomeTipoConta">
 					{{#each tipoconta}}
-                    <option value="{{_id}}">{{nomeTipoConta}}</option>
+                    <option value="{{nomeTipoConta}}">{{nomeTipoConta}}</option>
                     {{else}}
                         <option value="">Nenhum tipo de conta registrado!</option>
                     {{/each}}
 				</select>
 			</div>
-    <button class="btn btn-primary" type="submit" onclick="sendConta()">Selecionar</button>
-    
-
+            <div class="col-md-2.5 bt">
+                <button class="btn btn-primary" type="submit" onclick="sendConta()">Selecionar</button>
+            </div>
 </div>
+
 <form class="form-cadastro" method="POST" action="/validatipocontas">
-<fieldset class="col-md-2,5 mb-5 mr-4 pr-5 pl-3 border rounded" id="simulacao">
+<fieldset class="col-md-6 mb-5 mr-4 pr-5 pl-3 border rounded" id="simulacao">
                     <legend style="font-size:medium">Tipo de Conta:</legend>
                     
-                    <div class="form-row">
-                        <div class="col-md-2 mb-3">
-                            <label for="validationDefault02">Código do Tipo de Conta</label>
-                            <input type="number" class="form-control" id="validationDefault10" placeholder="Cod.Tipo de Conta" required name="CodTipoConta">
-                        </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault02">Código do Tipo de Conta</label>
+                        <input type="number" class="form-control" id="validationDefault10" placeholder="Cod.Tipo de Conta" required name="CodTipoConta">
                     </div>
 
-                     <div class="form-row">
-                    <label for="validationDefault20">Nome do Tipo de Conta</label>
-                <input type="text" class="form-control" id="validationDefault20" placeholder="Nome do Tipo" name="nomeTipoConta">
+                     <div class="col-md-10 mb-3 form-row">
+                        <label for="validationDefault20">Nome do Tipo de Conta</label>
+                        <input type="text" class="form-control" id="validationDefault20" placeholder="Nome do Tipo" name="nomeTipoConta">
                     </div>
 
                     <div class="custom-control custom-checkbox mt-2">
@@ -57,54 +125,106 @@
                         <label class="custom-control-label" for="cadDescricao">Descrição: </label>
                     </div>
 
-                    <div class="custom-control custom-checkbox mt-2">
+                    <div class="custom-control custom-checkbox mt-2 mb-2">
                         <input type="checkbox" class="custom-control-input" id="cadObservacao" name="cadObservacao">
                         <label class="custom-control-label" for="cadObservacao">Observação: </label>
                     </div>                    
                 </fieldset>
-<button class="btn btn-primary" type="submit">Cadastrar Tipo</button>
-</form>
+    <button class="btn btn-primary" type="submit">Cadastrar Tipo</button>
 
-<div id="new" class="d-flex flex-wrap wrap ">
-    {{#each tipoconta}}
-    <div class = "card mt-4 p-2 flex-row ">
-      <div class = "card-body">
-          <h4>Tipo: {{nomeTipoConta}}</h4>
-          <hr style="margin-bottom: 0.4rem !important;margin-top: 0.4rem">
-          <p>
-            Multa: {{Multa}},
-            </p>
-            Desconto: {{Desconto}},
-            </p>
-            Juros: {{Juros}},
-            </p>
-            codigoBarras: {{codigoBarras}},
-            </p>
-            Descricao: {{Descricao}},
-            </p>
-            Observacao: {{Observacao}}
-          </p>
-          <div class="form-row flex-column justify-content-end">
-            <a href ="/deletarcontastipo/{{_id}}">
-            <button type="button" class="btn btn-danger">Deletar Tipo</button></a>
-            <a href ="/editarcontastipo/elementos">
-            <button type="button" class="btn btn-primary">Editar Tipo</button></a>
+    <div id="new" class="d-flex flex-wrap wrap">
+        {{#each tipoconta}}
+        <div class = "card mt-4 p-2 flex-row mb-4 mr-2">
+            <div class = "card-body">
+                <h4>Tipo: {{nomeTipoConta}}</h4>
+                
+                <input type="hidden" id="nomeConta" name="nomeConta" value="{{nomeTipoConta}}">
+                <input type="hidden" id="idConta" name="idConta" value="{{_id}}">
+
+                <hr style="margin-bottom: 0.4rem !important;margin-top: 0.4rem">
+                <p>
+                    Multa: {{Multa}},  Desconto: {{Desconto}},
+                    </p>
+                    Juros: {{Juros}},  codigoBarras: {{codigoBarras}},
+                    </p>
+                    Descricao: {{Descricao}},  Observacao: {{Observacao}}
+                </p>
+                <div class="form-row flex-column justify-content-end">
+                    <a href ="/deletarcontastipo/{{_id}}">
+                    <button type="button" class="col-md-8 btn btn-danger mb-2">Deletar Tipo</button></a>
+
+                    <button type="button" class="col-md-8 btn btn-primary" onclick="editConta()">Editar Tipo</button></a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <p>Nenhum tipo de conta Cadastrado no sistema!</p>
+        {{/each}}
     </div>
-          </div>
-  </div>
-  </div>
-
-    {{else}}
-    <p>Nenhum tipo de conta Cadastrado no sistema!</p>
-    {{/each}}
+</form>
 
 	<script type="text/javascript">
 
     function sendConta(){
 
-        id = "Padrão"
+        id = document.getElementsByName("nomeTipoConta")[0].value;
 
         window.location.href="http://localhost:8081/cadastrarcontasTipo/"+id;
+
+    }
+
+    function editConta(){
+
+        var ed = new String;
+
+        ed += document.getElementsByName("idConta")[0].value + "+";
+
+        ed += document.getElementsByName("nomeConta")[0].value + "+";
+
+        if(document.getElementsByName("cadMulta")[0].checked == true){
+            ed += "true" + "+";
+        }
+        else{
+            ed += "false" + "+";
+        }
+
+        if(document.getElementsByName("cadDesconto")[0].checked == true){
+            ed += "true" + "+";
+        }
+        else{
+            ed += "false" + "+";
+        }
+
+        if(document.getElementsByName("cadJuros")[0].checked == true){
+            ed += "true" + "+";
+        }
+        else{
+            ed += "false" + "+";
+        }
+
+        if(document.getElementsByName("cadBarras")[0].checked == true){
+            ed += "true" + "+";
+        }
+        else{
+            ed += "false" + "+";
+        }
+
+        if(document.getElementsByName("cadDescricao")[0].checked == true){
+            ed += "true" + "+";
+        }
+        else{
+            ed += "false" + "+";
+        }
+
+        if(document.getElementsByName("cadObservacao")[0].checked == true){
+            ed += "true";
+        }
+        else{
+            ed += "false";
+        }
+
+        alert(ed)
+        window.location.href="http://localhost:8081/editarcontastipo/"+ed;
 
     }
 

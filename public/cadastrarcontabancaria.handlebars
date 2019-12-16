@@ -46,7 +46,8 @@
     		</div>
             <div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta:</label>
-				<select id="inputSituacao" class="form-control" name="SituacaoConta" value="{{usuario.Situacao}}">
+				<select id="inputSituacao" class="form-control" name="SituacaoConta" value="{{usuario.Situacao}}" required>
+                    <option value="" disabled selected>-- Selecione --</option>
 					<option>Ativa</option>
 					<option>Inativa</option>
 				</select>

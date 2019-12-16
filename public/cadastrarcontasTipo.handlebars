@@ -1,5 +1,74 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='cadastrarcontas.css'>
-    
+	<style type="text/css">
+        .form-cadastro {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        .div1{
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        .bt{
+            margin-top: 2.7%
+        }
+
+        h2, h1{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        h3{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+        }
+
+        .btn-primary{
+            background-color: #4ABDAC !important; 
+            color: white !important;
+            border-color: #4ABDAC !important;
+        }
+
+        .btn-primary:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        body{
+            background-color: #EFEFEF !important;
+        }
+
+        nav{
+            background-color: #4ABDAC !important;
+        }
+
+        #contas{
+		    color: white;
+        }
+        
+        #cadcontas{
+            background-color:white;
+            color:black !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+        .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+        .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
+    </style>
+	
 	<h2>Cadastrar Contas</h2>
 
 	<form class="form-cadastro" method="POST" action="/validacontas">
@@ -66,7 +135,8 @@
 		<div class="form-row">
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta</label>
-				<select id="inputSituacao" class="form-control" name="Situacao">
+				<select id="inputSituacao" class="form-control" name="Situacao" required>
+                    <option value="" disabled selected>-- Selecione --</option>
 					<option>Aberta</option>
                     <option>Fechada</option>
 					<option>Cancelada</option>
@@ -110,10 +180,15 @@
 				<label for="validationTextarea">Código de Barras</label>
                 <textarea class="form-control" id="validationTextarea" placeholder="Código de Barras" name="CodBarras"></textarea >
             </div>
+		</div>
         {{else}}
         {{/if}}
 
-        <button class="btn btn-primary" onclick="limpaValor()" type="submit">Cadastrar</button>
+		<div class="form-row"></div>
+			<div class="col-md-2 mb-3"></div>
+				<button class="btn btn-primary" onclick="limpaValor()" type="submit">Cadastrar</button>
+			</div>
+		</div>
 
     </form>
 

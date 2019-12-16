@@ -169,7 +169,7 @@
                     <td>{{#corrigirValor valConta}}{{/corrigirValor}}</td>
                     <td>{{#formatDate dataVencimento}}{{/formatDate}}</td>
                     <td>{{Juros}}</td>
-                    <td>{{Multa}}</td>
+                    <td>{{#corrigirValor Multa}}{{/corrigirValor}}</td>
                     <td>{{Desconto}}</td>
                     </tr>
                 </tbody>
@@ -204,7 +204,7 @@
         var vencimento2 = new Date();
 
         if(document.getElementsByName("aberta")[0].checked == true){
-            ft += ("Aberta") + "+";
+            ft += "Aberta" + "+";
         }
         else{
             ft += "+";
@@ -275,14 +275,14 @@
             ft += document.getElementsByName("valor1")[0].value + "+";
         }
         else{
-            ft += "+";
+            ft += 0 + "+";
         }
 
         if(document.getElementsByName("valor2")[0].value != ""){
             ft += document.getElementsByName("valor2")[0].value + "+";
         }
         else{
-            ft += "+";
+            ft += 90000000000000000 + "+";
         }
 
         if(document.getElementById("valor").checked == true){
