@@ -1,4 +1,47 @@
-    <link rel='stylesheet' type='text/css' media='screen' href='pagarconta.css'>
+    <style type="text/css">
+        .form-cadastro {
+            width: 100%;
+            max-width: 1200px;
+            padding: 15px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        h2, h1, h3{
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        .btn-primary{
+            margin-left: 260%;
+            background-color: #4ABDAC !important; 
+            color: white !important;
+            border-color: #4ABDAC !important;
+        }
+
+        .btn-primary:hover{
+            background-color: #EFEFEF !important;
+            color: black !important;
+        }
+
+        #remessa{
+            color: white;
+        }
+
+        #gerarremessa{
+            background-color:white;
+            color:black !important;
+        }
+
+        .navbar-nav > li > .dropdown-menu > a:hover, .navbar-nav > li > .dropdown-menu > a:active{background-color: #819FF7 !important;}
+
+        .navbar-nav > li > .dropdown-menu { background-color: #4ABDAC !important; }
+
+        .navbar-nav > li > .dropdown-menu > a {color: aliceblue}
+    </style>
 
     <h2>Pagar Contas</h2>
 
@@ -53,7 +96,10 @@
                                 <tr>
                                 <th scope="row"><input type="radio" id="ContaBancaria" name="ContaBancaria" onclick="qtdeContas()"> {{codContaBanc}}</th>
                                 <td>{{Agencia.Banco.nomeBanco}}</td>
+                                <input type="hidden" id="nomeBanco" name="nomeBanco" value="{{Agencia.Banco.nomeBanco}}">
+                                <input type="hidden" id="numeroBanco" name="numeroBanco" value="{{Agencia.Banco.numeroBanco}}">
                                 <td>{{Agencia.numAgencia}}</td>
+                                <input type="hidden" id="codAgencia" name="codAgencia" value="{{Agencia.numAgencia}}">
                                 <td>{{#corrigirValor Saldo}}{{/corrigirValor}}</td>
                                 <input type="hidden" id="Saldo" name="Saldo" value="{{Saldo}}">
                                 </tr>
@@ -81,16 +127,64 @@
                 <label for="validationDefault02">Valor Total: </label>
                 <input type="text" class="form-control" id="validationDefault52" name="totalValor" value="" disabled>
             </div>
-            <div>
-            <button id="btnPaga" type="button" class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
+            <div class="form-row col-md-2 mb-3 mt-4">
+                <button id="btnPaga" type="button" class="btn btn-primary" onclick="pagar()">Pagar Avulso</button>
             </div>
-            <a href="http://localhost:8081/remessa"> <button type="button" class="btn btn-primary">Gerar Remessa</button> </a>
+            <div class="form-row col-md-2 mb-3 mt-4 mr-5">
+                <button id="btnRemessa" type="button" class="btn btn-primary" onclick="remessa()">Gerar Remessa</button>
+            </div>
         
         </div>
     </form>
 
 
 <script type="text/javascript">
+
+    function remessa(){
+
+        var CB = document.getElementsByName('ContaBancaria');
+        var id = document.getElementsByName('idConta');
+        var Conta = document.getElementsByName('Conta');
+        var vId = document.getElementsByName('idContaB');
+        var rm = new String;
+        var rm2 = new String;
+
+        if(document.getElementsByName('checkCB')[0].checked){
+
+        banco = document.getElementsByName('nomeBanco');
+        nBanco = document.getElementsByName('nomeBanco');
+        agencia = document.getElementsByName('codAgencia');
+
+            for(var i=0;i< CB.length;i++){
+
+                if(CB[i].checked){
+                    rm += banco[i].value + '/' + nBanco[i].value + '/' + agencia[i].value + '/';
+                }
+            
+            }
+
+            for(var i = 0; i < Conta.length; i++){
+                if(rm2 != ""){
+                    rm2 += "+" + String(id[i].value);
+                }
+
+                else{
+                    rm2 = String(id[i].value);
+                }
+            }
+            rm = rm + rm2;
+            if(rm2 != ""){
+                window.location.href="/remessa/" + rm;
+            }
+            else{
+                alert("Remessa não foi gerado, nenhuma conta foi selecionada.");
+                window.location.href="http://localhost:8081/pagarconta";
+            }
+        }
+        else{
+                alert("Selecione uma conta bancaria!");
+            }
+    }
 
     function qtdeContas(){
 
@@ -189,7 +283,7 @@
          }
          else{
              alert("Nenhuma conta foi paga, pois, nenhuma foi selecionada.");
-              window.location.href="http://localhost:8081/pagarconta/";
+              window.location.href="http://localhost:8081/pagarconta";
          }
      
     }
