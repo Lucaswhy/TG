@@ -68,6 +68,8 @@
 
         <input type="hidden" name="_id" value="{{tipoconta._id}}">
 
+        <input type="hidden" id="tipoConta" name="tipoConta" value="{{tipoconta.nomeTipoConta}}">
+
         <br>
         <div class="form-row">
             <div class="col-md-2 mb-3">
@@ -141,11 +143,11 @@
         <div class="form-row">
 			<div class="col-md-2 mb-3">
                 <label for="validationDefault01">Data de Emissão</label>
-                <input type="date" class="form-control" id="dataEmi" placeholder="Data de Emissão" required name="DataEmissao" value="{{#formatDate conta.dataEmissao}}{{/formatDate}}">
+                <input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')"  id="validationDefault07" name="DataEmissao" placeholder="{{#formatDate conta.dataEmissao}}{{/formatDate}}" >
             </div>
             <div class="col-md-2 mb-3">
                 <label for="validationDefault02">Data de Vencimento</label>
-                <input type="date" class="form-control" id="dataVenc" placeholder="Data de Vencimento" required name="DataVencimento" value="{{#formatDate conta.dataVencimento}}{{/formatDate}}">
+                <input type="text"  class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" id="validationDefault08"  name="DataVencimento" placeholder="{{#formatDate conta.dataVencimento}}{{/formatDate}}" >
             </div>
         </div>
 

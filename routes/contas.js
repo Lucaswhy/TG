@@ -61,7 +61,8 @@ router.post("/validacontas", function(req,res){
     dataVencimento: req.body.DataVencimento,
     codigoBarras: req.body.CodBarras,
     Observacao: req.body.Observacao,
-    Descricao: req.body.Descricao
+    Descricao: req.body.Descricao,
+    tipoConta: req.body.tipoConta
 }
 
 new Conta(novaConta).save().then(function(){
@@ -178,8 +179,13 @@ router.get("/deletarcontastipo/:id", delConta, function(req,res){
 //Editar
 router.get("/editarcontas/:id", editConta, function(req,res){
     Conta.findOne({_id: req.params.id}).then((conta) =>{
-
-    res.render('../public/editarcontas', {conta: conta});
+        TipoConta.findOne({nomeTipoConta: conta.tipoConta}).then((tipoconta) =>{
+    res.render('../public/editarcontas', {conta: conta,tipoconta: tipoconta});
+}).catch((erro) =>{
+    console.log(erro);
+    req.flash("error_msg", "Conta não encontrada.");
+    res.redirect("/consultarcontas");
+});
     }).catch((erro) =>{
         console.log(erro);
         req.flash("error_msg", "Conta não encontrada.");
@@ -219,7 +225,7 @@ router.get("/editarcontastipo/:elementos", editContaTipo, function(req,res){
     var Params = new Array;
     Params = req.params.elementos;
     var Elementos = Params.split("+");
-//http://localhost:8081/editarcontastipo/5de55d0f6d85953efc7a5980+Valor+true+true+true+true+true+true
+//http://localhost:8081/editarcontastipo/5df6b384681d9e236466bc0a+Valor+true+true+true+true+false+false
     TipoConta.findOne({_id: Elementos[0]}).then((tipoconta)=>{
         
         tipoconta.nomeTipoConta = Elementos[1]

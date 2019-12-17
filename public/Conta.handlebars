@@ -153,7 +153,7 @@
                     <a href ="/deletarcontastipo/{{_id}}">
                     <button type="button" class="col-md-8 btn btn-danger mb-2">Deletar Tipo</button></a>
 
-                    <button type="button" class="col-md-8 btn btn-primary" onclick="editConta()">Editar Tipo</button></a>
+                    <button type="button" class="col-md-8 btn btn-primary" onclick="editConta('{{_id}}','{{nomeTipoConta}}')">Editar Tipo</button>
                 </div>
             </div>
         </div>
@@ -173,13 +173,9 @@
 
     }
 
-    function editConta(){
+    function editConta(id,nome){
 
         var ed = new String;
-
-        ed += document.getElementsByName("idConta")[0].value + "+";
-
-        ed += document.getElementsByName("nomeConta")[0].value + "+";
 
         if(document.getElementsByName("cadMulta")[0].checked == true){
             ed += "true" + "+";
@@ -223,8 +219,7 @@
             ed += "false";
         }
 
-        alert(ed)
-        window.location.href="http://localhost:8081/editarcontastipo/"+ed;
+        window.location.href="http://localhost:8081/editarcontastipo/"+id+"+"+nome+"+"+ed;
 
     }
 
