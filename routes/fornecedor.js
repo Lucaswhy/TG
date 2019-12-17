@@ -85,7 +85,8 @@ router.post("/cadastrarfornecedor", function(req,res){
 }
 
 new Fornecedor(novoFornecedor).save().then(function(){
-res.redirect('/fornecedorcadastrado');
+    req.flash("success_msg", "Fornecedor cadastrado com sucesso!");
+    res.redirect("/consultarfornecedor");
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar fornecedor.");
@@ -127,7 +128,7 @@ router.get('/consultarfornecedor/:busca',conForn, function(req,res){
    });
 //Deletar Fornecedor
 router.get("/deletarfornecedor/:id", delForn, function(req,res){
-    Fornecedor.findOneAndDelete({_id : req.params.id}).then((fornecedor) =>{
+    Fornecedor.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Fornecedor deletado. ");
         res.redirect('/consultarfornecedor');
          }).catch((erro) =>{

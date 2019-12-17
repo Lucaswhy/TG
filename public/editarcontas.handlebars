@@ -68,7 +68,19 @@
 
         <input type="hidden" name="_id" value="{{tipoconta._id}}">
 
-        <input type="hidden" id="tipoConta" name="tipoConta" value="{{tipoconta.nomeTipoConta}}">
+            <button class="btn btn-primary" type="submit" onclick="sobrescreveData();limpaValor()">Editar</button>
+        
+        <div class="col-md-2.5 mb-3">
+
+				<label for="inputTipoConta">Tipo da Conta</label>
+				<select id="inputTipoConta" class="form-control" name="tipoConta">
+                    <option selected>{{tipoconta.nomeTipoConta}}</option>
+					{{#each alltipoconta}}
+                    <option value="{{nomeTipoConta}}">{{nomeTipoConta}}</option>
+                    {{else}}
+                    {{/each}}
+				</select>
+			</div>
 
         <br>
         <div class="form-row">
@@ -131,7 +143,7 @@
 			<div class="col-md-2.5 mb-3">
 				<label for="inputSituacao">Situação da conta</label>
 				<select id="inputSituacao" class="form-control" name="Situacao">
-                    <option value="" selected>{{conta.Situacao}}</option>
+                    <option selected>{{conta.Situacao}}</option>
 					<option>Aberta</option>
                     <option>Fechada</option>
 					<option>Cancelada</option>
@@ -178,8 +190,6 @@
 		</div>
         {{else}}
         {{/if}}
-
-        <button class="btn btn-primary" type="submit" onclick="sobrescreveData();limpaValor()">Editar</button>
 
     </form>
 

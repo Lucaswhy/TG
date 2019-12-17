@@ -25,7 +25,8 @@ router.post("/validabancos", function(req,res){
 }
 
 new Banco(novoBanco).save().then(function(){
-res.redirect('/bancocadastrado');
+    req.flash("success_msg","Banco cadastrado com sucesso. ");
+res.redirect('/consultarbancos');
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar banco.");
@@ -66,7 +67,7 @@ router.get('/consultarbancos', conBanco, function(req,res){
    });
 //Deletar
 router.get("/deletarbanco/:id", delBanco, function(req,res){
-    Banco.findOneAndDelete({_id : req.params.id}).then((banco) =>{
+    Banco.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Banco deletado. ");
         res.redirect('/consultarbancos');
          }).catch((erro) =>{

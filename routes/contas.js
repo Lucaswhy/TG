@@ -31,6 +31,7 @@ router.get("/Conta", cadConta, function(req,res){
     }).catch((erro) => {
         console.log(erro);
         req.flash("error_msg","Erro ao consultar os tipos de conta.");
+        res.redirect('/Conta');
     }); 
 });
 
@@ -38,12 +39,13 @@ router.get("/cadastrarcontas/", cadConta, function(req,res){
     res.render('../public/cadastrarcontas');
 });
 
-router.get("/cadastrarcontasTipo/:tipo", function(req,res){
+router.get("/cadastrarcontasTipo/:tipo", cadConta, function(req,res){
     TipoConta.findOne({nomeTipoConta: req.params.tipo}).then((tipoconta) =>{
     res.render('../public/cadastrarcontasTipo', {tipoconta: tipoconta});
     }).catch((erro) => {
         console.log(erro);
         req.flash("error_msg","Erro ao consultar os tipos de conta.");
+        res.redirect('/Conta');
     }); 
 });
 
@@ -66,10 +68,12 @@ router.post("/validacontas", function(req,res){
 }
 
 new Conta(novaConta).save().then(function(){
-res.redirect('/contacadastrada');
+    req.flash("success_msg","Conta cadastrada com sucesso. ");
+    res.redirect('/consultarcontas');
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar conta." );
+    res.redirect('/consultarcontas');
 });
 
 });
@@ -119,6 +123,7 @@ new TipoConta(novaTipoConta).save().then(function(){
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar tipo de conta." );
+    res.redirect('/Conta');
 });
 
 });
@@ -134,6 +139,7 @@ router.get('/consultarcontas', conConta, function(req,res){
        }).catch((erro) => {
            console.log(erro);
            req.flash("error_msg","Erro ao consultar contas.");
+           res.redirect('/consultarcontas');
        }); 
    });
    router.get('/consultarcontas/:busca',conConta, function(req,res){
@@ -143,6 +149,7 @@ router.get('/consultarcontas', conConta, function(req,res){
         }).catch((erro) => {
             console.log(erro);
             req.flash("error_msg","Erro ao consultar a conta. Erro:");
+            res.redirect('/consultarcontas');
         });
         }
     else{
@@ -151,6 +158,7 @@ router.get('/consultarcontas', conConta, function(req,res){
             }).catch((erro) => {
                 console.log(erro);
                 req.flash("error_msg","Erro ao consultar a conta. Erro:");
+                res.redirect('/consultarcontas');
             });
         } 
    });
@@ -162,16 +170,18 @@ router.get("/deletarcontas/:id", delConta, function(req,res){
          }).catch((erro) =>{
         console.log(erro);
         req.flash("error_msg","Conta não encontrada.");
+        res.redirect('/consultarcontas');
     })
 });
 
 router.get("/deletarcontastipo/:id", delConta, function(req,res){
-    TipoConta.findOneAndDelete({_id : req.params.id}).then((tipoconta) =>{
+    TipoConta.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Tipo de conta deletada. ");
         res.redirect('/Conta');
          }).catch((erro) =>{
         console.log(erro);
         req.flash("error_msg","Tipo de conta não encontrada.");
+        res.redirect('/Conta');
     })
 });
 
@@ -180,7 +190,8 @@ router.get("/deletarcontastipo/:id", delConta, function(req,res){
 router.get("/editarcontas/:id", editConta, function(req,res){
     Conta.findOne({_id: req.params.id}).then((conta) =>{
         TipoConta.findOne({nomeTipoConta: conta.tipoConta}).then((tipoconta) =>{
-    res.render('../public/editarcontas', {conta: conta,tipoconta: tipoconta});
+           TipoConta.find().then((alltipoconta) =>{ 
+    res.render('../public/editarcontas', {conta: conta,tipoconta: tipoconta,alltipoconta: alltipoconta});
 }).catch((erro) =>{
     console.log(erro);
     req.flash("error_msg", "Conta não encontrada.");
@@ -188,9 +199,14 @@ router.get("/editarcontas/:id", editConta, function(req,res){
 });
     }).catch((erro) =>{
         console.log(erro);
-        req.flash("error_msg", "Conta não encontrada.");
+        req.flash("error_msg", "Problema ao consultar o tipo de contas. Contate o Administrador.");
         res.redirect("/consultarcontas");
-    });
+    })
+    }).catch((erro) =>{
+    console.log(erro);
+    req.flash("error_msg", "Problema ao consultar o tipo de contas. Contate o Administrador.");
+    res.redirect("/consultarcontas");
+});
 });
 
 router.post("/contaedicao",editConta, function(req,res){
@@ -208,6 +224,7 @@ router.post("/contaedicao",editConta, function(req,res){
         conta.codigoBarras = req.body.CodBarras
         conta.Observacao = req.body.Observacao
         conta.Descricao = req.body.Descricao
+        conta.tipoConta = req.body.tipoConta
     
         conta.save().then(() => {
             req.flash("success_msg","Conta editado com sucesso!");

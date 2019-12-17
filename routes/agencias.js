@@ -33,7 +33,8 @@ router.post("/validaagencias", function(req,res){
 }
 
 new Agencia(novaAgencia).save().then(function(){
-res.redirect('/agenciacadastrada');
+req.flash("success_msg","Agencia cadastrada com sucesso. ");
+res.redirect('/consultaragencia');
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar agencia.");
@@ -42,7 +43,8 @@ res.redirect('/agenciacadastrada');
 });
 
 router.get("/agenciacadastrada", function(req,res){
-res.render('../public/agenciacadastrada')
+    req.flash("success_msg","Agencia cadastrada com sucesso. ");
+    res.render('../public/agenciacadastrada')
 });
 
 //Consultar
@@ -56,7 +58,7 @@ router.get('/consultaragencia', conAgencia, function(req,res){
    });
 //Deletar
 router.get("/deletaragencia/:id", delAgencia, function(req,res){
-    Agencia.findOneAndDelete({_id : req.params.id}).then((agencia) =>{
+    Agencia.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Agencia deletada. ");
         res.redirect('/consultaragencia');
          }).catch((erro) =>{

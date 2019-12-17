@@ -33,7 +33,8 @@ router.post("/validacontabancaria", function(req,res){
 }
 
 new Contabancaria(novaContaBancaria).save().then(function(){
-res.redirect('/contabancariacadastrada');
+    req.flash("success_msg","Conta bancaria cadastrada com sucesso! ");
+    res.redirect('/consultarcontabancaria');
 }).catch(function(erro){
     console.log(erro);
     req.flash("error_msg", "Erro ao cadastrar a conta.");
@@ -57,7 +58,7 @@ router.get('/consultarcontabancaria', conContBanc, function(req,res){
    
 //Deletar
 router.get("/deletarcontabancaria/:id", delContBanc, function(req,res){
-    Contabancaria.findOneAndDelete({_id : req.params.id}).then((contabancaria) =>{
+    Contabancaria.findOneAndDelete({_id : req.params.id}).then(() =>{
         req.flash("success_msg","Conta deletada. ");
         res.redirect('/consultarcontabancaria');
          }).catch((erro) =>{

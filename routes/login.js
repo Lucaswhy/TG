@@ -245,7 +245,8 @@ router.post("/cadastrarusuario", function(req,res){
         }
         
         new Usuario(novoUsuario).save().then(function(){
-        res.redirect('/usuariocadastrado');
+            req.flash("success_msg", "Usuário cadastrado com sucesso! Aguarde o administrador liberar a conta." );
+            res.redirect("/cadastrarusuario");
         }).catch(function(erro){
             console.log(erro);
             req.flash("error_msg", "Erro ao cadastrar usuário." );
