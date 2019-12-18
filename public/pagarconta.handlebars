@@ -164,12 +164,14 @@
             }
 
             for(var i = 0; i < Conta.length; i++){
-                if(rm2 != ""){
-                    rm2 += "+" + String(id[i].value);
-                }
+                if(Conta[i].checked){
+                    if(rm2 != ""){
+                        rm2 += "+" + String(id[i].value);
+                    }
 
-                else{
-                    rm2 = String(id[i].value);
+                    else{
+                        rm2 = String(id[i].value);
+                    }
                 }
             }
             rm = rm + rm2;
