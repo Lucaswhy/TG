@@ -426,15 +426,15 @@ router.get("/validaPagarContaB/:cb/:id",pagConta, function(req,res){
 router.get("/remessa/:banco/:numerobanco/:agencia/:id",gerRemessa, function(req,res){
 
     var hoje = new Date();
-    var dd = hoje.getDay();
-    var mm = hoje.getMonth();
-    var yyyy = hoje.getFullYear();
     var count = 1;
     var linhas = 1;
     var i = 0;
     var erroRemessa = 0;
 
     var today = moment(hoje).format('DDMMYYYY');
+    var dd = moment(hoje).format('DD');
+    var mm = moment(hoje).format('MM');
+    var yyyy = moment(hoje).format('YYYY');
     var dPagamento = moment(hoje).format('MM/DD/YYYY');
 
     var bank = req.params.banco;
