@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
 
     //Configurando Mongoose
     mongoose.Promise = global.Promise; 
-    mongoose.connect('mongodb://localhost/CAP', {useNewUrlParser: true, useCreateIndex: true}).then(() => {
+    mongoose.connect('mongodb://localhost/CAP', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}).then(() => {
     console.log("Banco de dados rodando.");
     }).catch((erro) => {
         console.log("Falha no banco de dados. Erro: " + erro);
