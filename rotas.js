@@ -2,8 +2,6 @@ const path = require('path');
 const express = require("express"); //Chama o framework que faz o req/res
 const app  = express();
 const mongoose = require("mongoose");
-const handlebars = require('express-handlebars');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const moment = require('moment-timezone');
@@ -20,30 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
         console.log("Falha no banco de dados. Erro: " + erro);
     })
 
-
-   // Configurando Handlebars
-    // Template Engine
-    app.engine('handlebars', handlebars({
-        defaultLayout: 'main',
-        helpers: {  formatDate: (date) => {
-            return moment(date).add(3,"hours").format('DD/MM/YYYY');
-            },
-            formatDateBD: (date) =>{
-                return moment(date).add(3,"hours").format('MM/DD/YYYY'); 
-            },
-            corrigirValor: (val) =>{
-                var valor = new String;
-
-                valor = 'R$' + val.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
-                
-                return(valor);
-                
-            }
-        }
-
-       }));
-    app.set('view engine','handlebars');
-    
     //Configurando o sessions
     app.use(session({
         secret: "cpa2019",
@@ -52,9 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta
         cookie: {maxAge : (2 * 60 * 60 * 1000)}
     }));
 
-    //Configurando Body Parser 
-    app.use(bodyParser.urlencoded({extended: false}));
-    app.use(bodyParser.json());
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jsx');
+    app.engine('jsx', require('express-react-views').createEngine());
 
     //Configurando passport
     app.use(passport.initialize());
