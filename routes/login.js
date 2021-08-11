@@ -62,7 +62,7 @@ function validaCPF(cpf){
 //LOGIN E HOME
 
 router.get("/", function(req,res){
-    res.render('../views/login', {props:'batata'});
+    res.render('../views/login', {title:'Login'});
 });
 
 router.post("/validalogin", function(req,res,next){

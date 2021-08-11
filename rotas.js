@@ -8,7 +8,7 @@ const moment = require('moment-timezone');
 const passport = require("passport");
 require("./config/auth")(passport);
     
-app.use(express.static(path.join(__dirname, 'public')   )); //defino que a pasta usada é a pública
+app.use(express.static(path.join(__dirname + '/public')   )); //defino que a pasta usada é a pública
 
     //Configurando Mongoose
     mongoose.Promise = global.Promise; 
