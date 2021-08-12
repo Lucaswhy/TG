@@ -26,6 +26,9 @@ app.use(express.static(path.join(__dirname + '/public')   )); //defino que a pas
         cookie: {maxAge : (2 * 60 * 60 * 1000)}
     }));
 
+    app.use(express.json());
+    app.use(express.urlencoded({extended : false})); 
+
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jsx');
     app.engine('jsx', require('express-react-views').createEngine());

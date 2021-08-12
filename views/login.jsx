@@ -5,7 +5,7 @@ function login(props) {
 
     return (
         <DefaultLayout title={props.title}>
-          	<form method="POST" action="/validalogin" class="form-login">
+          	<form method="POST" action="./validalogin" class="form-login">
                 <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
                 <div class="form-group">
                     <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" name="Email" autofocus/>
