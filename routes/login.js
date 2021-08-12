@@ -73,13 +73,13 @@ router.post("/validalogin", function(req,res,next){
     })(req,res,next)
 }); 
 
-router.get("/home", home, function(req,res){
+router.get("/home", home, function(req,res){ //add home 
     Usuario.find({LoginStatus: false}).then((usuario) =>{
         Usuario.find({flagSenha: true}).then((novaSenha)=> {
         
         var today = new Date();
         var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
+        var mm = today.getMonth()+1; 
         var yyyy = today.getFullYear();
 
         if(dd<10) {
@@ -92,7 +92,7 @@ router.get("/home", home, function(req,res){
         today = mm + '/' + dd + '/' + yyyy;
 
         Conta.find({dataVencimento: yyyy+"-"+mm+"-"+dd+"T00:00:00.000Z"}).then((conta)=>{
-        res.render('../public/home', {conta: conta,usuario: usuario,novaSenha: novaSenha});
+        res.render('../views/home', {title: 'Home', conta: conta, usuario: usuario, novaSenha: novaSenha});
     }).catch((erro) => {
         console.log(erro);
         req.flash("error_msg","Erro no banco.");

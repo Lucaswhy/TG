@@ -5,17 +5,21 @@ function login(props) {
 
     return (
         <DefaultLayout title={props.title}>
-            <div className="login container">
-                <p className="login--logo text-center">LOGO</p>
-                <div className="row justify-content-center">
-                    <div className="login--box col-6">
-                        <input type="text" placeholder="Insira seu usuário" className="form-control" />
-                        <input type="password" placeholder="Insira sua senha" className="form-control" />
-                        <span className="login--forget"><a href="#">Esqueci minha senha</a></span>
-                        <button className="btn">Entrar</button>
-                    </div>
+          	<form method="POST" action="/validalogin" class="form-login">
+                <h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
+                <div class="form-group">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" name="Email" autofocus/>
                 </div>
-            </div>
+                <div class="form-group">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="Senha"/>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                <a href="cadastrarusuario" class="link">Cadastrar novo usuário </a>
+                <a href="esqueciminhasenha" class="link">Esqueci minha senha</a>
+            </form>
+            <nav class="navbar fixed-bottom navbar-dark">
+                <a class="navbar-brand"></a>
+            </nav>
         </DefaultLayout>
     )
 }
